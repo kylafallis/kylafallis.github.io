@@ -1,4 +1,4 @@
-/* === START: ADDED STYLES FOR NAVIGATION AND PROJECTS === */
+/* === START: UPDATED STYLES FOR NAVIGATION AND PROJECTS === */
 
 /* --- Sidebar and Menu Icon --- */
 #menu-icon {
@@ -11,7 +11,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1002; /* Needs to be on top of everything */
     transition: color 0.3s;
 }
 
@@ -30,6 +30,11 @@
     transform: translateX(-100%); /* Initially hidden off-screen */
     transition: transform 0.3s ease-in-out;
     padding-top: 60px;
+}
+
+/* This class is now added/removed by JavaScript */
+#sidebar.is-open {
+    transform: translateX(0);
 }
 
 #sidebar ul {
@@ -52,29 +57,41 @@
     color: white;
 }
 
-#close-btn {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 36px;
-    color: var(--light-sage);
-}
-
 .sidebar-project-links a {
     font-size: 1em;
     padding-left: 30px; /* Indent the project links */
 }
 
+/* --- Overlay --- */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 1000;
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* This class is now added/removed by JavaScript */
+#overlay.is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
 /* --- Clickable Project Card --- */
 .project-link {
     text-decoration: none;
-    color: inherit; /* Inherits the text color from its parent */
-    display: block; /* Makes the whole area clickable */
+    color: inherit;
+    display: block;
 }
 
 /* --- Project Page Specific Styles --- */
 .project-header {
-    padding: 3em 1em; /* Less padding for project pages */
+    padding: 3em 1em;
 }
 
 .project-page-content {
@@ -102,5 +119,4 @@
     background-color: var(--dark-text);
 }
 
-
-/* === END: ADDED STYLES === */
+/* === END: UPDATED STYLES === */
