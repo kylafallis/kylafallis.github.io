@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research: [Your Project Title]</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    
+    <div id="overlay"></div>
+    <div id="menu-icon">&#9776;</div>
+
+    <nav id="sidebar">
+        <ul>
+            <li><a href="index.html#banner">Home</a></li>
+            <li><a href="index.html#profile">Profile</a></li>
+            <li><a href="index.html#recognition">Honors</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li class="sidebar-project-links">
+                <hr>
+                <a href="index.html#software-projects">Software Projects</a>
+                <a href="index.html#design-projects">Physical Design Projects</a>
+                <a href="index.html#research-projects">Research</a>
+                <a href="index.html#community-projects">Community Projects</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <header id="banner" class="project-header">
+        <h1>[Your Research Title]</h1>
+        <p class="project-dates">Published [Date]</p>
+    </header>
+
+    <main class="project-page-content">
+        <div class="card">
+            <a href="[link-to-publication.pdf]" class="button">Read Full Publication</a>
+            
+            <h3>Abstract</h3>
+            <p>[Provide the abstract or a summary of your research here. What was the core question? Why was it important?]</p>
+
+            <h3>Methodology</h3>
+            <p>[Describe the methods you used to conduct your research. What experiments did you run or what data did you analyze?]</p>
+
+            <h3>Results & Conclusion</h3>
+            <p>[Summarize the key findings of your research and what conclusions you drew from the results.]</p>
+            
+            <h3>Awards & Recognition</h3>
+            <p>[Mention any awards this research won, e.g., "This project was an ISEF qualifier and received the Governor's Thomas Edison Award."]</p>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
