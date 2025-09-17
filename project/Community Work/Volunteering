@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Project: [Your Project Title]</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    
+    <div id="overlay"></div>
+    <div id="menu-icon">&#9776;</div>
+
+    <nav id="sidebar">
+        <ul>
+            <li><a href="index.html#banner">Home</a></li>
+            <li><a href="index.html#profile">Profile</a></li>
+            <li><a href="index.html#recognition">Honors</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li class="sidebar-project-links">
+                <hr>
+                <a href="index.html#software-projects">Software Projects</a>
+                <a href="index.html#design-projects">Physical Design Projects</a>
+                <a href="index.html#research-projects">Research</a>
+                <a href="index.html#community-projects">Community Projects</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <header id="banner" class="project-header">
+        <h1>[Your Project Title]</h1>
+        <p class="project-dates">[Start Date] – [End Date]</p>
+    </header>
+
+    <main class="project-page-content">
+        <div class="card">
+            <h3>Mission & Goals</h3>
+            <p>[Describe the purpose of the project. What community need were you addressing? What were you trying to achieve?]</p>
+
+            <h3>Key Impact Metrics</h3>
+            <div class="impact-metrics">
+                <div class="metric-box">
+                    <span class="metric-number">500+</span>
+                    <span class="metric-label">Items Donated</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-number">10+</span>
+                    <span class="metric-label">Events Organized</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-number">1st</span>
+                    <span class="metric-label">Chapter in NW Ohio</span>
+                </div>
+            </div>
+
+            <h3>Activities & Outcomes</h3>
+            <p>[Describe the specific activities you undertook (e.g., organizing drives, curating exhibits, testifying before the Senate) and what the outcome of your work was.]</p>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
