@@ -1,31 +1,26 @@
-// Wait until the document is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Get the elements for the menu icon, sidebar, and close button
     const menuIcon = document.getElementById('menu-icon');
     const sidebar = document.getElementById('sidebar');
-    const closeBtn = document.getElementById('close-btn');
+    const overlay = document.getElementById('overlay');
     const sidebarLinks = document.querySelectorAll('#sidebar a');
 
-    // Function to open the sidebar
-    function openSidebar() {
-        sidebar.style.transform = 'translateX(0)';
+    // This single function will open OR close the sidebar
+    function toggleSidebar() {
+        // The .toggle() method adds the class if it's not there, and removes it if it is.
+        sidebar.classList.toggle('is-open');
+        overlay.classList.toggle('is-visible');
     }
 
-    // Function to close the sidebar
-    function closeSidebar() {
-        sidebar.style.transform = 'translateX(-100%)';
-    }
+    // When you click the menu icon, toggle the sidebar
+    menuIcon.addEventListener('click', toggleSidebar);
 
-    // Event listener for the menu icon to open the sidebar
-    menuIcon.addEventListener('click', openSidebar);
+    // When you click the overlay, close the sidebar
+    overlay.addEventListener('click', toggleSidebar);
 
-    // Event listener for the close button to close the sidebar
-    closeBtn.addEventListener('click', closeSidebar);
-
-    // Add event listeners to all sidebar links to close the sidebar on click
+    // When you click any link in the sidebar, close the sidebar
     sidebarLinks.forEach(link => {
-        link.addEventListener('click', closeSidebar);
+        link.addEventListener('click', toggleSidebar);
     });
 
 });
