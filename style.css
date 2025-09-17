@@ -289,7 +289,11 @@ h2 {
     margin: 1em 0.5em 0 0;
     transition: background-color 0.3s;
 }
-
+/* === Style for "About Me" Section Titles === */
+#profile .experience-grid strong {
+    color: var(--dark-sage); /* Uses your existing theme color */
+    font-weight: 700;        /* Makes the text slightly bolder */
+}
 .button:hover {
     background-color: var(--dark-text);
 }
