@@ -10,8 +10,25 @@
 </head>
 <body>
 
+    <div id="menu-icon">&#9776;</div>
+    <nav id="sidebar">
+        <a href="javascript:void(0)" id="close-btn">&times;</a>
+        <ul>
+            <li><a href="#banner">Home</a></li>
+            <li><a href="#experience">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#recognition">Recognition</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="sidebar-project-links">
+                <hr>
+                <a href="project-pythagoras.html">Pythagoras Plains</a>
+                <a href="project-mfc.html">Microbial Fuel Cell</a>
+            </li>
+        </ul>
+    </nav>
+
     <header id="banner">
-        <img src="images/headshot2.jpg" alt="Headshot of Kyla Fallis" class="headshot">
+        <img src="images/headshot.png" alt="Headshot of Kyla Fallis" class="headshot">
         <h1>Kyla Fallis</h1>
         <p>Environmental Engineering Student | Software Developer | Researcher</p>
     </header>
@@ -39,23 +56,29 @@
         <section id="projects">
             <h2>Projects</h2>
             <div class="project-grid">
-                <div class="project-card card">
-                    <img src="images/project-software.jpg" alt="Screenshot of a software project">
-                    <h3>Pythagoras Plains Game</h3>
-                    <p>A web-based educational game developed with Jekyll to teach geometric principles in an interactive and engaging way.</p>
-                </div>
+                <a href="project-pythagoras.html" class="project-link">
+                    <div class="project-card card">
+                        <img src="images/project-software.jpg" alt="Screenshot of a software project">
+                        <h3>Pythagoras Plains Game</h3>
+                        <p>A web-based educational game developed with Jekyll to teach geometric principles in an interactive and engaging way.</p>
+                    </div>
+                </a>
 
-                <div class="project-card card">
-                    <img src="images/project-mfc.jpg" alt="Image of the microbial fuel cell project">
-                    <h3>Microbial Fuel Cell Prototype</h3>
-                    <p>A physical prototype demonstrating the feasibility of using microbial fuel cells on a small household scale to generate clean energy.</p>
-                </div>
+                <a href="project-mfc.html" class="project-link">
+                    <div class="project-card card">
+                        <img src="images/project-mfc.jpg" alt="Image of the microbial fuel cell project">
+                        <h3>Microbial Fuel Cell Prototype</h3>
+                        <p>A physical prototype demonstrating the feasibility of using microbial fuel cells on a small household scale to generate clean energy.</p>
+                    </div>
+                </a>
 
-                <div class="project-card card">
-                    <img src="images/project-placeholder.jpg" alt="Placeholder for another project">
-                    <h3>Another Cool Project</h3>
-                    <p>A brief, exciting description of another one of your amazing software or physical projects.</p>
-                </div>
+                <a href="#" class="project-link">
+                    <div class="project-card card">
+                        <img src="images/project-placeholder.jpg" alt="Placeholder for another project">
+                        <h3>Another Cool Project</h3>
+                        <p>A brief, exciting description of another one of your amazing software or physical projects.</p>
+                    </div>
+                </a>
             </div>
         </section>
 
@@ -88,10 +111,11 @@
         <a href="mailto:kylakayf@gmail.com" class="email-link">kylakayf@gmail.com</a>
         <div class="socials">
             <a href="https://github.com/kylafallis" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/your-profile/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/kylafallis07/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="https://www.instagram.com/kyla.fallis/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
-
+    
+    <script src="script.js"></script>
 </body>
 </html>
