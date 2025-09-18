@@ -405,39 +405,48 @@ code {
 
 /* === START: STYLES FOR HONORS PAGES === */
 
-.honor-entry {
+/* New 3-column grid container */
+.honors-grid {
+    display: grid;
+    /* Creates responsive columns that are at least 300px wide */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5em; /* Space between the cards */
+}
+
+/* The rounded rectangular box for each honor */
+.honor-card {
     background-color: #f9f9f9;
     border: 1px solid #eee;
     border-radius: 8px;
     padding: 1.5em;
-    margin-bottom: 1.5em;
+    display: flex; /* Helps align content vertically */
+    flex-direction: column;
 }
 
-.honor-entry h4 {
+/* The colored and underlined title */
+.honor-card .honor-title {
+    color: var(--dark-sage);
+    text-decoration: underline;
+    font-size: 1.4em;
     margin-top: 0;
-    margin-bottom: 0.25em;
-    font-size: 1.5em;
 }
 
-.honor-entry h5 {
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-    font-size: 1.1em;
-    color: #555;
-}
-
-.honor-meta {
+/* The italicized date */
+.honor-card .honor-date {
+    font-style: italic;
     color: #777;
     font-size: 0.9em;
+    margin-top: 0.25em;
     margin-bottom: 1em;
-    font-style: italic;
 }
 
-.honor-entry ul {
-    list-style-type: disc;
-    padding-left: 20px;
+/* The main description text */
+.honor-card .honor-description {
+    flex-grow: 1; /* Pushes the button to the bottom */
+    margin-bottom: 1em;
 }
 
-.honor-entry li {
-    margin-bottom: 0.5em;
+/* Ensures the button is styled correctly at the bottom */
+.honor-card .button {
+    margin-top: auto; /* Aligns button to the bottom of the card */
 }
