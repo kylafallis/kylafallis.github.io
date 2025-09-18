@@ -354,3 +354,51 @@ code {
         grid-template-columns: 1fr; /* Stack award columns on small screens */
     }
 }
+
+/* === START: STYLES FOR UPDATED AWARDS SECTION === */
+
+/* New 3-column grid for the awards section */
+.recognition-grid-three-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+}
+
+/* Styling for the new clickable title links */
+.button-link {
+    text-decoration: none;
+    display: block;
+    background-color: var(--dark-sage);
+    padding: 0.75em;
+    border-radius: 8px;
+    margin-bottom: 1em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button-link:hover {
+    background-color: var(--dark-text);
+    transform: translateY(-3px);
+}
+
+/* Overriding default title styles to fit inside the button */
+.button-link h3 {
+    color: white; /* Makes text white */
+    border-bottom: none; /* Removes the underline */
+    padding-bottom: 0;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+/* Ensure the list below the button has some space */
+.recognition-grid-three-col ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recognition-grid-three-col li {
+    background-color: var(--off-white);
+    padding: 0.5em 1em;
+    margin-bottom: 0.5em;
+    border-left: 4px solid var(--light-sage);
+}
