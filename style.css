@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;600&display=swap');
 
 :root {
-    --dark-sage: #354024;
-    --light-sage: #889062;
+    --dark-sage: #5c715e;
+    --light-sage: #ddeedf;
     --off-white: #F5F5F5;
-    --dark-text: #354024;
+    --dark-text: #5c715e;
     --light-shadow: rgba(0, 0, 0, 0.1);
     --heading-font: 'Lora', serif;
     --body-font: 'Montserrat', sans-serif;
