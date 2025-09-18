@@ -81,8 +81,13 @@ h2 {
     margin-bottom: 0.5em;
 }
 
+#profile .experience-grid strong {
+    color: var(--dark-sage); 
+    font-weight: 700;        
+}
+
 /* === PROJECTS SECTION === */
-#projects {
+#projects, #software-projects, #design-projects, #research-projects, #community-projects {
     padding: 2em 1em;
 }
 
@@ -264,36 +269,88 @@ h2 {
     display: block;
 }
 
-/* --- Project Page Specific Styles --- */
-.project-header {
-    padding: 3em 1em;
+/* === START: STYLES FOR PROJECT PAGE TEMPLATES === */
+
+/* Style for the dates in the project header */
+.project-dates {
+    font-size: 1.1em;
+    color: var(--light-sage);
+    margin-top: 0.5em;
+    font-family: var(--body-font);
 }
 
-.project-page-content {
+/* --- For Software Template --- */
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2em;
+    align-items: start;
+}
+
+/* Code block styling */
+pre {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1em;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+code {
+    color: #c7254e;
+}
+
+/* --- For Physical Design Template --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5em;
+    margin-top: 2em;
+}
+.gallery-grid figure {
+    margin: 0;
+    text-align: center;
+}
+.gallery-grid img {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.gallery-grid figcaption {
+    margin-top: 0.5em;
+    font-style: italic;
+    color: #666;
+}
+
+/* --- For Community Project Template --- */
+.impact-metrics {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: 2em 0;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.metric-box {
     padding: 1em;
 }
-
-.project-main-image {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 2em;
+.metric-number {
+    display: block;
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--dark-sage);
+}
+.metric-label {
+    font-size: 1em;
+    color: #555;
 }
 
-.button {
-    display: inline-block;
-    background-color: var(--dark-sage);
-    color: white;
-    padding: 0.8em 1.5em;
-    border-radius: 5px;
-    text-decoration: none;
-    margin: 1em 0.5em 0 0;
-    transition: background-color 0.3s;
-}
-/* === Style for "About Me" Section Titles === */
-#profile .experience-grid strong {
-    color: var(--dark-sage); /* Uses your existing theme color */
-    font-weight: 700;        /* Makes the text slightly bolder */
-}
-.button:hover {
-    background-color: var(--dark-text);
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+    .two-column-layout {
+        grid-template-columns: 1fr; /* Stack columns on small screens */
+    }
+    .recognition-grid {
+        grid-template-columns: 1fr; /* Stack award columns on small screens */
+    }
 }
