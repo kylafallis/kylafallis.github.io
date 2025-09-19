@@ -450,3 +450,16 @@ code {
 .honor-card .button {
     margin-top: auto; /* Aligns button to the bottom of the card */
 }
+
+/* === START: STYLES FOR FORMULA BOX === */
+.formula-box {
+    background-color: #f0f4f8;
+    border-left: 5px solid var(--dark-sage);
+    margin: 1.5em 0;
+    padding: 1em 1.5em;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.formula-box p {
+    margin: 0;
+}
