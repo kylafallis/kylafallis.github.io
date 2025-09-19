@@ -446,9 +446,25 @@ code {
     margin-bottom: 1em;
 }
 
-/* Ensures the button is styled correctly at the bottom */
-.honor-card .button {
-    margin-top: auto; /* Aligns button to the bottom of the card */
+/* === Button Styles (Updated for Specificity) === */
+.card .button {
+    display: inline-block;
+    background-color: var(--dark-sage);
+    color: white !important; /* !important forces the text to be white */
+    padding: 0.8em 1.5em;
+    border-radius: 8px; /* A bit more rounded for a softer look */
+    text-decoration: none !important; /* !important removes the underline */
+    margin-top: 1em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.card .button:hover {
+    background-color: var(--dark-text);
+    transform: translateY(-2px); /* Adds a subtle lift on hover */
+}
 }
 
 /* === START: STYLES FOR FORMULA BOX === */
