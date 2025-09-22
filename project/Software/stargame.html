@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Project: [Your Project Title]</title>
+    <title>Software Project: StarGame</title>
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -30,8 +30,8 @@
     </nav>
     
     <header id="banner" class="project-header">
-        <h1>[Your Project Title]</h1>
-        <p class="project-dates">[Start Date] – [End Date]</p>
+        <h1>StarGame</h1>
+        <p class="project-dates">September 2018 – December 2018</p>
     </header>
 
     <main class="project-page-content">
@@ -40,23 +40,39 @@
             <div class="two-column-layout">
                 <div class="column-text">
                     <h3>About this Project</h3>
-                    <p>[Detailed description of the software, the problem it solves, and your process.]</p>
+                    <p>My very first coding experience, which I think is important to include to see how much growth I've accomplished. The basis is very simple. Wherever you lcick, a star appears with a line connecting it to the previous star. This makes constellations or other patterns. It isn't very complicated, but 5th grade me was very proud. </p>
                     
                     <h3>Key Features</h3>
                     <ul>
-                        <li>Feature 1: [Describe a key feature]</li>
-                        <li>Feature 2: [Describe another feature]</li>
+                        <li>Feature 1: Stars</li>
+                        <li>Feature 2: Likes</li>
                     </ul>
 
                     <h3>Technologies Used</h3>
-                    <p>[List the languages, frameworks, etc., e.g., HTML, CSS, JavaScript, C++.]</p>
+                    <p>Khan Academy, JavaScript</p>
                 </div>
                 <div class="column-visual">
                     <a href="[link-to-live-demo-or-github]" class="button">View Live Demo</a>
                     <h3>Code Snippet</h3>
-                    <pre><code>// Example code snippet
-function helloWorld() {
-  console.log("Hello, World!");
+                    <pre><code>
+var xPositions = [0];
+var yPositions = [0];
+ background(9, 5, 59);
+var drawStars = function() {
+    background(9, 5, 59);
+    imageMode(CENTER);
+for (var i = 0; i < yPositions.length; i++) {
+    image(getImage("space/star"), xPositions[i], yPositions[i], 30, 30);
+    if (i > 0) {
+        stroke(235, 223, 223);
+        fill(240, 232, 232);
+        line(xPositions[i - 1], yPositions[i - 1], xPositions[i], yPositions[i]);
+    }}};
+mouseClicked = function() {
+    xPositions.push(mouseX);
+    yPositions.push(mouseY);
+    drawStars();
+};
 }</code></pre>
                 </div>
             </div>
