@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;600&display=swap');
 
 :root {
-    --dark-sage: #5c715e;
-    --light-sage: #ddeedf;
+    --dark-sage: #5A7D7C;
+    --light-sage: #B8C4B8;
     --off-white: #F5F5F5;
-    --dark-text: #5c715e;
+    --dark-text: #333333;
     --light-shadow: rgba(0, 0, 0, 0.1);
     --heading-font: 'Lora', serif;
     --body-font: 'Montserrat', sans-serif;
@@ -17,6 +17,7 @@ body {
     background-color: var(--off-white);
     color: var(--dark-text);
     line-height: 1.6;
+    cursor: none; /* Hide the default cursor for the custom one */
 }
 
 h1, h2, h3 {
@@ -40,442 +41,153 @@ h2 {
     max-width: 1000px;
 }
 
-/* === BANNER === */
+
+/* === 1. DYNAMIC HERO BANNER === */
 #banner {
-    background-color: var(--dark-sage);
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
     color: white;
     text-align: center;
-    padding: 4em 1em;
+    padding: 6em 1em;
+    overflow: hidden;
 }
 
-.headshot {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%; /* Makes the image a circle */
-    border: 5px solid var(--light-sage);
-    object-fit: cover;
-    margin-bottom: 1em;
+#banner::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(40, 55, 55, 0.7); /* Darker overlay for readability */
+    z-index: 1;
 }
 
-#banner h1 {
-    font-size: 3em;
-    color: white;
-    margin: 0;
+#banner > * { z-index: 2; position: relative; }
+
+.headshot, #banner h1, #banner p {
+    opacity: 0;
+    animation: fadeInSlideUp 1s forwards;
 }
 
-#banner p {
-    font-size: 1.2em;
-    color: var(--light-sage);
+.headshot { animation-delay: 0.2s; }
+#banner h1 { animation-delay: 0.4s; }
+#banner p { animation-delay: 0.6s; }
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* === EXPERIENCE SECTION === */
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2em;
-}
+.headshot { width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--light-sage); object-fit: cover; margin-bottom: 1em; }
+#banner h1 { font-size: 3em; color: white; margin: 0; }
+#banner p { font-size: 1.2em; color: var(--light-sage); }
 
-.experience-grid h3 {
-    border-bottom: 2px solid var(--light-sage);
-    padding-bottom: 0.5em;
-    margin-bottom: 0.5em;
-}
 
-#profile .experience-grid strong {
-    color: var(--dark-sage); 
-    font-weight: 700;        
-}
-
-/* === PROJECTS SECTION === */
-#projects, #software-projects, #design-projects, #research-projects, #community-projects {
-    padding: 2em 1em;
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2em;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
+/* === 2. INTERACTIVE PROJECT CARDS === */
 .project-card {
-    border: 1px solid #ddd;
+    position: relative;
+    overflow: hidden;
     text-align: center;
+    border: 1px solid #ddd;
     transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px var(--light-shadow);
 }
 
 .project-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 10px 10px 0 0;
+    transition: transform 0.4s ease;
 }
 
-.project-card h3 {
-    margin-top: 1em;
+.project-card:hover img {
+    transform: scale(1.05); /* Zoom in effect */
 }
 
-/* === RECOGNITION SECTION === */
-.recognition-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3em;
-}
-
-.recognition-grid ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.recognition-grid li {
-    background-color: var(--off-white);
-    padding: 0.5em 1em;
-    margin-bottom: 0.5em;
-    border-left: 4px solid var(--light-sage);
-}
-
-/* === FOOTER & CONTACT === */
-#contact {
-    background-color: var(--dark-text);
+.project-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(90, 125, 124, 0.6);
     color: white;
-    text-align: center;
-    padding: 3em 1em;
-}
-
-#contact h2 {
-    color: white;
-}
-
-.email-link {
-    display: inline-block;
-    background-color: var(--dark-sage);
-    color: white;
-    padding: 0.8em 1.5em;
-    border-radius: 5px;
-    text-decoration: none;
-    margin: 1em 0;
-    transition: background-color 0.3s;
-}
-
-.email-link:hover {
-    background-color: var(--light-sage);
-}
-
-.socials a {
-    color: white;
-    font-size: 2em;
-    margin: 0 0.5em;
-    transition: color 0.3s;
-}
-
-.socials a:hover {
-    color: var(--light-sage);
-}
-
-/* === START: STYLES FOR NAVIGATION AND PROJECTS === */
-
-/* --- Sidebar and Menu Icon --- */
-#menu-icon {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-size: 30px;
-    color: var(--dark-sage);
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1002; /* Needs to be on top of everything */
-    transition: color 0.3s;
-}
-
-#menu-icon:hover {
-    color: var(--dark-text);
-}
-
-#sidebar {
-    height: 100%;
-    width: 280px;
-    position: fixed;
-    z-index: 1001;
-    top: 0;
-    left: 0;
-    background-color: var(--dark-text);
-    transform: translateX(-100%); /* Initially hidden off-screen */
-    transition: transform 0.3s ease-in-out;
-    padding-top: 60px;
-}
-
-/* This class is added/removed by JavaScript */
-#sidebar.is-open {
-    transform: translateX(0);
-}
-
-#sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#sidebar a {
-    padding: 10px 15px;
-    text-decoration: none;
-    font-size: 1.2em;
-    color: var(--light-sage);
-    display: block;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-#sidebar a:hover {
-    background-color: var(--dark-sage);
-    color: white;
-}
-
-.sidebar-project-links a {
-    font-size: 1em;
-    padding-left: 30px; /* Indent the project links */
-}
-
-/* --- Overlay --- */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    z-index: 1000;
-    visibility: hidden; /* Hidden by default */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition: opacity 0.4s ease;
 }
 
-/* This class is added/removed by JavaScript */
-#overlay.is-visible {
-    visibility: visible;
+.project-card:hover .project-overlay {
     opacity: 1;
 }
 
-/* --- Clickable Project Card --- */
-.project-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+
+/* === 3. FADE-IN ON SCROLL === */
+.card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* === START: STYLES FOR PROJECT PAGE TEMPLATES === */
-
-/* Style for the dates in the project header */
-.project-dates {
-    font-size: 1.1em;
-    color: var(--light-sage);
-    margin-top: 0.5em;
-    font-family: var(--body-font);
+.card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* --- For Software Template --- */
-.two-column-layout {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2em;
-    align-items: start;
-}
 
-/* Code block styling */
-pre {
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 1em;
-    overflow-x: auto;
-    font-family: 'Courier New', Courier, monospace;
+/* === 4. CUSTOM CURSOR === */
+.cursor-dot, .cursor-circle {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 9999;
 }
-code {
-    color: #c7254e;
-}
-
-/* --- For Physical Design Template --- */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5em;
-    margin-top: 2em;
-}
-.gallery-grid figure {
-    margin: 0;
-    text-align: center;
-}
-.gallery-grid img {
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-.gallery-grid figcaption {
-    margin-top: 0.5em;
-    font-style: italic;
-    color: #666;
-}
-
-/* --- For Community Project Template --- */
-.impact-metrics {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    margin: 2em 0;
-    flex-wrap: wrap;
-    gap: 1em;
-}
-.metric-box {
-    padding: 1em;
-}
-.metric-number {
-    display: block;
-    font-size: 3em;
-    font-weight: 700;
-    color: var(--dark-sage);
-}
-.metric-label {
-    font-size: 1em;
-    color: #555;
-}
-
-/* --- Responsive adjustments --- */
-@media (max-width: 768px) {
-    .two-column-layout {
-        grid-template-columns: 1fr; /* Stack columns on small screens */
-    }
-    .recognition-grid {
-        grid-template-columns: 1fr; /* Stack award columns on small screens */
-    }
-}
-
-/* === START: STYLES FOR UPDATED AWARDS SECTION === */
-
-/* New 3-column grid for the awards section */
-.recognition-grid-three-col {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2em;
-}
-
-/* Styling for the new clickable title links */
-.button-link {
-    text-decoration: none;
-    display: block;
+.cursor-dot {
+    width: 8px;
+    height: 8px;
     background-color: var(--dark-sage);
-    padding: 0.75em;
-    border-radius: 8px;
-    margin-bottom: 1em;
-    transition: background-color 0.3s, transform 0.2s;
 }
+.cursor-circle {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--dark-sage);
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+body:hover .cursor-circle { opacity: 1; }
+.cursor-circle.is-hidden { opacity: 0; transform: scale(0.5); }
 
-.button-link:hover {
-    background-color: var(--dark-text);
-    transform: translateY(-3px);
-}
 
-/* Overriding default title styles to fit inside the button */
-.button-link h3 {
-    color: white; /* Makes text white */
-    border-bottom: none; /* Removes the underline */
-    padding-bottom: 0;
-    margin-bottom: 0;
-    text-align: center;
-    font-size: 1.1em;
-}
+/* === ORIGINAL STYLES FOR LAYOUT & CONTENT === */
+.experience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2em; }
+.experience-grid h3 { border-bottom: 2px solid var(--light-sage); padding-bottom: 0.5em; margin-bottom: 0.5em; }
+#profile .experience-grid strong { color: var(--dark-sage); font-weight: 700; }
 
-/* Ensure the list below the button has some space */
-.recognition-grid-three-col ul {
-    list-style-type: none;
-    padding: 0;
-}
+#projects, #software-projects, #design-projects, #research-projects, #community-projects { padding: 2em 1em; }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2em; max-width: 1200px; margin: 0 auto; }
+.project-card h3 { margin-top: 1em; }
 
-.recognition-grid-three-col li {
-    background-color: var(--off-white);
-    padding: 0.5em 1em;
-    margin-bottom: 0.5em;
-    border-left: 4px solid var(--light-sage);
-}
+#contact { background-color: var(--dark-text); color: white; text-align: center; padding: 3em 1em; }
+#contact h2 { color: white; }
 
-/* === START: STYLES FOR HONORS PAGES === */
+.email-link { display: inline-block; background-color: var(--dark-sage); color: white; padding: 0.8em 1.5em; border-radius: 5px; text-decoration: none; margin: 1em 0; transition: background-color 0.3s; }
+.email-link:hover { background-color: var(--light-sage); }
 
-/* New 3-column grid container */
-.honors-grid {
-    display: grid;
-    /* Creates responsive columns that are at least 300px wide */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5em; /* Space between the cards */
-}
+.socials a { color: white; font-size: 2em; margin: 0 0.5em; transition: color 0.3s; }
+.socials a:hover { color: var(--light-sage); }
 
-/* The rounded rectangular box for each honor */
-.honor-card {
-    background-color: #f9f9f9;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 1.5em;
-    display: flex; /* Helps align content vertically */
-    flex-direction: column;
-}
+#menu-icon { position: fixed; top: 20px; left: 20px; font-size: 30px; color: var(--dark-sage); background-color: rgba(255, 255, 255, 0.8); padding: 5px 10px; border-radius: 5px; cursor: pointer; z-index: 1002; transition: color 0.3s; }
+#menu-icon:hover { color: var(--dark-text); }
 
-/* The colored and underlined title */
-.honor-card .honor-title {
-    color: var(--dark-sage);
-    text-decoration: underline;
-    font-size: 1.4em;
-    margin-top: 0;
-}
+#sidebar { height: 100%; width: 280px; position: fixed; z-index: 1001; top: 0; left: 0; background-color: var(--dark-text); transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 60px; }
+#sidebar.is-open { transform: translateX(0); }
+#sidebar ul { list-style: none; padding: 0; margin: 0; }
+#sidebar a { padding: 10px 15px; text-decoration: none; font-size: 1.2em; color: var(--light-sage); display: block; transition: background-color 0.3s, color 0.3s; }
+#sidebar a:hover { background-color: var(--dark-sage); color: white; }
+.sidebar-project-links a { font-size: 1em; padding-left: 30px; }
 
-/* The italicized date */
-.honor-card .honor-date {
-    font-style: italic;
-    color: #777;
-    font-size: 0.9em;
-    margin-top: 0.25em;
-    margin-bottom: 1em;
-}
+#overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; visibility: hidden; opacity: 0; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; }
+#overlay.is-visible { visibility: visible; opacity: 1; }
 
-/* The main description text */
-.honor-card .honor-description {
-    flex-grow: 1; /* Pushes the button to the bottom */
-    margin-bottom: 1em;
-}
-
-/* === Button Styles (Updated for Specificity) === */
-.card .button {
-    display: inline-block;
-    background-color: var(--dark-sage);
-    color: white !important; /* !important forces the text to be white */
-    padding: 0.8em 1.5em;
-    border-radius: 8px; /* A bit more rounded for a softer look */
-    text-decoration: none !important; /* !important removes the underline */
-    margin-top: 1em;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.card .button:hover {
-    background-color: var(--dark-text);
-    transform: translateY(-2px); /* Adds a subtle lift on hover */
-}
-}
-
-/* === START: STYLES FOR FORMULA BOX === */
-.formula-box {
-    background-color: #f0f4f8;
-    border-left: 5px solid var(--dark-sage);
-    margin: 1.5em 0;
-    padding: 1em 1.5em;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.formula-box p {
-    margin: 0;
-}
+.project-link { text-decoration: none; color: inherit; display: block; }
