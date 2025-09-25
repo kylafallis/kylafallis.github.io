@@ -83,10 +83,10 @@ h2 {
 
 #profile .experience-grid strong {
     color: var(--dark-sage); 
-    font-weight: 700;        
+    font-weight: 700;       
 }
 
-/* === PROJECTS SECTION === */
+/* === PROJECTS SECTION (USING YOUR 'OLD CODE' STYLES) === */
 #projects, #software-projects, #design-projects, #research-projects, #community-projects {
     padding: 2em 1em;
 }
@@ -102,6 +102,11 @@ h2 {
 .project-card {
     border: 1px solid #ddd;
     text-align: center;
+    background-color: white; /* Ensure cards are white */
+    border-radius: 10px; /* Rounded corners for the whole card */
+    overflow: hidden; /* Keeps image corners rounded */
+    display: flex;
+    flex-direction: column;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -114,12 +119,21 @@ h2 {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 10px 10px 0 0;
+    /* border-radius is handled by the parent's overflow:hidden */
 }
 
 .project-card h3 {
-    margin-top: 1em;
+    margin: 1em 0 0.5em 0;
 }
+
+/* Added style for the description to ensure it's padded */
+.project-card .project-description {
+    padding: 0 1em 1em 1em;
+    flex-grow: 1; /* Helps align content if cards have different text lengths */
+    font-size: 0.9em;
+    color: #555;
+}
+
 
 /* === RECOGNITION SECTION === */
 .recognition-grid {
@@ -179,7 +193,6 @@ h2 {
 }
 
 /* === START: STYLES FOR NAVIGATION AND PROJECTS === */
-
 /* --- Sidebar and Menu Icon --- */
 #menu-icon {
     position: fixed;
@@ -212,7 +225,6 @@ h2 {
     padding-top: 60px;
 }
 
-/* This class is added/removed by JavaScript */
 #sidebar.is-open {
     transform: translateX(0);
 }
@@ -256,7 +268,6 @@ h2 {
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-/* This class is added/removed by JavaScript */
 #overlay.is-visible {
     visibility: visible;
     opacity: 1;
@@ -270,24 +281,18 @@ h2 {
 }
 
 /* === START: STYLES FOR PROJECT PAGE TEMPLATES === */
-
-/* Style for the dates in the project header */
 .project-dates {
     font-size: 1.1em;
     color: var(--light-sage);
     margin-top: 0.5em;
     font-family: var(--body-font);
 }
-
-/* --- For Software Template --- */
 .two-column-layout {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 2em;
     align-items: start;
 }
-
-/* Code block styling */
 pre {
     background-color: #f4f4f4;
     border: 1px solid #ddd;
@@ -299,8 +304,6 @@ pre {
 code {
     color: #c7254e;
 }
-
-/* --- For Physical Design Template --- */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -321,8 +324,6 @@ code {
     font-style: italic;
     color: #666;
 }
-
-/* --- For Community Project Template --- */
 .impact-metrics {
     display: flex;
     justify-content: space-around;
@@ -347,24 +348,17 @@ code {
 
 /* --- Responsive adjustments --- */
 @media (max-width: 768px) {
-    .two-column-layout {
+    .two-column-layout, .recognition-grid {
         grid-template-columns: 1fr; /* Stack columns on small screens */
-    }
-    .recognition-grid {
-        grid-template-columns: 1fr; /* Stack award columns on small screens */
     }
 }
 
 /* === START: STYLES FOR UPDATED AWARDS SECTION === */
-
-/* New 3-column grid for the awards section */
 .recognition-grid-three-col {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2em;
 }
-
-/* Styling for the new clickable title links */
 .button-link {
     text-decoration: none;
     display: block;
@@ -374,13 +368,10 @@ code {
     margin-bottom: 1em;
     transition: background-color 0.3s, transform 0.2s;
 }
-
 .button-link:hover {
     background-color: var(--dark-text);
     transform: translateY(-3px);
 }
-
-/* Overriding default title styles to fit inside the button */
 .button-link h3 {
     color: white; /* Makes text white */
     border-bottom: none; /* Removes the underline */
@@ -389,13 +380,10 @@ code {
     text-align: center;
     font-size: 1.1em;
 }
-
-/* Ensure the list below the button has some space */
 .recognition-grid-three-col ul {
     list-style-type: none;
     padding: 0;
 }
-
 .recognition-grid-three-col li {
     background-color: var(--off-white);
     padding: 0.5em 1em;
@@ -404,34 +392,25 @@ code {
 }
 
 /* === START: STYLES FOR HONORS PAGES === */
-
-/* New 3-column grid container */
 .honors-grid {
     display: grid;
-    /* Creates responsive columns that are at least 300px wide */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5em; /* Space between the cards */
+    gap: 1.5em;
 }
-
-/* The rounded rectangular box for each honor */
 .honor-card {
     background-color: #f9f9f9;
     border: 1px solid #eee;
     border-radius: 8px;
     padding: 1.5em;
-    display: flex; /* Helps align content vertically */
+    display: flex;
     flex-direction: column;
 }
-
-/* The colored and underlined title */
 .honor-card .honor-title {
     color: var(--dark-sage);
     text-decoration: underline;
     font-size: 1.4em;
     margin-top: 0;
 }
-
-/* The italicized date */
 .honor-card .honor-date {
     font-style: italic;
     color: #777;
@@ -439,32 +418,26 @@ code {
     margin-top: 0.25em;
     margin-bottom: 1em;
 }
-
-/* The main description text */
 .honor-card .honor-description {
-    flex-grow: 1; /* Pushes the button to the bottom */
+    flex-grow: 1;
     margin-bottom: 1em;
 }
-
-/* === Button Styles (Updated for Specificity) === */
 .card .button {
     display: inline-block;
     background-color: var(--dark-sage);
-    color: white !important; /* !important forces the text to be white */
+    color: white !important;
     padding: 0.8em 1.5em;
-    border-radius: 8px; /* A bit more rounded for a softer look */
-    text-decoration: none !important; /* !important removes the underline */
+    border-radius: 8px;
+    text-decoration: none !important;
     margin-top: 1em;
     font-weight: bold;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
-
 .card .button:hover {
     background-color: var(--dark-text);
-    transform: translateY(-2px); /* Adds a subtle lift on hover */
-}
+    transform: translateY(-2px);
 }
 
 /* === START: STYLES FOR FORMULA BOX === */
@@ -475,7 +448,6 @@ code {
     padding: 1em 1.5em;
     font-family: 'Courier New', Courier, monospace;
 }
-
 .formula-box p {
     margin: 0;
 }
