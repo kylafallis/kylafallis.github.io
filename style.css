@@ -27,6 +27,12 @@ body { font-family: var(--body-font); background-color: var(--off-white); color:
 h1, h2, h3, h4 { font-family: var(--heading-font); font-weight: 600; color: var(--dark-sage); }
 h2 { text-align: center; font-size: 2.5em; margin-bottom: 1em; }
 a { color: inherit; text-decoration: none; }
+.item-quicklinks hr {
+    border: none;
+    height: 1px;
+    background-color: rgba(232, 240, 232, 0.3); /* A semi-transparent version of your text color */
+    margin: 0.8em 0; /* Adds some space above and below the line */
+}
 
 /* === LOADER AND BENTO BOX INTRO === */
 #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--dark-green-bg); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10000; transition: opacity 0.5s ease; }
