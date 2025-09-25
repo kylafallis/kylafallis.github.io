@@ -51,4 +51,27 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.addEventListener('mouseenter', () => {
         cursorCircle.classList.remove('is-hidden');
     });
+    // This function runs once the HTML document is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+
+    // --- Code for the Enter Button ---
+    const enterButton = document.getElementById('enter-button');
+    const loader = document.getElementById('loader');
+    const pageContent = document.getElementById('page-content');
+
+    // Check if the enter button exists on the page
+    if (enterButton) {
+        enterButton.addEventListener('click', function() {
+            // Fade out the loader screen
+            loader.style.opacity = '0';
+
+            // After 500ms, hide the loader and show the main content
+            setTimeout(function() {
+                loader.style.display = 'none';
+                pageContent.classList.remove('hidden');
+            }, 500); 
+        });
+    }
+});
+
 });
