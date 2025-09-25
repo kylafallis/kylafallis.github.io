@@ -41,7 +41,7 @@ a { color: inherit; text-decoration: none; }
     justify-content: flex-start; /* Aligns the grid to the TOP */
     align-items: center;         /* Keeps the grid centered horizontally */
     height: 100vh;
-    padding-top: 6vh;            /* Pushes the grid down from the top edge */
+    padding-top: 2vh;            /* Pushes the grid down from the top edge */
     box-sizing: border-box;      /* IMPORTANT: Prevents padding from adding extra height */
     background-color: var(--dark-green-bg);
     opacity: 0;
