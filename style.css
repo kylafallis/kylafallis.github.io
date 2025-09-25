@@ -129,7 +129,7 @@ a { color: inherit; text-decoration: none; }
     text-align: center;
     border-bottom: 1px solid var(--light-sage);
     padding-bottom: 2em;
-    margin-top: 4em;
+    margin-top: 2em;
 }
 
 .project-header .subtitle {
@@ -240,12 +240,6 @@ pre {
     color: var(--dark-sage);
 }
 
-/* Responsive adjustment for project pages */
-@media (max-width: 768px) {
-    .two-column-layout {
-        grid-template-columns: 1fr; /* Stack columns on small screens */
-    }
-}
 /* --- Responsive adjustments --- */
 @media (max-width: 768px) {
     .two-column-layout {
