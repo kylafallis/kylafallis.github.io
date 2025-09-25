@@ -3,170 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyla Fallis | Environmental Engineering & Design</title>
+    <title>Kyla Fallis | Personal Portfolio</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <!-- ALL STYLES ARE EMBEDDED HERE -->
-    <style>
-        /* --- CSS Reset --- */
-        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
-        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
-        body { line-height: 1; }
-        ol, ul { list-style: none; }
-        blockquote, q { quotes: none; }
-        blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
-        table { border-collapse: collapse; border-spacing: 0; }
-
-        /* --- Main Portfolio Styles --- */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
-        :root {
-            --dark-green-bg: #1C2B27;
-            --text-light: #E8F0E8;
-            --card-green-1: #2A3F3A; /* Darkest */
-            --card-green-2: #38544B;
-            --card-green-3: #5A7D7C; /* Mid-tone accent */
-            --card-green-4: #B8C4B8; /* Lightest */
-            --border: #3D524A;
-            --heading-font: 'Playfair Display', serif;
-            --body-font: 'Inter', sans-serif;
-        }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--body-font); background-color: var(--dark-green-bg); color: var(--text-light); line-height: 1.6; }
-        h1, h2, h3, h4 { font-family: var(--heading-font); color: var(--text-light); font-weight: 700; }
-        a { color: inherit; text-decoration: none; }
-        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--dark-green-bg); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10000; transition: opacity 0.5s ease; }
-        #loader h1 { font-size: 3rem; }
-        #enter-button { background: transparent; border: 1px solid var(--text-light); color: var(--text-light); padding: 0.8em 2em; margin-top: 1rem; font-family: var(--body-font); font-weight: 600; border-radius: 30px; cursor: pointer; transition: all 0.3s; }
-        #enter-button:hover { background-color: var(--text-light); color: var(--dark-green-bg); }
-        #page-content.hidden { display: none; }
-        .welcome-container { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 2rem; opacity: 0; animation: fadeIn 1s forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .grid-container { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: 1rem; width: 100%; max-width: 1200px; height: 80vh; }
-        .grid-item { border-radius: 12px; padding: 2rem; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s forwards; }
-        .grid-item h1 { font-size: 3rem; line-height: 1.1; }
-        .grid-item h2 { font-size: 1.5rem; margin: 0; }
-        .grid-item h4 { font-size: 0.9rem; opacity: 0.7; margin-bottom: 0.5em; text-transform: uppercase; letter-spacing: 0.5px;}
-        .item-welcome { grid-area: 1 / 1 / 2 / 3; animation-delay: 0.2s; }
-        .item-headshot { grid-area: 1 / 3 / 3 / 4; animation-delay: 0.3s; }
-        .item-headshot img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-        .item-quicklinks { grid-area: 1 / 4 / 4 / 5; animation-delay: 0.4s; }
-        .item-quote { grid-area: 2 / 1 / 3 / 3; animation-delay: 0.5s; display: flex; flex-direction: column; justify-content: center; }
-        .item-aboutme { grid-area: 3 / 1 / 4 / 2; animation-delay: 0.6s; }
-        .item-lookingfor { grid-area: 3 / 2 / 4 / 3; animation-delay: 0.7s; }
-        .item-contact { grid-area: 3 / 3 / 4 / 4; animation-delay: 0.8s; }
-        .item-welcome, .item-aboutme { background-color: var(--card-green-1); }
-        .item-headshot { padding: 0; }
-        .item-quote, .item-lookingfor { background-color: var(--card-green-2); }
-        .item-quicklinks, .item-contact { background-color: var(--card-green-3); }
-        .item-quote p { font-family: var(--heading-font); font-size: 1.5rem; }
-        .item-quote span { align-self: flex-end; opacity: 0.6; }
-        .item-quicklinks a { display: block; font-weight: 600; padding: 0.7rem 0; transition: color 0.3s; }
-        .item-quicklinks i { margin-right: 0.75em; }
-        .item-quicklinks a:hover { color: var(--text-light); opacity: 0.7; }
-        .arrow { transition: transform 0.3s; display: inline-block; }
-        .item-contact a:hover .arrow, .item-aboutme a:hover .arrow { transform: translateX(5px); }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .scroll-down-indicator { position: absolute; bottom: 2rem; text-align: center; }
-        .scroll-arrow-container { height: 60px; display: flex; justify-content: center; margin-bottom: 0.5rem; }
-        .scroll-arrow { width: 1px; height: 30px; background-color: var(--text-light); transition: height 0.3s ease; }
-        .scroll-down-indicator span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; }
-        #main-content { background-color: #F0F5F0; color: #2A3F3A; }
-        #main-content h1, #main-content h2, #main-content h3, #main-content h4 { color: #2A3F3A; }
-        #banner { background-color: var(--card-green-3); color: white; text-align: center; padding: 4em 1em; }
-        .headshot { width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--dark-green-bg); object-fit: cover; margin-bottom: 1em; }
-        #banner h1 { font-size: 3em; color: white; margin: 0; }
-        #banner p { font-size: 1.2em; color: var(--text-light); }
-        .card { background-color: #FFFFFF; margin: 4em auto; padding: 2em; border-radius: 12px; border: 1px solid #DDE5DD; max-width: 1000px; }
-        #profile .experience-grid strong { color: var(--card-green-3); }
-        #contact { background-color: var(--card-green-1); color: white; text-align: center; padding: 3em 1em; }
-        #contact h2 { color: white; }
-        .email-link { background-color: var(--card-green-3); color: white; border-radius: 30px; padding: 0.8em 1.5em;}
-        .email-link:hover { background-color: var(--text-light); color: var(--dark-green-bg); }
-        .socials a { color: white; } .socials a:hover { color: var(--card-green-3); }
-        #menu-icon { position: fixed; top: 20px; left: 20px; font-size: 30px; color: var(--text-light); background-color: rgba(42, 63, 58, 0.5); padding: 5px 10px; border-radius: 5px; cursor: pointer; z-index: 1002; transition: color 0.3s; }
-        #sidebar { height: 100%; width: 280px; position: fixed; z-index: 1001; top: 0; left: 0; background-color: var(--card-green-1); transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 60px; }
-        #sidebar.is-open { transform: translateX(0); }
-        #sidebar ul { list-style: none; padding: 0; margin: 0; }
-        #sidebar a { padding: 10px 15px; text-decoration: none; font-size: 1.2em; color: var(--text-light); display: block; transition: background-color 0.3s, color 0.3s; }
-        #sidebar a:hover { background-color: var(--card-green-3); }
-        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; visibility: hidden; opacity: 0; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; }
-        #overlay.is-visible { visibility: visible; opacity: 1; }
-        @media (max-width: 900px) {
-            .grid-container { grid-template-columns: 1fr; grid-template-rows: auto; height: auto; }
-            .grid-item { grid-column: auto; grid-row: auto; min-height: 200px; }
-            .item-headshot { max-height: 400px; }
-        }
-    </style>
 </head>
 <body>
-    <!-- Initial Loading Screen -->
-    <div id="loader">
-        <h1>Kyla Fallis</h1>
-        <button id="enter-button">Enter</button>
-    </div>
 
-    <!-- The main page content, initially hidden -->
-    <div id="page-content" class="hidden">
-        <div id="overlay"></div>
-        <div id="menu-icon">&#9776;</div>
+    <div id="overlay"></div>
+    <div id="menu-icon">&#9776;</div>
 
-        <nav id="sidebar">
-            <ul>
-                <li><a href="#welcome-grid">Home</a></li>
-                <li><a href="#profile">About Me</a></li>
-                <li><a href="#software-projects">Software</a></li>
-                <li><a href="#design-projects">Design</a></li>
-                <li><a href="#research-projects">Research</a></li>
-                <li><a href="#community-projects">Community</a></li>
-                <li><a href="#recognition">Honors</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-
-        <!-- New Full-Screen Animated Grid Layout -->
-        <div id="welcome-grid" class="welcome-container">
-            <div class="grid-container">
-                <div class="grid-item item-welcome">
-                    <h1>Welcome, <br>I'm Kyla Fallis.</h1>
-                </div>
-                <div class="grid-item item-headshot">
-                    <img src="/images/headshot.png" alt="Headshot of Kyla Fallis">
-                </div>
-                <div class="grid-item item-quote">
-                    <p>"The best way to predict the future is to invent it."</p>
-                    <span>- Alan Kay</span>
-                </div>
-                <div class="grid-item item-quicklinks">
-                    <h4>Quick Links</h4>
-                    <a href="#software-projects"><i class="fa-solid fa-code"></i> Software Projects</a>
-                    <a href="#design-projects"><i class="fa-solid fa-drafting-compass"></i> Physical Design</a>
-                    <a href="#research-projects"><i class="fa-solid fa-flask"></i> Research</a>
-                    <a href="#community-projects"><i class="fa-solid fa-users"></i> Community Projects</a>
-                </div>
-                <div class="grid-item item-aboutme">
-                    <a href="#profile">
-                        <h4>About Me <span class="arrow">&rarr;</span></h4>
-                        <p>A passionate engineer and researcher driven by a mission to design sustainable solutions.</p>
-                    </a>
-                </div>
-                <div class="grid-item item-lookingfor">
-                    <h4>What I'm Looking For</h4>
-                    <p>Seeking opportunities to apply my skills in renewable energy and sustainable design to impactful, real-world projects.</p>
-                </div>
-                <div class="grid-item item-contact">
-                    <a href="#contact">
-                        <h4>Have a question?</h4>
-                        <h2>Contact Me <span class="arrow">&rarr;</span></h2>
-                    </a>
-                </div>
-            </div>
-            <a href="#main-content" class="scroll-down-indicator">
-                <div class="scroll-arrow-container">
-                    <div class="scroll-arrow"></div>
-                </div>
-                <span>Scroll Down</span>
-            </a>
-        </div>
+    <nav id="sidebar">
+        <ul>
+            <li><a href="#banner">Home</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#recognition">Honors</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="sidebar-project-links">
+                <hr>
+                <a href="#software-projects">Software Projects</a>
+                <a href="#design-projects">Physical Design Projects</a>
+                <a href="#research-projects">Research</a>
+                <a href="#community-projects">Community Projects</a>
+            </li>
+        </ul>
+    </nav>
 
     <header id="banner">
         <img src="images/headshot2.jpg" alt="Headshot of Kyla Fallis" class="headshot">
