@@ -128,8 +128,8 @@ a { color: inherit; text-decoration: none; }
 .project-header {
     text-align: center;
     border-bottom: 1px solid var(--light-sage);
-    padding-bottom: 2em;
-    margin-top: 2em;
+    padding-bottom: 1em;
+    margin-top: 1em;
 }
 
 .project-header .subtitle {
@@ -148,6 +148,8 @@ a { color: inherit; text-decoration: none; }
 .project-main-visual {
     padding: 0;
     overflow: hidden;
+    padding: 2em
+    margin-top: 1em;
 }
 
 .project-main-visual img {
