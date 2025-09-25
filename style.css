@@ -34,9 +34,26 @@ a { color: inherit; text-decoration: none; }
 #enter-button { background: transparent; border: 1px solid var(--text-light); color: var(--text-light); padding: 0.8em 2em; margin-top: 1rem; font-family: var(--body-font); font-weight: 600; border-radius: 30px; cursor: pointer; transition: all 0.3s; }
 #enter-button:hover { background-color: var(--text-light); color: var(--dark-green-bg); }
 #page-content.hidden { display: none; }
-.welcome-container { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; min-height: 100vh; padding: 2rem; background-color: var(--dark-green-bg); opacity: 0; animation: fadeIn 1s forwards; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.grid-container { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: 1rem; width: 100%; max-width: 1200px; height: 80vh; }
+.welcome-container {
+    display: flex;
+    justify-content: center; /* This will center the grid horizontally */
+    align-items: center;     /* This will center the grid vertically */
+    height: 100vh;           /* Set height to exactly the viewport height */
+    background-color: var(--dark-green-bg);
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    padding: 0; /* Remove old padding */
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }/* Find and replace your existing .grid-container with this one */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+    width: 90vw; /* Make width relative to viewport width */
+    max-width: 1200px;
+    height: 85vh; /* Make height relative to viewport height */
+}
 .grid-item { border-radius: 12px; padding: 2rem; color: var(--text-light); opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s forwards; }
 .grid-item h1, .grid-item h2, .grid-item h4, .grid-item p { color: var(--text-light); }
 .grid-item h1 { font-size: 3rem; line-height: 1.1; }
