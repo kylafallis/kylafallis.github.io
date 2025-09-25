@@ -85,6 +85,12 @@ a {
 .arrow { transition: transform 0.3s; display: inline-block; }
 .item-contact a:hover .arrow, .item-aboutme a:hover .arrow { transform: translateX(5px); }
 
+@media (max-width: 900px) {
+    .grid-container { grid-template-columns: 1fr; grid-template-rows: auto; height: auto; }
+    .grid-item { grid-column: auto; grid-row: auto; min-height: 200px; }
+    .item-headshot { max-height: 400px; }
+} /* <--- THIS BRACE WAS MISSING */
+
 /* === DYNAMIC HERO BANNER === */
 #banner { position: relative; background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed; color: white; text-align: center; padding: 6em 1em; overflow: hidden; }
 #banner::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(40, 55, 55, 0.7); z-index: 1; }
@@ -116,7 +122,7 @@ a {
 .recognition-grid-three-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2em; }
 .recognition-grid-three-col h3 { font-size: 1.2em; }
 .recognition-grid-three-col ul { list-style-position: inside; padding-left: 0.5em; }
-}
+
 /* === FADE-IN ON SCROLL === */
 .card { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .card.is-visible { opacity: 1; transform: translateY(0); }
