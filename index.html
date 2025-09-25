@@ -3,19 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyla Fallis | Environmental Engineering & Design</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <div class="cursor-dot"></div>
-    <div class="cursor-circle"></div>
-
     <div id="loader">
         <h1>Kyla Fallis</h1>
         <button id="enter-button">Enter</button>
@@ -48,9 +40,19 @@
                 </div>
                 <div class="grid-item item-quicklinks">
                     <h4>Quick Links</h4>
-                    <a href="#software-projects"><i class="fa-solid fa-code"></i> Software</a>
-                    <a href="#design-projects"><i class="fa-solid fa-drafting-compass"></i> Design</a>
+                    <a href="#software-projects"><i class="fa-solid fa-code"></i> Software Projects</a>
+                    <a href="#design-projects"><i class="fa-solid fa-drafting-compass"></i> Physical Design</a>
                     <a href="#research-projects"><i class="fa-solid fa-flask"></i> Research</a>
+                </div>
+                <div class="grid-item item-aboutme">
+                    <a href="#profile">
+                        <h4>About Me <span class="arrow">&rarr;</span></h4>
+                        <p>An engineer and researcher driven to design sustainable solutions.</p>
+                    </a>
+                </div>
+                <div class="grid-item item-lookingfor">
+                    <h4>What I'm Looking For</h4>
+                    <p>Seeking opportunities to apply my skills in renewable energy and sustainable design.</p>
                 </div>
                 <div class="grid-item item-contact">
                     <a href="#contact">
@@ -70,24 +72,18 @@
         <main>
             <section id="profile" class="card">
                 <h2>About Me</h2>
-                <p style="text-align: center; max-width: 800px; margin: 0 auto 2em auto;">
-                    I am an Environmental Engineering student passionate about renewable energy, scientific research, and community service. I am known for innovation, leadership, advocating for equity in STEM spaces, and designing solutions that solve real-world problems.
-                </p>
-                <div class="experience-grid">
+                 <div class="experience-grid">
                     <div>
                         <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
-                        <p><strong>The Ohio State University</strong><br>B.S. in Environmental Engineering<br>Humanitarian Engineering Scholars Program</p>
-                        <p><strong>Bath High School</strong><br>Class Rank: 1st <br>GPA: 4.0, ACT: 33</p>
+                        <p><strong>The Ohio State University</strong><br>B.S. in Environmental Engineering</p>
                     </div>
                     <div>
                         <h3><i class="fa-solid fa-briefcase"></i> Work Experience</h3>
-                        <p><strong>Lifeguard</strong><br>The Ohio State University RPAC (2025-Present)</p>
-                        <p><strong>Senior Lifeguard & Swim Instructor</strong><br>Lima Family YMCA (2023-Present)</p>
+                        <p><strong>Senior Lifeguard & Instructor</strong><br>Lima Family YMCA (2023-Present)</p>
                     </div>
                     <div>
                         <h3><i class="fa-solid fa-star"></i> Technical Skills</h3>
-                        <p><strong>Software:</strong> MATLAB, C++, Java, HTML, SolidWorks, Microsoft Access, Excel<br>
-                        <strong>Competencies:</strong> Scientific Research, Circuit Design, Public Speaking</p>
+                        <p><strong>Software:</strong> MATLAB, C++, Java, HTML, SolidWorks, Excel</p>
                     </div>
                 </div>
             </section>
@@ -96,118 +92,23 @@
                 <section id="software-projects">
                     <h2>Software Projects</h2>
                     <div class="project-grid">
-                        <a href="https://kylafallis.github.io/project/Software/pythagorasplains.html" class="project-link">
-                            <div class="project-card">
-                                <img src="images/pythagorus_plains_picture.png" alt="Pythagorus Plains game">
-                                <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                                <h3>Pythagorus Plains</h3>
-                                <p class="project-description">Developed an RPG to solve math problems to deal damage to monsters, where wrong answers affect your own health.</p>
-                            </div>
-                        </a>
-                        <a href="https://kylafallis.github.io/project/Software/stargame.html" class="project-link">
-                            <div class="project-card">
-                                <img src="images/StarGame.jpg.png" alt="Stargame constellation game">
-                                <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                                <h3>Stargame</h3>
-                                <p class="project-description">A simple game where the user places stars in order to copy constellations, moving through levels.</p>
-                            </div>
-                        </a>
-                        <a href="https://kylafallis.github.io/project/Software/matlab.html" class="project-link">
-                            <div class="project-card">
-                                <img src="images/matlab_picture.jpg" alt="MATLAB model">
-                                <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                                <h3>MATLAB Modeling</h3>
-                                <p class="project-description">Experience with MATLAB for creating basic modeling programs and data analysis.</p>
-                            </div>
-                        </a>
+                        <a href="#" class="project-link"><div class="project-card"><img src="images/pythagorus_plains_picture.png" alt="Pythagorus Plains game"><div class="project-overlay"><i class="fa-solid fa-link"></i></div><h3>Pythagorus Plains</h3><p class="project-description">An RPG where you solve math problems to deal damage to monsters.</p></div></a>
+                        <a href="#" class="project-link"><div class="project-card"><img src="images/StarGame.jpg.png" alt="Stargame constellation game"><div class="project-overlay"><i class="fa-solid fa-link"></i></div><h3>Stargame</h3><p class="project-description">A simple game where the user places stars to copy constellations.</p></div></a>
+                        <a href="#" class="project-link"><div class="project-card"><img src="images/matlab_picture.jpg" alt="MATLAB model"><div class="project-overlay"><i class="fa-solid fa-link"></i></div><h3>MATLAB Modeling</h3><p class="project-description">Experience with MATLAB for creating basic modeling programs.</p></div></a>
                     </div>
                 </section>
-
                 <section id="design-projects">
-                    <h2>Physical Design Projects</h2>
+                    <h2>Physical Design</h2>
                     <div class="project-grid">
-                        <a href="https://kylafallis.github.io/project/Physical Design/LYKA.html" class="project-link">
-                            <div class="project-card">
-                                <img src="images/LYKA2.0.png" alt="LYKA Lamp 3D model">
-                                <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                                <h3>LYKA Lamp</h3>
-                                <p class="project-description">Designed and researched a microbial fuel cell prototype to explore the biotransformation of organic substrates for renewable energy.</p>
-                            </div>
-                        </a>
-                        <a href="https://kylafallis.github.io/project/Physical Design/Aquatracker.html" class="project-link">
-                            <div class="project-card">
-                                <img src="images/Aquatracker.png" alt="Aquatracker computer model">
-                                <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                                <h3>Aquatracker</h3>
-                                <p class="project-description">Applied SolidWorks for mechanical design and circuit layout in engineering school projects, translating concepts into detailed 3D models.</p>
-                            </div>
-                        </a>
-                    </div>
-                </section>
-
-                <section id="research-projects">
-                    <h2>Research</h2>
-                    <div class="project-grid">
-                        <a href="https://kylafallis.github.io/project/Research/Electrogenic-Biotransformation-of-Organic-Substrates.html" class="project-link">
-                            <div class="project-card">
-                                <img src="images/project-mfc.jpg" alt="Image of MFC research slide">
-                                <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                                <h3>Publication</h3>
-                                <p class="project-description">Authored "Electrogenic Biotransformation of Organic Substrates," a paper published in Volume 3 of Sustentabilis Terra.</p>
-                            </div>
-                        </a>
-                        <a href="https://kylafallis.github.io/project/Research/Current-Research.html" class="project-link">
-                            <div class="project-card">
-                                <img src="images/current-research.png" alt="Image of Kyla in a lab">
-                                <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                                <h3>Current Research</h3>
-                                <p class="project-description">Working on electronesis in interactions with earth's magnetic field.</p>
-                            </div>
-                        </a>
-                        <a href="https://kylafallis.github.io/project/Research/Solar-Soil.html" class="project-link">
-                            <div class="project-card">
-                                <img src="images/solar-project.jpeg" alt="Image of solar panels">
-                                <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                                <h3>Solar Panels & Soil Quality</h3>
-                                <p class="project-description">Conducted award-winning research on solar panels connection to soil quality, especially concerning farmland.</p>
-                            </div>
-                        </a>
+                         <a href="#" class="project-link"><div class="project-card"><img src="images/LYKA2.0.png" alt="LYKA Lamp 3D model"><div class="project-overlay"><i class="fa-solid fa-link"></i></div><h3>LYKA Lamp</h3><p class="project-description">A microbial fuel cell prototype to explore renewable energy.</p></div></a>
+                        <a href="#" class="project-link"><div class="project-card"><img src="images/Aquatracker.png" alt="Aquatracker computer model"><div class="project-overlay"><i class="fa-solid fa-link"></i></div><h3>Aquatracker</h3><p class="project-description">Applied SolidWorks for mechanical design and circuit layout.</p></div></a>
                     </div>
                 </section>
             </section>
-
+            
             <section id="recognition" class="card">
                 <h2>Awards & Honors</h2>
-                <div class="recognition-grid-three-col">
-                    <div>
-                        <a href="honors/academic.html" class="button-link"><h3><i class="fa-solid fa-award"></i> Academic & Research</h3></a>
-                        <ul>
-                            <li>International Science and Engineering Fair (ISEF) Qualifier</li>
-                            <li>Governor's Thomas Edison Award for Excellence in STEM</li>
-                            <li>American Junior Academy of Science Inductee</li>
-                            <li>Melvin Scholar, Ohio Academy of Science</li>
-                            <li>5x Superior '1' Ratings at State Science Fair</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="honors/leadership.html" class="button-link"><h3><i class="fa-solid fa-rocket"></i> Leadership & Community</h3></a>
-                        <ul>
-                            <li>National Women in STEM Outreach Coordinator</li>
-                            <li>Distinguished Young Woman of Allen County</li>
-                            <li>Undergraduate Student Government Member, OSU</li>
-                            <li>Over 350 documented community service hours</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="honors/conferences.html" class="button-link"><h3><i class="fa-solid fa-plane"></i> Conferences Attended</h3></a>
-                        <ul>
-                            <li>National Youth Science Camp Delegate for Ohio</li>
-                            <li>Future Environmental Leaders Summit</li>
-                            <li>Women in STEM Conference</li>
-                            <li>COSI Big Science Day</li>
-                        </ul>
-                    </div>
-                </div>
+                <p style="text-align: center;">National Youth Science Camp Delegate, International Science and Engineering Fair (ISEF) Qualifier, Governor's Thomas Edison Award for Excellence in STEM, and American Junior Academy of Science Inductee.</p>
             </section>
         </main>
 
