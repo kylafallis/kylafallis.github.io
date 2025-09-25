@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const loader = document.getElementById('loader');
     const enterButton = document.getElementById('enter-button');
     const pageContent = document.getElementById('page-content');
-
     if (enterButton) {
         enterButton.addEventListener('click', () => {
             loader.style.opacity = '0';
@@ -19,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuIcon = document.getElementById('menu-icon');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
-    const sidebarLinks = document.querySelectorAll('#sidebar a');
+    const sidebarLinks = document.querySelectorAll('#sidebar a:not(.dropdown-toggle)'); // Exclude dropdown toggles from closing the sidebar instantly
 
     const closeSidebar = () => {
         sidebar.classList.remove('is-open');
@@ -37,6 +36,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     sidebarLinks.forEach(link => {
         link.addEventListener('click', closeSidebar);
+    });
+
+    // --- NEW: LOGIC FOR SIDEBAR DROPDOWNS ---
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent link from navigating
+            const parentLi = this.parentElement;
+            parentLi.classList.toggle('active');
+        });
     });
 
     // --- Logic for Fade-in on Scroll Animation ---
