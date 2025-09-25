@@ -115,6 +115,56 @@ a {
 .project-card h3 { margin: 1em 0 0.5em 0; }
 .project-card .project-description { padding: 0 1em 1em 1em; flex-grow: 1; font-size: 0.9em; color: #555; }
 
+/* ===AWARDS & HONORS ====*/
+/* === STYLES FOR THE 3-COLUMN AWARDS SECTION === */
+
+.recognition-grid-three-col {
+    display: grid;
+    /* Creates responsive columns that are at least 280px wide */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+    text-align: left;
+}
+
+/* Styling for the new clickable title links */
+.button-link {
+    text-decoration: none;
+    display: block;
+    background-color: var(--dark-sage);
+    padding: 0.75em;
+    border-radius: 8px;
+    margin-bottom: 1em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button-link:hover {
+    background-color: var(--dark-text);
+    transform: translateY(-3px);
+}
+
+/* Overriding title styles to fit inside the button */
+.button-link h3 {
+    color: white; /* Makes text white */
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+/* Ensure the list below the button has some space */
+.recognition-grid-three-col ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recognition-grid-three-col li {
+    background-color: var(--off-white);
+    padding: 0.5em 1em;
+    margin-bottom: 0.5em;
+    border-left: 4px solid var(--light-sage);
+}
 /* === FOOTER & SIDEBAR === */
 #contact { background-color: var(--dark-text); color: white; text-align: center; padding: 4em 1em; }
 #contact h2, #contact h3, #contact h4 { color: white; }
