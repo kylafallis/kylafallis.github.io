@@ -3,10 +3,10 @@
 
 :root {
     /* Main Site Theme (Light) */
-    --dark-sage: #5A7D7C;
-    --light-sage: #B8C4B8;
+    --dark-sage: #004526;
+    --light-sage: #A9BA9D;
     --off-white: #F5F5F5;
-    --dark-text: #333333;
+    --dark-text: #4A5D23;
     --light-shadow: rgba(0, 0, 0, 0.1);
     
     /* Font Families */
