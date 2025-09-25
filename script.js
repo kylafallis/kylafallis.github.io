@@ -40,13 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', closeSidebar);
     });
 
-
     // --- 3. FADE-IN ON SCROLL ANIMATION ---
     const cards = document.querySelectorAll('.card');
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Optional: stop observing after it's visible
             }
         });
     }, {
@@ -56,29 +56,4 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(card);
     });
 
-
-    // --- 4. CUSTOM CURSOR LOGIC ---
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorCircle = document.querySelector('.cursor-circle');
-
-    window.addEventListener('mousemove', e => {
-        if (cursorDot && cursorCircle) {
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
-            cursorCircle.style.left = `${e.clientX}px`;
-            cursorCircle.style.top = `${e.clientY}px`;
-        }
-    });
-    
-    document.body.addEventListener('mouseleave', () => {
-        if (cursorCircle) {
-            cursorCircle.classList.add('is-hidden');
-        }
-    });
-
-    document.body.addEventListener('mouseenter', () => {
-        if (cursorCircle) {
-            cursorCircle.classList.remove('is-hidden');
-        }
-    });
 });
