@@ -3,71 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Project: Pythagorus Plains</title>
-    <link rel="stylesheet" href="/reset.css">
-    <link rel="stylesheet" href="/style.css">
+    <title>Kyla Fallis | Pythagorus Plains Project</title>
+    <link rel="stylesheet" href="../../style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     
     <div id="overlay"></div>
     <div id="menu-icon">&#9776;</div>
-
-   <nav id="sidebar">
+    <nav id="sidebar">
         <ul>
-            <li><a href="/index.html#banner">Home</a></li>
-            <li><a href="/index.html#profile">Profile</a></li>
-            <li><a href="/index.html#recognition">Honors</a></li>
-            <li><a href="/index.html#contact">Contact</a></li>
-            <li class="sidebar-project-links">
-                <hr>
-                <a href="/index.html#software-projects">Software Projects</a>
-                <a href="/index.html#design-projects">Physical Design Projects</a>
-                <a href="/index.html#research-projects">Research</a>
-                <a href="/index.html#community-projects">Community Projects</a>
-            </li>
+            <li><a href="../../index.html#welcome-grid">Home</a></li>
+            <li><a href="../../index.html#profile">About</a></li>
+            <li><a href="../../index.html#software-projects">Projects</a></li>
+            <li><a href="../../index.html#recognition">Honors</a></li>
+            <li><a href="../../index.html#contact">Contact</a></li>
         </ul>
     </nav>
     
-    <header id="banner" class="project-header">
+    <header class="project-header card">
         <h1>Pythagorus Plains</h1>
-        <p class="project-dates">November 2024 – December 2024</p>
+        <p class="subtitle">An interactive educational game built with vanilla JavaScript.</p>
     </header>
 
     <main class="project-page-content">
+        
+        <div class="project-main-visual card">
+            <img src="../../images/pythagorus_plains_picture.png" alt="Screenshot of the Pythagorus Plains game">
+        </div>
+
         <div class="card">
-            <h2>Project Overview</h2>
             <div class="two-column-layout">
                 <div class="column-text">
-                    <h3>About this Project</h3>
-                    <p>Pythagorus Plains is a web-based educational game designed to teach geometric principles in an interactive and engaging way. The project was developed to make learning math more accessible and fun for students.</p>
+                    <h3>Project Narrative</h3>
+                    <p>Pythagorus Plains is a web-based educational game I developed to make learning geometric principles more accessible and fun. The core of the game involves a series of interactive, puzzle-based challenges where users apply mathematical concepts to progress.</p>
                     
-                    <h3>Key Features</h3>
-                    <ul>
-                        <li>Interactive, puzzle-based challenges</li>
-                        <li>Real-time feedback for users</li>
-                        <li>Responsive design for both desktop and mobile use</li>
-                    </ul>
-
-                    <h3>Technologies Used</h3>
-                    <p>This project was built from scratch using HTML, CSS, and vanilla JavaScript.</p>
+                    <h3>Lessons Learned</h3>
+                    <p>Building this project was a fantastic exercise in DOM manipulation and state management with vanilla JavaScript. I focused on creating a real-time feedback loop for the user, ensuring the interface was responsive and intuitive for both desktop and mobile use. It taught me a great deal about structuring game logic and designing for a positive user experience.</p>
                 </div>
+
                 <div class="column-visual">
-                    <a href="https://github.com/kylafallis/pythagorusplains"class="button">View on GitHub</a>
-                    <h3>Code Snippet</h3>
+                    <div class="tech-stack-box">
+                        <h4><i class="fa-solid fa-layer-group"></i> Tech Stack</h4>
+                        <ul>
+                            <li><i class="fa-brands fa-html5"></i> HTML5</li>
+                            <li><i class="fa-brands fa-css3-alt"></i> CSS3</li>
+                            <li><i class="fa-brands fa-js"></i> JavaScript (Vanilla)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="button-group">
+                        <a href="#" class="button">View Live Demo</a>
+                        <a href="https://github.com/kylafallis/pythagorusplains" target="_blank" class="button button-outline">View on GitHub</a>
+                    </div>
+                    
+                    <h4><i class="fa-solid fa-file-code"></i> Core Logic</h4>
                     <pre><code>// Core game logic example
 function checkAnswer(playerInput, solution) {
-  if (playerInput === solution) {
-    return "Correct!";
+  const isCorrect = (playerInput === solution);
+  
+  if (isCorrect) {
+    updateScore();
+    displayMessage("Correct!");
   } else {
-    return "Try again!";
+    displayMessage("Try again!");
   }
+  
+  return isCorrect;
 }</code></pre>
                 </div>
             </div>
         </div>
+        
+        <a href="../../index.html#software-projects" class="back-link">&larr; Back to All Projects</a>
     </main>
     
-    <script src="/script.js"></script>
+    <script src="../../script.js"></script>
 </body>
 </html>
