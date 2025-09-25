@@ -14,11 +14,11 @@
     --body-font: 'Montserrat', sans-serif;
 
     /* Bento Box Intro Theme (Dark) */
-    --dark-green-bg: #014421;
+    --dark-green-bg: #344e41;
     --text-light: #A9BA9D;
-    --card-green-1: #6C7C59;
-    --card-green-2: #6C7C59;
-    --card-green-3: #8A9A5B;
+    --card-green-1: #3a5a40;
+    --card-green-2: #588157;
+    --card-green-3: #333d29;
 }
 
 /* === GENERAL STYLING === */
