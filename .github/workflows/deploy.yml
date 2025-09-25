@@ -1,15 +1,5 @@
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [ main ] # Or your default branch
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
-jobs:
-  # ...the rest of your deployment job
+# Workflow for deploying static content to GitHub Pages
+name: Deploy Website to Pages
 
 on:
   # Runs on pushes targeting the 'main' branch
