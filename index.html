@@ -6,7 +6,6 @@
     <title>Kyla Fallis | Environmental Engineering & Design</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-    <!-- ALL STYLES ARE EMBEDDED HERE -->
     <style>
         /* --- CSS Reset --- */
         html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
@@ -100,13 +99,11 @@
 </head>
 <body>
 
-    <!-- Initial Loading Screen -->
     <div id="loader">
         <h1>Kyla Fallis</h1>
         <button id="enter-button">Enter</button>
     </div>
 
-    <!-- The main page content, initially hidden -->
     <div id="page-content" class="hidden">
         <div id="overlay"></div>
         <div id="menu-icon">&#9776;</div>
@@ -124,14 +121,13 @@
             </ul>
         </nav>
 
-        <!-- New Full-Screen Animated Grid Layout -->
         <div id="welcome-grid" class="welcome-container">
             <div class="grid-container">
                 <div class="grid-item item-welcome">
                     <h1>Welcome, <br>I'm Kyla Fallis.</h1>
                 </div>
                 <div class="grid-item item-headshot">
-                    <img src="/images/headshot.png" alt="Headshot of Kyla Fallis">
+                    <img src="images/headshot.png" alt="Headshot of Kyla Fallis">
                 </div>
                 <div class="grid-item item-quote">
                     <p>"The best way to predict the future is to invent it."</p>
@@ -235,7 +231,10 @@
             <div class="project-grid">
                 <a href="https://kylafallis.github.io/project/Physical Design/LYKA.html" class="project-link">
                     <div class="project-card card">
-                        <img src="images/LYKA2.0.mp4" alt="Image of 3-d model">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="images/LYKA2.0.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                         <h3>LYKA Lamp</h3>
                         <p>Designed and researched a microbial fuel cell prototype to explore the biotransformation of organic substrates for renewable energy.</p>
                     </div>
@@ -304,12 +303,11 @@
             </div>
         </section>
 
-            <!-- === UPDATED Awards & Honors Section === -->
         <section id="recognition" class="card">
             <h2>Awards & Honors</h2>
             <div class="recognition-grid-three-col">
                 <div>
-                    <a href="/honors/academic.html" class="button-link">
+                    <a href="honors/academic.html" class="button-link">
                         <h3><i class="fa-solid fa-award"></i> Academic & Research Honors</h3>
                     </a>
                     <ul>
@@ -322,7 +320,7 @@
                     </ul>
                 </div>
                 <div>
-                    <a href="/honors/leadership.html" class="button-link">
+                    <a href="honors/leadership.html" class="button-link">
                         <h3><i class="fa-solid fa-rocket"></i> Leadership & Community Honors</h3>
                     </a>
                     <ul>
@@ -335,7 +333,7 @@
                     </ul>
                 </div>
                 <div>
-                    <a href="/honors/conferences.html" class="button-link">
+                    <a href="honors/conferences.html" class="button-link">
                         <h3><i class="fa-solid fa-plane"></i> Conferences Attended</h3>
                     </a>
                     <ul>
@@ -349,6 +347,8 @@
             </div>
         </section>
 
+    </main>
+
     <footer id="contact">
         <h2>Contact Me</h2>
         <p>Feel free to reach out via email or connect with me on social media!</p>
@@ -359,7 +359,52 @@
             <a href="https://www.instagram.com/kyla.fallis/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Code for the Enter Button ---
+            const enterButton = document.getElementById('enter-button');
+            const loader = document.getElementById('loader');
+            const pageContent = document.getElementById('page-content');
+
+            if (enterButton) {
+                enterButton.addEventListener('click', function() {
+                    loader.style.opacity = '0';
+                    setTimeout(function() {
+                        loader.style.display = 'none';
+                        pageContent.classList.remove('hidden');
+                    }, 500);
+                });
+            }
+
+            // --- Code for the Sidebar Navigation Menu ---
+            const menuIcon = document.getElementById('menu-icon');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const sidebarLinks = document.querySelectorAll('#sidebar a');
+
+            const closeSidebar = () => {
+                sidebar.classList.remove('is-open');
+                overlay.classList.remove('is-visible');
+            };
+
+            if (menuIcon) {
+                menuIcon.addEventListener('click', function() {
+                    sidebar.classList.toggle('is-open');
+                    overlay.classList.toggle('is-visible');
+                });
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', closeSidebar);
+            }
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', closeSidebar);
+            });
+        });
+    </script>
     
-    <script src="/script.js"></script>
 </body>
 </html>
