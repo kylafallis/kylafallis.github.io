@@ -59,7 +59,7 @@ a { color: inherit; text-decoration: none; }
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 1rem;
-    width: 100vw; /* Make width relative to viewport width */
+    width: 110vw; /* Make width relative to viewport width */
     max-width: 1200px;
     height: 75vh; /* Make height relative to viewport height */
 }
