@@ -1,26 +1,58 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // --- Logic for the Enter Button ---
+    const loader = document.getElementById('loader');
+    const enterButton = document.getElementById('enter-button');
+    const pageContent = document.getElementById('page-content');
+
+    if (enterButton) {
+        enterButton.addEventListener('click', () => {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+                pageContent.classList.remove('hidden');
+            }, 500);
+        });
+    }
+
+    // --- Logic for the Sidebar Navigation Menu ---
     const menuIcon = document.getElementById('menu-icon');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
     const sidebarLinks = document.querySelectorAll('#sidebar a');
 
-    // This single function will open OR close the sidebar
-    function toggleSidebar() {
-        // The .toggle() method adds the class if it's not there, and removes it if it is.
-        sidebar.classList.toggle('is-open');
-        overlay.classList.toggle('is-visible');
+    const closeSidebar = () => {
+        sidebar.classList.remove('is-open');
+        overlay.classList.remove('is-visible');
+    };
+
+    if (menuIcon) {
+        menuIcon.addEventListener('click', () => {
+            sidebar.classList.toggle('is-open');
+            overlay.classList.toggle('is-visible');
+        });
     }
-
-    // When you click the menu icon, toggle the sidebar
-    menuIcon.addEventListener('click', toggleSidebar);
-
-    // When you click the overlay, close the sidebar
-    overlay.addEventListener('click', toggleSidebar);
-
-    // When you click any link in the sidebar, close the sidebar
+    if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+    }
     sidebarLinks.forEach(link => {
-        link.addEventListener('click', toggleSidebar);
+        link.addEventListener('click', closeSidebar);
+    });
+
+    // --- Logic for Fade-in on Scroll Animation ---
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    cards.forEach(card => {
+        observer.observe(card);
     });
 
 });
