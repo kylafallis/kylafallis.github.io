@@ -26,9 +26,6 @@ html {
     scroll-behavior: smooth; 
 }
 
-/* FIX: I've removed 'cursor: none;' from this rule below. 
-  This will restore your default cursor.
-*/
 body { 
     font-family: var(--body-font); 
     background-color: var(--off-white); 
