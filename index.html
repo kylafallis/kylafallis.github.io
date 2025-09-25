@@ -9,16 +9,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
+    <div id="loader">
+        <h1>Kyla Fallis</h1>
+        <button id="enter-button">Enter</button>
+    </div>
 
-    <div id="overlay"></div>
-    <div id="menu-icon">&#9776;</div>
-
-    <nav id="sidebar">
-        <ul>
-            <li><a href="#banner">Home</a></li>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#recognition">Honors</a></li>
-            <li><a href="#contact">Contact</a></li>
+    <div id="page-content" class="hidden">
+        <div id="menu-icon">&#9776;</div>
+        <div id="overlay"></div>
+        <nav id="sidebar">
+            <ul>
+                <li><a href="#welcome-grid">Home</a></li>
+                <li><a href="#profile">About</a></li>
+                <li><a href="#software-projects">Projects</a></li>
+                <li><a href="#recognition">Honors</a></li>
+                <li><a href="#contact">Contact</a></li>
             <li class="sidebar-project-links">
                 <hr>
                 <a href="#software-projects">Software Projects</a>
@@ -28,7 +33,44 @@
             </li>
         </ul>
     </nav>
-
+        
+ <div id="welcome-grid" class="welcome-container">
+            <div class="grid-container">
+                <div class="grid-item item-welcome">
+                    <h1>Welcome, <br>I'm Kyla Fallis.</h1>
+                </div>
+                <div class="grid-item item-headshot">
+                    <img src="images/headshot.png" alt="Headshot of Kyla Fallis">
+                </div>
+                <div class="grid-item item-quote">
+                    <p>"The best way to predict the future is to invent it."</p>
+                    <span>- Alan Kay</span>
+                </div>
+                <div class="grid-item item-quicklinks">
+                    <h4>Quick Links</h4>
+                    <a href="#software-projects"><i class="fa-solid fa-code"></i> Software Projects</a>
+                    <a href="#design-projects"><i class="fa-solid fa-drafting-compass"></i> Physical Design</a>
+                    <a href="#research-projects"><i class="fa-solid fa-flask"></i> Research</a>
+                </div>
+                <div class="grid-item item-aboutme">
+                    <a href="#profile">
+                        <h4>About Me <span class="arrow">&rarr;</span></h4>
+                        <p>An engineer and researcher driven to design sustainable solutions.</p>
+                    </a>
+                </div>
+                <div class="grid-item item-lookingfor">
+                    <h4>What I'm Looking For</h4>
+                    <p>Seeking opportunities to apply my skills in renewable energy and sustainable design.</p>
+                </div>
+                <div class="grid-item item-contact">
+                    <a href="#contact">
+                        <h4>Have a question?</h4>
+                        <h2>Contact Me <span class="arrow">&rarr;</span></h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
     <header id="banner">
         <img src="images/headshot2.jpg" alt="Headshot of Kyla Fallis" class="headshot">
         <h1>Kyla Fallis</h1>
