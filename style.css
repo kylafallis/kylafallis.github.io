@@ -123,6 +123,84 @@ a { color: inherit; text-decoration: none; }
 .recognition-grid-three-col ul { list-style-type: none; padding: 0; margin: 0; }
 .recognition-grid-three-col li { background-color: var(--off-white); padding: 0.5em 1em; margin-bottom: 0.5em; border-left: 4px solid var(--light-sage); }
 
+/* === STYLES FOR INDIVIDUAL PROJECT PAGES === */
+
+.project-header {
+    text-align: center;
+    padding: 3em 1em;
+    border-bottom: 1px solid var(--light-sage);
+}
+
+.project-page-content {
+    padding: 2em;
+}
+
+.project-main-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 2em;
+    box-shadow: 0 4px 15px var(--light-shadow);
+}
+
+/* --- For Software Template --- */
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2em;
+    align-items: start;
+}
+
+/* --- For Physical Design Template --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5em;
+    margin-top: 2em;
+}
+.gallery-grid figure {
+    margin: 0;
+    text-align: center;
+}
+.gallery-grid img {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.gallery-grid figcaption {
+    margin-top: 0.5em;
+    font-style: italic;
+    color: #666;
+}
+
+/* --- For Community Project Template --- */
+.impact-metrics {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: 2em 0;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.metric-box {
+    padding: 1em;
+}
+.metric-number {
+    display: block;
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--dark-sage);
+}
+.metric-label {
+    font-size: 1em;
+    color: #555;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+    .two-column-layout {
+        grid-template-columns: 1fr; /* Stack columns on small screens */
+    }
+}
 /* === FOOTER & SIDEBAR === */
 #contact { background-color: var(--dark-text); color: white; text-align: center; padding: 4em 1em; }
 #contact h2, #contact h3, #contact h4 { color: white; }
