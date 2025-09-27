@@ -40,7 +40,6 @@ a { color: inherit; text-decoration: none; }
 #enter-button { background: transparent; border: 1px solid var(--text-light); color: var(--text-light); padding: 0.8em 2em; margin-top: 1rem; font-family: var(--body-font); font-weight: 600; border-radius: 30px; cursor: pointer; transition: all 0.3s; }
 #enter-button:hover { background-color: var(--text-light); color: var(--dark-green-bg); }
 #page-content.hidden { display: none; }
-
 .welcome-container {
     display: flex;
     flex-direction: column;
@@ -54,7 +53,6 @@ a { color: inherit; text-decoration: none; }
     animation: fadeIn 1s forwards;
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -165,8 +163,7 @@ pre { background-color: #2d2d2d; color: #f8f8f2; border-radius: 8px; padding: 1e
 /* === SIDEBAR DROPDOWN STYLES === */
 #sidebar .dropdown-toggle { display: flex; justify-content: space-between; align-items: center; }
 #sidebar .dropdown-toggle .arrow { font-size: 0.8em; transition: transform 0.3s ease; }
-#sidebar .dropdown.active > .dropdown-toggle > .arrow { transform: rotate(180deg); }
+#sidebar .dropdown.open > .dropdown-toggle > .arrow { transform: rotate(180deg); } /* Changed from .active to .open */
 #sidebar .dropdown-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background-color: rgba(0,0,0,0.2); }
-#sidebar .dropdown.active > .dropdown-menu { max-height: 500px; /* Adjust if you have many projects */ }
+#sidebar .dropdown.open > .dropdown-menu { max-height: 500px; } /* Changed from .active to .open */
 #sidebar .dropdown-menu a { font-size: 1em; padding-left: 40px; }
-
