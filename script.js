@@ -1,37 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /**
-     * Fetches the sidebar.html content and injects it into the placeholder.
-     * This is the first step.
-     */
-    function loadSidebar() {
-        console.log("Attempting to load sidebar.html...");
-        fetch('/sidebar.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok. Status: ' + response.status);
-                }
-                return response.text();
-            })
-            .then(html => {
-                const placeholder = document.getElementById('sidebar-placeholder');
-                if (placeholder) {
-                    placeholder.innerHTML = html;
-                    console.log("SUCCESS: sidebar.html was loaded into the placeholder.");
-                    // Now that the sidebar HTML exists, we can make it interactive.
-                    initializeSidebarInteractions();
-                } else {
-                    console.error("CRITICAL ERROR: Could not find #sidebar-placeholder div on the page.");
-                }
-            })
-            .catch(error => {
-                console.error("CRITICAL ERROR fetching sidebar.html:", error);
-            });
-    }
-
-    /**
-     * Sets up the event listeners for the sidebar, overlay, and dropdowns.
-     * This function ONLY runs after the sidebar has been successfully loaded.
+     * This function is called after the sidebar has been loaded into the page.
+     * It sets up all the event listeners for the sidebar's interactive elements.
      */
     function initializeSidebarInteractions() {
         const menuIcon = document.getElementById('menu-icon');
@@ -39,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const overlay = document.getElementById('overlay');
 
         if (!menuIcon || !sidebar || !overlay) {
-            console.error("Error: Could not find one or more essential sidebar elements (#menu-icon, #sidebar, #overlay).");
+            console.error("Sidebar core components (menu icon, sidebar, overlay) not found.");
             return;
         }
 
@@ -50,22 +21,20 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         menuIcon.addEventListener('click', toggleSidebar);
         overlay.addEventListener('click', toggleSidebar);
-        console.log("Main sidebar toggle functionality is active.");
 
-        // --- Dropdown Menu Logic ---
+        // --- CORRECTED DROPDOWN LOGIC ---
         const dropdownToggles = sidebar.querySelectorAll('.dropdown-toggle');
         dropdownToggles.forEach(toggle => {
             toggle.addEventListener('click', (e) => {
-                e.preventDefault(); // Stop the link from trying to navigate
-                const parentDropdown = toggle.parentElement; // This should be the <li class="dropdown">
-                if(parentDropdown) {
-                    parentDropdown.classList.toggle('open');
+                e.preventDefault(); // Prevents the link from navigating
+                const parentDropdown = toggle.closest('.dropdown');
+                if (parentDropdown) {
+                    parentDropdown.classList.toggle('open'); // Toggles the 'open' class on the LI element
                 }
             });
         });
-        console.log(`Found and attached ${dropdownToggles.length} dropdown toggles.`);
 
-        // --- Close sidebar when a final link (not a dropdown) is clicked ---
+        // --- Close sidebar when a non-dropdown link is clicked ---
         sidebar.querySelectorAll('a').forEach(link => {
             if (!link.classList.contains('dropdown-toggle')) {
                 link.addEventListener('click', () => {
@@ -78,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Initializes interactions that are NOT dependent on the sidebar.
+     * This function contains all the logic for page elements that are NOT in the sidebar.
      */
     function initializePageInteractions() {
         // --- Loader Logic ---
@@ -97,43 +66,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // --- Smooth Scrolling for Anchor Links ---
-        document.querySelectorAll('a[href^="/index.html#"], a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                const targetId = href.split('#')[1];
-                
-                if (!window.location.pathname.endsWith('index.html') && !window.location.pathname.endsWith('/')) {
-                    window.location.href = '/index.html#' + targetId;
-                    return;
-                }
-
-                e.preventDefault();
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+        // --- Fade-in on Scroll for Cards ---
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
                 }
             });
-        });
-
-        // --- Scroll Arrow Animation ---
-        const scrollArrow = document.querySelector('.scroll-arrow');
-        if (scrollArrow) {
-            window.addEventListener('scroll', () => {
-                const welcomeScreen = document.getElementById('welcome-grid');
-                if (!welcomeScreen) return;
-                const scrollableHeight = welcomeScreen.offsetHeight;
-                if (window.scrollY < scrollableHeight) {
-                    const scrollPercent = Math.min(window.scrollY / (scrollableHeight - window.innerHeight), 1);
-                    const newHeight = 30 + (30 * scrollPercent);
-                    scrollArrow.style.height = `${newHeight}px`;
-                }
-            });
-        }
+        }, { threshold: 0.1 });
+        cards.forEach(card => observer.observe(card));
     }
-    
+
+    /**
+     * This is the main function that starts everything.
+     * It fetches the sidebar.html content and injects it into the placeholder.
+     */
+    function loadSidebarAndInitialize() {
+        fetch('/sidebar.html')
+            .then(response => {
+                if (!response.ok) { throw new Error('Sidebar.html not found.'); }
+                return response.text();
+            })
+            .then(html => {
+                const placeholder = document.getElementById('sidebar-placeholder');
+                if (placeholder) {
+                    placeholder.innerHTML = html;
+                    // IMPORTANT: Initialize sidebar interactions AFTER the HTML is loaded.
+                    initializeSidebarInteractions();
+                }
+            })
+            .catch(error => {
+                console.error("Could not load sidebar:", error);
+                // Still try to initialize sidebar interactions in case the HTML is static
+                initializeSidebarInteractions();
+            });
+    }
+
     // --- START THE PROCESS ---
-    loadSidebar();
+    loadSidebarAndInitialize();
     initializePageInteractions();
 });
 
