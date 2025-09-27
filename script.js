@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500);
         });
     }
-document.addEventListener('DOMContentLoaded', () => {
     // This function fetches the sidebar content and injects it into the page
     function loadSidebar() {
         fetch('/sidebar.html')
