@@ -40,20 +40,21 @@ a { color: inherit; text-decoration: none; }
 #enter-button { background: transparent; border: 1px solid var(--text-light); color: var(--text-light); padding: 0.8em 2em; margin-top: 1rem; font-family: var(--body-font); font-weight: 600; border-radius: 30px; cursor: pointer; transition: all 0.3s; }
 #enter-button:hover { background-color: var(--text-light); color: var(--dark-green-bg); }
 #page-content.hidden { display: none; }
-/* Replace your existing .welcome-container with this new version */
+
 .welcome-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Aligns the grid to the TOP */
     align-items: center;         /* Keeps the grid centered horizontally */
     height: 100vh;
-    padding-top: 1vh; * Pushes the grid down from the top edge */
-    box-sizing: border-box;      /* IMPORTANT: Prevents padding from adding extra height */
+    padding-top: 1vh; /* Pushes the grid down from the top edge */
+    box-sizing: border-box;       /* IMPORTANT: Prevents padding from adding extra height */
     background-color: var(--dark-green-bg);
     opacity: 0;
     animation: fadeIn 1s forwards;
 }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }/* Find and replace your existing .grid-container with this one */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -124,130 +125,27 @@ a { color: inherit; text-decoration: none; }
 .recognition-grid-three-col li { background-color: var(--off-white); padding: 0.5em 1em; margin-bottom: 0.5em; border-left: 4px solid var(--light-sage); }
 
 /* === STYLES FOR INDIVIDUAL PROJECT PAGES === */
+.project-header { text-align: center; border-bottom: 1px solid var(--light-sage); padding-bottom: 1em; margin-top: 1em; }
+.project-header .subtitle { font-size: 1.2em; color: var(--dark-text); max-width: 600px; margin: 0.5em auto 0 auto; }
+.project-page-content { max-width: 1200px; margin: 0 auto; padding: 1em; }
+.project-main-visual { padding: 2em; margin-top: 1em; overflow: hidden; }
+.project-main-visual img { width: 100%; display: block; }
+.two-column-layout { display: grid; grid-template-columns: 2fr 1.25fr; gap: 2.5em; align-items: start; }
+.column-text h3 { border-bottom: 2px solid var(--light-sage); padding-bottom: 0.5em; margin-top: 1.5em; margin-bottom: 0.5em; }
+.column-text h3:first-child { margin-top: 0; }
+.tech-stack-box { background-color: var(--off-white); border-radius: 8px; padding: 1em 1.5em; margin-bottom: 1.5em; }
+.tech-stack-box h4 { margin: 0 0 0.5em 0; border-bottom: 1px solid #ddd; padding-bottom: 0.5em; }
+.tech-stack-box ul { list-style: none; padding: 0; margin: 0; }
+.tech-stack-box li { padding: 0.5em 0; }
+.tech-stack-box i { margin-right: 0.75em; color: var(--dark-sage); }
+.button-group { display: flex; flex-direction: column; gap: 0.5em; margin-bottom: 1.5em; }
+.button { display: block; text-align: center; background-color: var(--dark-sage); color: white; padding: 0.8em 1.5em; border-radius: 5px; text-decoration: none; transition: background-color 0.3s; font-weight: bold; }
+.button:hover { background-color: var(--dark-text); }
+.button.button-outline { background-color: transparent; color: var(--dark-sage); border: 2px solid var(--dark-sage); }
+pre { background-color: #2d2d2d; color: #f8f8f2; border-radius: 8px; padding: 1em; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; }
+.back-link { display: block; text-align: center; margin: 2em auto; font-weight: bold; color: var(--dark-sage); }
+@media (max-width: 768px) { .two-column-layout { grid-template-columns: 1fr; } }
 
-.project-header {
-    text-align: center;
-    border-bottom: 1px solid var(--light-sage);
-    padding-bottom: 1em;
-    margin-top: 1em;
-}
-
-.project-header .subtitle {
-    font-size: 1.2em;
-    color: var(--dark-text);
-    max-width: 600px;
-    margin: 0.5em auto 0 auto;
-}
-
-.project-page-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1em;
-}
-
-.project-main-visual {
-    padding: 0;
-    overflow: hidden;
-    padding: 2em
-    margin-top: 1em;
-}
-
-.project-main-visual img {
-    width: 100%;
-    display: block;
-}
-
-.two-column-layout {
-    display: grid;
-    grid-template-columns: 2fr 1.25fr;
-    gap: 2.5em;
-    align-items: start;
-}
-
-.column-text h3 {
-    border-bottom: 2px solid var(--light-sage);
-    padding-bottom: 0.5em;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-}
-.column-text h3:first-child {
-    margin-top: 0;
-}
-
-.tech-stack-box {
-    background-color: var(--off-white);
-    border-radius: 8px;
-    padding: 1em 1.5em;
-    margin-bottom: 1.5em;
-}
-.tech-stack-box h4 {
-    margin: 0 0 0.5em 0;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 0.5em;
-}
-.tech-stack-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.tech-stack-box li {
-    padding: 0.5em 0;
-}
-.tech-stack-box i {
-    margin-right: 0.75em;
-    color: var(--dark-sage);
-}
-
-.button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    margin-bottom: 1.5em;
-}
-.button {
-    display: block;
-    text-align: center;
-    background-color: var(--dark-sage);
-    color: white;
-    padding: 0.8em 1.5em;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-    font-weight: bold;
-}
-.button:hover {
-    background-color: var(--dark-text);
-}
-.button.button-outline {
-    background-color: transparent;
-    color: var(--dark-sage);
-    border: 2px solid var(--dark-sage);
-}
-
-pre {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
-    border-radius: 8px;
-    padding: 1em;
-    overflow-x: auto;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9em;
-}
-
-.back-link {
-    display: block;
-    text-align: center;
-    margin: 2em auto;
-    font-weight: bold;
-    color: var(--dark-sage);
-}
-
-/* --- Responsive adjustments --- */
-@media (max-width: 768px) {
-    .two-column-layout {
-        grid-template-columns: 1fr; /* Stack columns on small screens */
-    }
-}
 /* === FOOTER & SIDEBAR === */
 #contact { background-color: var(--dark-text); color: white; text-align: center; padding: 4em 1em; }
 #contact h2, #contact h3, #contact h4 { color: white; }
@@ -264,10 +162,11 @@ pre {
 #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; visibility: hidden; opacity: 0; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; }
 #overlay.is-visible { visibility: visible; opacity: 1; }
 
-/* === NEW SIDEBAR DROPDOWN STYLES === */
+/* === SIDEBAR DROPDOWN STYLES === */
 #sidebar .dropdown-toggle { display: flex; justify-content: space-between; align-items: center; }
 #sidebar .dropdown-toggle .arrow { font-size: 0.8em; transition: transform 0.3s ease; }
 #sidebar .dropdown.active > .dropdown-toggle > .arrow { transform: rotate(180deg); }
 #sidebar .dropdown-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background-color: rgba(0,0,0,0.2); }
 #sidebar .dropdown.active > .dropdown-menu { max-height: 500px; /* Adjust if you have many projects */ }
 #sidebar .dropdown-menu a { font-size: 1em; padding-left: 40px; }
+
