@@ -1,24 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Logic for the Enter Button ---
-    const loader = document.getElementById('loader');
-    const enterButton = document.getElementById('enter-button');
-    const pageContent = document.getElementById('page-content');
-    if (enterButton) {
-        enterButton.addEventListener('click', () => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-                pageContent.classList.remove('hidden');
-            }, 500);
-        });
-    }
-    // This function fetches the sidebar content and injects it into the page
+    /**
+     * Fetches the sidebar.html content and injects it into the placeholder.
+     * This is the first step.
+     */
     function loadSidebar() {
+        console.log("Attempting to load sidebar.html...");
         fetch('/sidebar.html')
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Sidebar not found at /sidebar.html');
+                    throw new Error('Network response was not ok. Status: ' + response.status);
                 }
                 return response.text();
             })
@@ -26,72 +17,92 @@ document.addEventListener('DOMContentLoaded', function() {
                 const placeholder = document.getElementById('sidebar-placeholder');
                 if (placeholder) {
                     placeholder.innerHTML = html;
+                    console.log("SUCCESS: sidebar.html was loaded into the placeholder.");
+                    // Now that the sidebar HTML exists, we can make it interactive.
+                    initializeSidebarInteractions();
+                } else {
+                    console.error("CRITICAL ERROR: Could not find #sidebar-placeholder div on the page.");
                 }
-                // Once the sidebar is loaded, set up all the interactive parts of the page
-                initializePageInteractions();
             })
             .catch(error => {
-                console.error("Could not load sidebar:", error);
+                console.error("CRITICAL ERROR fetching sidebar.html:", error);
             });
     }
 
-    // This function contains all the logic for making the page interactive
-    function initializePageInteractions() {
+    /**
+     * Sets up the event listeners for the sidebar, overlay, and dropdowns.
+     * This function ONLY runs after the sidebar has been successfully loaded.
+     */
+    function initializeSidebarInteractions() {
         const menuIcon = document.getElementById('menu-icon');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
-        
-        if (menuIcon && sidebar && overlay) {
-            // --- Main Sidebar Toggle Logic ---
-            const toggleSidebar = () => {
-                sidebar.classList.toggle('is-open');
-                overlay.classList.toggle('is-visible');
-            };
-            menuIcon.addEventListener('click', toggleSidebar);
-            overlay.addEventListener('click', toggleSidebar);
 
-            // --- Dropdown Menu Logic ---
-            sidebar.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-                toggle.addEventListener('click', (e) => {
-                    e.preventDefault(); // Prevent page from jumping
-                    const parentDropdown = toggle.parentElement;
-                    parentDropdown.classList.toggle('open');
-                });
-            });
-
-            // --- Close sidebar when a non-dropdown link is clicked ---
-            sidebar.querySelectorAll('a').forEach(link => {
-                if (!link.classList.contains('dropdown-toggle')) {
-                    link.addEventListener('click', () => {
-                        if (sidebar.classList.contains('is-open')) {
-                           toggleSidebar();
-                        }
-                    });
-                }
-            });
+        if (!menuIcon || !sidebar || !overlay) {
+            console.error("Error: Could not find one or more essential sidebar elements (#menu-icon, #sidebar, #overlay).");
+            return;
         }
 
-        // --- Loader Logic (only runs if on the homepage) ---
+        // --- Main Sidebar Toggle Logic ---
+        const toggleSidebar = () => {
+            sidebar.classList.toggle('is-open');
+            overlay.classList.toggle('is-visible');
+        };
+        menuIcon.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+        console.log("Main sidebar toggle functionality is active.");
+
+        // --- Dropdown Menu Logic ---
+        const dropdownToggles = sidebar.querySelectorAll('.dropdown-toggle');
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault(); // Stop the link from trying to navigate
+                const parentDropdown = toggle.parentElement; // This should be the <li class="dropdown">
+                if(parentDropdown) {
+                    parentDropdown.classList.toggle('open');
+                }
+            });
+        });
+        console.log(`Found and attached ${dropdownToggles.length} dropdown toggles.`);
+
+        // --- Close sidebar when a final link (not a dropdown) is clicked ---
+        sidebar.querySelectorAll('a').forEach(link => {
+            if (!link.classList.contains('dropdown-toggle')) {
+                link.addEventListener('click', () => {
+                    if (sidebar.classList.contains('is-open')) {
+                        toggleSidebar();
+                    }
+                });
+            }
+        });
+    }
+
+    /**
+     * Initializes interactions that are NOT dependent on the sidebar.
+     */
+    function initializePageInteractions() {
+        // --- Loader Logic ---
         const loader = document.getElementById('loader');
         if (loader) {
             const enterButton = document.getElementById('enter-button');
             const pageContent = document.getElementById('page-content');
-            enterButton.addEventListener('click', () => {
-                loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                    pageContent.classList.remove('hidden');
-                }, 500);
-            });
+            if (enterButton && pageContent) {
+                enterButton.addEventListener('click', () => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        pageContent.classList.remove('hidden');
+                    }, 500);
+                });
+            }
         }
 
         // --- Smooth Scrolling for Anchor Links ---
-         document.querySelectorAll('a[href^="/index.html#"], a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="/index.html#"], a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 const targetId = href.split('#')[1];
                 
-                // If on a different page, go to index.html first then scroll
                 if (!window.location.pathname.endsWith('index.html') && !window.location.pathname.endsWith('/')) {
                     window.location.href = '/index.html#' + targetId;
                     return;
@@ -105,8 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-
-        // --- Scroll Arrow Animation (only runs if on the homepage) ---
+        // --- Scroll Arrow Animation ---
         const scrollArrow = document.querySelector('.scroll-arrow');
         if (scrollArrow) {
             window.addEventListener('scroll', () => {
@@ -121,9 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
-    // Start the process by loading the sidebar
+    
+    // --- START THE PROCESS ---
     loadSidebar();
+    initializePageInteractions();
 });
-
 
