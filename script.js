@@ -1,130 +1,135 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /**
-     * This function is called after the sidebar has been loaded into the page.
-     * It sets up all the event listeners for the sidebar's interactive elements.
+     * This function is called ONLY after the sidebar has been loaded.
+     * It sets up all event listeners for the entire page's interactive elements.
      */
-    function initializeSidebarInteractions() {
+    function initializeAllInteractions() {
+        console.log("Initializing all page interactions...");
+
+        // --- Sidebar Toggle Logic ---
         const menuIcon = document.getElementById('menu-icon');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
 
-        if (!menuIcon || !sidebar || !overlay) {
-            console.error("Sidebar core components (menu icon, sidebar, overlay) not found.");
-            return;
+        if (menuIcon && sidebar && overlay) {
+            const toggleSidebar = () => {
+                sidebar.classList.toggle('is-open');
+                overlay.classList.toggle('is-visible');
+            };
+            menuIcon.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+            console.log("Sidebar toggle initialized.");
+        } else {
+            console.error("Could not find one or more sidebar components (menu, sidebar, overlay).");
         }
 
-        // --- Main Sidebar Toggle Logic ---
-        const toggleSidebar = () => {
-            sidebar.classList.toggle('is-open');
-            overlay.classList.toggle('is-visible');
-        };
-        menuIcon.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
-        // --- CORRECTED DROPDOWN LOGIC ---
-        const dropdownToggles = sidebar.querySelectorAll('.dropdown-toggle');
-        dropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevents the link from navigating
-                const parentDropdown = toggle.closest('.dropdown');
-                if (parentDropdown) {
-                    parentDropdown.classList.toggle('open'); // Toggles the 'open' class on the LI element
-                }
-            });
-        });
-
-        // --- Close sidebar when a non-dropdown link is clicked ---
-        sidebar.querySelectorAll('a').forEach(link => {
-            if (!link.classList.contains('dropdown-toggle')) {
-                link.addEventListener('click', () => {
-                    if (sidebar.classList.contains('is-open')) {
-                        toggleSidebar();
+        // --- Dropdown Menu Logic ---
+        if (sidebar) {
+            sidebar.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent page from jumping
+                    const parentDropdown = toggle.closest('.dropdown');
+                    if (parentDropdown) {
+                        parentDropdown.classList.toggle('open');
                     }
                 });
-            }
-        });
-    }
-
-    /**
-     * This function contains all the logic for page elements that are NOT in the sidebar.
-     */
-    function initializePageInteractions() {
-        // --- Loader Logic ---
-        const loader = document.getElementById('loader');
-        if (loader) {
-            const enterButton = document.getElementById('enter-button');
-            const pageContent = document.getElementById('page-content');
-            if (enterButton && pageContent) {
-                enterButton.addEventListener('click', () => {
-                    loader.style.opacity = '0';
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                        pageContent.classList.remove('hidden');
-                    }, 500);
-                });
-            }
+            });
+            console.log("Dropdown toggles initialized.");
         }
 
-        // --- Fade-in on Scroll for Cards ---
-        const cards = document.querySelectorAll('.card');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+        // --- Close sidebar when a non-dropdown link is clicked ---
+        if (sidebar) {
+            sidebar.querySelectorAll('a').forEach(link => {
+                if (!link.classList.contains('dropdown-toggle')) {
+                    link.addEventListener('click', () => {
+                        if (sidebar.classList.contains('is-open')) {
+                            sidebar.classList.remove('is-open');
+                            overlay.classList.remove('is-visible');
+                        }
+                    });
                 }
             });
-        }, { threshold: 0.1 });
-        cards.forEach(card => observer.observe(card));
-
-           // --- Community Projects Tabs ---
-const tabs = document.querySelectorAll(".tab-btn");
-const panels = document.querySelectorAll(".tab-panel");
-
-if (tabs.length && panels.length) {
-    tabs.forEach(btn => {
-        btn.addEventListener("click", () => {
-            // Reset active states
-            tabs.forEach(b => b.classList.remove("active"));
-            panels.forEach(p => p.classList.remove("active"));
-
-            // Activate clicked tab + corresponding panel
-            btn.classList.add("active");
-            const targetPanel = document.getElementById(btn.dataset.tab);
-            if (targetPanel) {
-                targetPanel.classList.add("active");
-            }
+        }
+        
+        // --- Loader & Enter Button Logic ---
+        const loader = document.getElementById('loader');
+        const enterButton = document.getElementById('enter-button');
+        const pageContent = document.getElementById('page-content');
+        if (loader && enterButton && pageContent) {
+            enterButton.addEventListener('click', () => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    pageContent.classList.remove('hidden');
+                }, 500);
+            });
+            console.log("Loader button initialized.");
+        }
+        
+        // --- Smooth Scrolling for Anchor Links ---
+        document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
+             anchor.addEventListener('click', function (e) {
+                 e.preventDefault();
+                 const targetId = this.getAttribute('href').substring(2);
+                 const targetElement = document.getElementById(targetId);
+                 if (targetElement) {
+                     targetElement.scrollIntoView({ behavior: 'smooth' });
+                 }
+             });
         });
-    });
+
+        // --- NEW: Community Projects Tabs Logic ---
+        const tabs = document.querySelectorAll(".tab-btn");
+        const panels = document.querySelectorAll(".tab-panel");
+
+        if (tabs.length && panels.length) {
+            tabs.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    // Deactivate all tabs and panels first
+                    tabs.forEach(b => b.classList.remove("active"));
+                    panels.forEach(p => p.classList.remove("active"));
+
+                    // Activate the clicked tab and its corresponding panel
+                    btn.classList.add("active");
+                    const targetPanel = document.getElementById(btn.dataset.tab);
+                    if (targetPanel) {
+                        targetPanel.classList.add("active");
+                    }
+                });
+            });
+            console.log("Community tabs initialized.");
+        }
     }
 
     /**
      * This is the main function that starts everything.
      * It fetches the sidebar.html content and injects it into the placeholder.
      */
-    function loadSidebarAndInitialize() {
+    function loadSidebar() {
         fetch('/sidebar.html')
             .then(response => {
-                if (!response.ok) { throw new Error('Sidebar.html not found.'); }
+                if (!response.ok) { throw new Error('sidebar.html not found.'); }
                 return response.text();
             })
             .then(html => {
                 const placeholder = document.getElementById('sidebar-placeholder');
                 if (placeholder) {
                     placeholder.innerHTML = html;
-                    // IMPORTANT: Initialize sidebar interactions AFTER the HTML is loaded.
-                    initializeSidebarInteractions();
+                    console.log("Sidebar HTML loaded successfully.");
+                    // IMPORTANT: Initialize interactions AFTER the HTML is loaded.
+                    initializeAllInteractions();
+                } else {
+                     console.error("Sidebar placeholder not found on this page.");
                 }
             })
             .catch(error => {
                 console.error("Could not load sidebar:", error);
-                // Still try to initialize sidebar interactions in case the HTML is static
-                initializeSidebarInteractions();
+                // Still try to initialize the rest of the page even if sidebar fails
+                initializeAllInteractions();
             });
     }
 
-    // --- START THE PROCESS ---
-    loadSidebarAndInitialize();
-    initializePageInteractions();
+    // --- START THE ENTIRE PROCESS ---
+    loadSidebar();
 });
-
