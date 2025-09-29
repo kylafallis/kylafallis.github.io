@@ -126,5 +126,5 @@ if (tabs.length && panels.length) {
     // --- START THE PROCESS ---
     loadSidebarAndInitialize();
     initializePageInteractions();
-};
+});
 
