@@ -76,6 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { threshold: 0.1 });
         cards.forEach(card => observer.observe(card));
+
+            // --- Community Projects Tabs ---
+    const tabs = document.querySelectorAll(".tab-btn");
+    const panels = document.querySelectorAll(".tab-panel");
+
+    if (tabs.length && panels.length) {
+        tabs.forEach(btn => {
+            btn.addEventListener("click", () => {
+                // Reset active states
+                tabs.forEach(b => b.classList.remove("active"));
+                panels.forEach(p => p.classList.remove("active"));
+
+                // Activate clicked tab + corresponding panel
+                btn.classList.add("active");
+                const targetPanel = document.getElementById(btn.dataset.tab);
+                if (targetPanel) {
+                    targetPanel.classList.add("active");
+                }
+            });
+        });
     }
 
     /**
