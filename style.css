@@ -195,6 +195,85 @@ pre { background-color: #2d2d2d; color: #f8f8f2; border-radius: 8px; padding: 1e
   margin-bottom: 2rem;
 }
 
+/* Folder container */
+.folder-container {
+  background: #fffef9;
+  border: 2px solid #d1c7a3;
+  border-radius: 6px;
+  box-shadow: 4px 6px 12px rgba(0,0,0,0.15);
+  padding: 0;
+  margin-top: 1rem;
+  position: relative;
+}
+
+/* Folder Tabs */
+.folder-tabs {
+  display: flex;
+  background: transparent;
+  margin-bottom: 0;
+}
+
+.tab-btn {
+  padding: 0.6rem 1.2rem;
+  margin-right: 4px;
+  border: 2px solid #d1c7a3;
+  border-bottom: none;
+  background: #fdf6e3;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.tab-btn.active {
+  background: #fffef9;
+  font-weight: bold;
+  color: #333;
+  z-index: 2;
+}
+
+.tab-btn:hover {
+  background: #f5ecd6;
+}
+
+/* Folder body */
+.tab-content {
+  border-top: 2px solid #d1c7a3;
+  padding: 1.5rem;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.project-card {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: #fafafa;
+}
+
+.more-btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  background: #0077cc;
+}
+
+.more-btn:hover {
+  background: #005fa3;
+}
+
 /* === FOOTER & SIDEBAR === */
 #contact { background-color: var(--dark-text); color: white; text-align: center; padding: 4em 1em; }
 #contact h2, #contact h3, #contact h4 { color: white; }
