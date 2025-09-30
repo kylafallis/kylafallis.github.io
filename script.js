@@ -99,6 +99,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
+        // --- NEW: Community Projects Tabs Logic ---
+        const tabs = document.querySelectorAll(".tab-btn");
+        const panels = document.querySelectorAll(".tab-panel");
+
+        if (tabs.length > 0 && panels.length > 0) {
+            tabs.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    // Deactivate all tabs and panels first
+                    tabs.forEach(b => b.classList.remove("active"));
+                    panels.forEach(p => p.classList.remove("active"));
+
+                    // Activate the clicked tab and its corresponding panel
+                    btn.classList.add("active");
+                    const targetPanel = document.getElementById(btn.dataset.tab);
+                    if (targetPanel) {
+                        targetPanel.classList.add("active");
+                    }
+                });
+            });
+            console.log("Community tabs initialized.");
+        }
     }
 
     /**
