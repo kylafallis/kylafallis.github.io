@@ -104,7 +104,7 @@ a { color: inherit; text-decoration: none; }
 .project-card:hover img { transform: scale(1.05); }
 .project-card h3 { padding: 1em 1em 0.5em 1em; margin: 0; text-align: left; }
 .project-card .project-description { padding: 0 1em 1em 1em; margin: 0; flex-grow: 1; color: #555; text-align: left; font-family: var(--body-font); }
-.project-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 220px; background-color: rgba((188, 184, 138, 0.8); color: white; display: flex; justify-content: center; align-items: center; font-size: 2.5em; opacity: 0; transition: opacity 0.4s ease; }
+.project-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 220px; background-color: rgba(188, 184, 138, 0.8); color: white; display: flex; justify-content: center; align-items: center; font-size: 2.5em; opacity: 0; transition: opacity 0.4s ease; }
 .project-card:hover .project-overlay { opacity: 1; }
 .recognition-grid-three-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2em; }
 .button-link { text-decoration: none; display: block; background-color: var(--dark-sage); padding: 0.75em; border-radius: 8px; margin-bottom: 1em; transition: background-color 0.3s, transform 0.2s; }
