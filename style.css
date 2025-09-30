@@ -202,6 +202,100 @@ pre { background-color: #2d2d2d; color: #f8f8f2; border-radius: 8px; padding: 1e
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* === START: STYLES FOR COMMUNITY PAGE === */
+
+/* Header with a subtle background image */
+.advocacy-header {
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1600133153346-26a13280b18f?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+.advocacy-header::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(42, 63, 58, 0.8); /* Darker overlay for text readability */
+    z-index: 1;
+}
+
+.advocacy-header > * {
+    position: relative;
+    z-index: 2;
+    color: white; /* Ensure text is white over the image */
+}
+.advocacy-header .subtitle {
+    color: var(--light-sage);
+}
+
+
+/* New two-column layout for this specific page */
+.two-column-advocacy-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Left column is smaller */
+    gap: 3em;
+    padding: 2em;
+}
+
+.advocacy-philosophy h3 {
+    margin-top: 0;
+    border-bottom: 2px solid var(--light-sage);
+    padding-bottom: 0.5em;
+}
+
+.pull-quote {
+    font-family: var(--heading-font);
+    font-size: 1.5em;
+    line-height: 1.4;
+    color: var(--dark-sage);
+    border-left: 4px solid var(--dark-sage);
+    padding-left: 1em;
+    margin-top: 2em;
+}
+
+/* Styled cards for each experience */
+.advocacy-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: var(--off-white);
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.advocacy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.advocacy-card-icon {
+    font-size: 2em;
+    color: var(--dark-sage);
+    margin-right: 1em;
+    margin-top: 0.2em;
+}
+
+.advocacy-card-content h4 {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+}
+.advocacy-card-content .honor-meta {
+    font-style: italic;
+    color: #777;
+    margin-bottom: 0.5em;
+}
+
+/* Responsive adjustments for the advocacy page */
+@media (max-width: 768px) {
+    .two-column-advocacy-layout {
+        grid-template-columns: 1fr; /* Stack columns on small screens */
+    }
+}
 /* === FOOTER & SIDEBAR === */
 #contact { background-color: var(--dark-text); color: white; text-align: center; padding: 4em 1em; }
 #contact h2, #contact h3, #contact h4 { color: white; }
