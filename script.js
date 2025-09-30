@@ -40,15 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- Close sidebar when a non-dropdown link is clicked ---
         if (sidebar) {
-            sidebar.querySelectorAll('a').forEach(link => {
-                if (!link.classList.contains('dropdown-toggle')) {
-                    link.addEventListener('click', () => {
-                        if (sidebar.classList.contains('is-open')) {
-                            sidebar.classList.remove('is-open');
-                            overlay.classList.remove('is-visible');
-                        }
-                    });
-                }
+            sidebar.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (sidebar.classList.contains('is-open')) {
+                        sidebar.classList.remove('is-open');
+                        overlay.classList.remove('is-visible');
+                    }
+                });
             });
         }
         
@@ -68,43 +66,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // --- Smooth Scrolling for Anchor Links ---
-        document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
              anchor.addEventListener('click', function (e) {
-                 e.preventDefault();
-                 const targetId = this.getAttribute('href').substring(2);
-                 const targetElement = document.getElementById(targetId);
-                 if (targetElement) {
-                     targetElement.scrollIntoView({ behavior: 'smooth' });
+                 const href = this.getAttribute('href');
+                 const isSamePageAnchor = href.startsWith('#') || (href.startsWith('/#')) || (href.startsWith('index.html#'));
+
+                 if (isSamePageAnchor) {
+                     e.preventDefault();
+                     const targetId = href.substring(href.indexOf('#') + 1);
+                     const targetElement = document.getElementById(targetId);
+                     if (targetElement) {
+                         targetElement.scrollIntoView({ behavior: 'smooth' });
+                     }
                  }
              });
         });
-
-        // --- NEW: Community Projects Tabs Logic ---
-        const tabs = document.querySelectorAll(".tab-btn");
-        const panels = document.querySelectorAll(".tab-panel");
-
-        if (tabs.length && panels.length) {
-            tabs.forEach(btn => {
-                btn.addEventListener("click", () => {
-                    // Deactivate all tabs and panels first
-                    tabs.forEach(b => b.classList.remove("active"));
-                    panels.forEach(p => p.classList.remove("active"));
-
-                    // Activate the clicked tab and its corresponding panel
-                    btn.classList.add("active");
-                    const targetPanel = document.getElementById(btn.dataset.tab);
-                    if (targetPanel) {
-                        targetPanel.classList.add("active");
-                    }
-                });
+        
+        // --- Scroll Arrow Animation ---
+        const scrollArrow = document.querySelector('.scroll-arrow');
+        if (scrollArrow) {
+            window.addEventListener('scroll', () => {
+                const welcomeScreen = document.getElementById('welcome-grid');
+                if (!welcomeScreen) return;
+                
+                const scrollableHeight = welcomeScreen.offsetHeight - window.innerHeight;
+                if (window.scrollY < scrollableHeight && scrollableHeight > 0) {
+                    const scrollPercent = window.scrollY / scrollableHeight;
+                    const newHeight = 30 + (30 * scrollPercent);
+                    scrollArrow.style.height = `${newHeight}px`;
+                } else if (window.scrollY >= scrollableHeight) {
+                    scrollArrow.style.height = `60px`;
+                }
             });
-            console.log("Community tabs initialized.");
         }
     }
 
     /**
-     * This is the main function that starts everything.
-     * It fetches the sidebar.html content and injects it into the placeholder.
+     * Main function that starts everything.
+     * It fetches sidebar.html and injects it into the placeholder.
      */
     function loadSidebar() {
         fetch('/sidebar.html')
@@ -121,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     initializeAllInteractions();
                 } else {
                      console.error("Sidebar placeholder not found on this page.");
+                     // If there's no placeholder, just initialize the page anyway
+                     initializeAllInteractions();
                 }
             })
             .catch(error => {
