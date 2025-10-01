@@ -134,6 +134,108 @@ a { color: inherit; text-decoration: none; }
 pre { background-color: #2d2d2d; color: #f8f8f2; border-radius: 8px; padding: 1em; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; }
 .back-link { display: block; text-align: center; margin: 2em auto; font-weight: bold; color: var(--dark-sage); }
 
+/* === START: STYLES FOR PHYSICAL DESIGN PAGES === */
+
+.design-header {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 8em 2em;
+}
+
+.design-header::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(42, 63, 58, 0.9), rgba(42, 63, 58, 0.5));
+    z-index: 1;
+}
+
+.design-header > * {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+    max-width: 1200px;
+    margin: -4em auto 4em auto; /* Negative margin pulls it up into the header */
+    position: relative;
+    z-index: 3;
+}
+
+.feature-item {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 2em;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.feature-item i {
+    font-size: 2.5em;
+    color: var(--dark-sage);
+    margin-bottom: 0.5em;
+}
+
+.feature-item h4 {
+    margin: 0.5em 0;
+}
+
+.design-process-section {
+    max-width: 800px;
+    margin: 4em auto;
+    padding: 0 1em;
+}
+
+.design-process-section h2 {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 40px;
+    border-left: 3px solid var(--light-sage);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3em;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: -60px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--dark-sage);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.timeline-content h4 {
+    margin-top: 0;
+}
+
+.timeline-content img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 1em;
+    border: 1px solid #ddd;
+}
+
 /* === START: STYLES FOR COMMUNITY TABS === */
 
 .tab-container {
