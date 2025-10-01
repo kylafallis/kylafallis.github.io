@@ -152,7 +152,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 initializeAllInteractions();
             });
     }
+    // --- Fade-in on Scroll for Timeline Items ---
+const timelineItems = document.querySelectorAll('.timeline-item');
 
+if (timelineItems.length > 0) {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add a delay based on the item's index for a staggered effect
+                setTimeout(() => {
+                    entry.target.classList.add('is-visible');
+                }, index * 150); // 150ms delay between items
+            }
+        });
+    }, { threshold: 0.1 });
+
+    timelineItems.forEach(item => observer.observe(item));
+    console.log("Timeline scroll animation initialized.");
+}
     // --- START THE ENTIRE PROCESS ---
     loadSidebar();
 });
