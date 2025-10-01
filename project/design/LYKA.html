@@ -3,42 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design Project: [Your Project Title]</title>
+    <title>Design Project: LYKA Lamp</title>
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
+    <div id="sidebar-placeholder"></div>
+    <div id="overlay"></div>
+    <div id="menu-icon">&#9776;</div>
     
-        <div id="menu-icon">&#9776;</div>
-        <div id="overlay"></div>
-       <div id="sidebar-placeholder"></div>
-    
-    <header id="banner" class="project-header">
-        <h1>[Your Project Title]</h1>
-        <p class="project-dates">[Start Date] – [End Date]</p>
+    <header id="banner" class="project-header design-header" style="background-image: url('/images/LYKA-banner.jpg');">
+        <h1>The LYKA Lamp</h1>
+        <p class="subtitle">A functional, 3D-printed lamp powered entirely by a Microbial Fuel Cell and household compost.</p>
     </header>
 
     <main class="project-page-content">
-        <div class="card">
-            <h2>Design & Prototyping Process</h2>
-            <p>[A summary of the project, its goals, and the materials or software (like SolidWorks) used.]</p>
-            
-            <div class="gallery-grid">
-                <figure>
-                    <img src="images/[sketch-image.jpg]" alt="Initial sketch of the design">
-                    <figcaption>1. Initial Concept Sketch</figcaption>
-                </figure>
-                <figure>
-                    <img src="images/[cad-model.jpg]" alt="CAD model of the project">
-                    <figcaption>2. 3D Model in SolidWorks</figcaption>
-                </figure>
-                <figure>
-                    <img src="images/[prototype-image.jpg]" alt="Photo of the final prototype">
-                    <figcaption>3. Final Working Prototype</figcaption>
-                </figure>
+        <!-- Key Features Section -->
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-leaf"></i>
+                <h4>Renewable Energy</h4>
+                <p>Generates electricity from the natural decomposition of organic waste, offering a sustainable power source.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-cube"></i>
+                <h4>3D-Printed Design</h4>
+                <p>The lamp body and MFC housing were designed in SolidWorks and 3D-printed with ABS filament for a custom, integrated structure.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-battery-full"></i>
+                <h4>Energy Storage</h4>
+                <p>Features a custom-built step-up DC converter and battery storage system to provide hours of continuous light.</p>
             </div>
         </div>
+
+        <!-- Design Process Section -->
+        <div class="design-process-section">
+            <h2>From Concept to Creation</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <div class="timeline-content">
+                        <h4>1. Concept & Research</h4>
+                        <p>The project began with researching the feasibility of Microbial Fuel Cells (MFCs) for household energy and conceptualizing a practical, everyday application: a self-powering lamp.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+                    <div class="timeline-content">
+                        <h4>2. CAD Modeling</h4>
+                        <p>Using SolidWorks, I designed the lamp body and a specialized housing for the MFC components, focusing on structural integrity, aesthetics, and ease of assembly.</p>
+                        <img src="/images/lyka-cad-model.png" alt="CAD model of the LYKA Lamp">
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="timeline-content">
+                        <h4>3. Circuit Development</h4>
+                        <p>A custom step-up converter and battery storage circuit, featuring a TP4056 charger module, was prototyped and soldered to efficiently manage and store the low-voltage energy produced by the MFC.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-print"></i></div>
+                    <div class="timeline-content">
+                        <h4>4. Fabrication & Assembly</h4>
+                        <p>The SolidWorks models were 3D-printed using ABS filament. The electronic components, MFC, and a 9V LED bulb were integrated into the final lamp structure.</p>
+                        <img src="/images/lyka-final-product.jpg" alt="Final assembled LYKA Lamp">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="/#design-projects" class="back-link">&larr; Back to Main Projects</a>
     </main>
     
     <script src="/script.js"></script>
