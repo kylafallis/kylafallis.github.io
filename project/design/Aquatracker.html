@@ -3,42 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design Project: [Your Project Title]</title>
+    <title>Design Project: Aquatracker</title>
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
+    <div id="sidebar-placeholder"></div>
+    <div id="overlay"></div>
+    <div id="menu-icon">&#9776;</div>
     
-        <div id="menu-icon">&#9776;</div>
-        <div id="overlay"></div>
-       <div id="sidebar-placeholder"></div>
-    
-    <header id="banner" class="project-header">
-        <h1>[Your Project Title]</h1>
-        <p class="project-dates">[Start Date] – [End Date]</p>
+    <header id="banner" class="project-header design-header" style="background-image: url('/images/aquatracker-banner.jpg');">
+        <h1>The Aquatracker</h1>
+        <p class="subtitle">A mechanical and electronic system designed to monitor water usage, created for an engineering school project.</p>
     </header>
 
     <main class="project-page-content">
-        <div class="card">
-            <h2>Design & Prototyping Process</h2>
-            <p>[A summary of the project, its goals, and the materials or software (like SolidWorks) used.]</p>
-            
-            <div class="gallery-grid">
-                <figure>
-                    <img src="images/[sketch-image.jpg]" alt="Initial sketch of the design">
-                    <figcaption>1. Initial Concept Sketch</figcaption>
-                </figure>
-                <figure>
-                    <img src="images/[cad-model.jpg]" alt="CAD model of the project">
-                    <figcaption>2. 3D Model in SolidWorks</figcaption>
-                </figure>
-                <figure>
-                    <img src="images/[prototype-image.jpg]" alt="Photo of the final prototype">
-                    <figcaption>3. Final Working Prototype</figcaption>
-                </figure>
+        <!-- Key Features Section -->
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-ruler-combined"></i>
+                <h4>Mechanical Design</h4>
+                <p>Leveraged SolidWorks to design and model all mechanical components, translating conceptual ideas into precise 3D models ready for fabrication.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-microchip"></i>
+                <h4>Circuit Layout</h4>
+                <p>Designed the integrated circuit layout to manage sensors and data output, ensuring all electronic components worked together seamlessly within the physical constraints.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-chart-bar"></i>
+                <h4>Data Monitoring</h4>
+                <p>The device was conceptualized to track and display water consumption data, providing users with actionable insights into their usage patterns.</p>
             </div>
         </div>
+
+        <!-- Design Process Section -->
+        <div class="design-process-section">
+            <h2>From Concept to Creation</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-pencil-alt"></i></div>
+                    <div class="timeline-content">
+                        <h4>1. Problem Definition</h4>
+                        <p>The project began by identifying the need for a user-friendly device to monitor household water usage as part of an engineering course challenge.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-drafting-compass"></i></div>
+                    <div class="timeline-content">
+                        <h4>2. SolidWorks Modeling</h4>
+                        <p>I used SolidWorks to create detailed 3D models of the device's enclosure and internal mechanical parts, focusing on a compact and manufacturable design.</p>
+                        <img src="/images/Aquatracker.png" alt="CAD model of the Aquatracker">
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-sitemap"></i></div>
+                    <div class="timeline-content">
+                        <h4>3. Electronic Integration</h4>
+                        <p>The circuit layout for the sensors and microcontroller was designed to fit within the custom enclosure, ensuring proper alignment and functionality.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="/#design-projects" class="back-link">&larr; Back to Main Projects</a>
     </main>
     
     <script src="/script.js"></script>
