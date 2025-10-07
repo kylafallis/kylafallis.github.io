@@ -115,7 +115,7 @@ a { color: inherit; text-decoration: none; }
 
 /* === STYLES FOR INDIVIDUAL PROJECT PAGES === */
 .project-header { text-align: center; border-bottom: 1px solid var(--light-sage); padding-bottom: 1em; margin-top: 1em; }
-.project-header .subtitle { font-size: 1.2em; color: var(--dark-text); max-width: 600px; margin: 0.5em auto 0 auto; }
+.project-header .subtitle { font-size: 1.2em; color: var(--text-light); max-width: 600px; margin: 0.5em auto 0 auto; }
 .project-page-content { max-width: 1200px; margin: 0 auto; padding: 1em; }
 .project-main-visual { padding: 2em; margin-top: 1em; overflow: hidden; }
 .project-main-visual img { width: 100%; display: block; }
