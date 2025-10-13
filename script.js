@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
      * It sets up all event listeners for the entire page's interactive elements.
      */
     function initializeAllInteractions() {
-        console.log("Initializing all page interactions...");
 
         // --- Sidebar Toggle Logic ---
         const menuIcon = document.getElementById('menu-icon');
@@ -14,14 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (menuIcon && sidebar && overlay) {
             const toggleSidebar = () => {
-                sidebar.classList.toggle('is-open');
+                const isOpen = sidebar.classList.toggle('is-open');
                 overlay.classList.toggle('is-visible');
+                menuIcon.setAttribute('aria-expanded', isOpen);
             };
             menuIcon.addEventListener('click', toggleSidebar);
             overlay.addEventListener('click', toggleSidebar);
-            console.log("Sidebar toggle initialized.");
         } else {
-            console.error("Could not find one or more sidebar components (menu, sidebar, overlay).");
         }
 
         // --- Dropdown Menu Logic ---
@@ -35,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             });
-            console.log("Dropdown toggles initialized.");
         }
 
         // --- Close sidebar when a non-dropdown link is clicked ---
@@ -62,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     pageContent.classList.remove('hidden');
                 }, 500);
             });
-            console.log("Loader button initialized.");
         }
         
         // --- Smooth Scrolling for Anchor Links ---
@@ -106,20 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (tabs.length > 0 && panels.length > 0) {
             tabs.forEach(btn => {
-                btn.addEventListener("click", () => {
-                    // Deactivate all tabs and panels first
-                    tabs.forEach(b => b.classList.remove("active"));
-                    panels.forEach(p => p.classList.remove("active"));
+                btn.addEventListener('click', () => {
+                    tabs.forEach(b => b.classList.remove('active'));
+                    panels.forEach(p => p.classList.remove('active'));
 
-                    // Activate the clicked tab and its corresponding panel
-                    btn.classList.add("active");
+                    btn.classList.add('active');
                     const targetPanel = document.getElementById(btn.dataset.tab);
                     if (targetPanel) {
-                        targetPanel.classList.add("active");
+                        targetPanel.classList.add('active');
                     }
                 });
             });
-            console.log("Community tabs initialized.");
         }
     }
 
@@ -137,17 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const placeholder = document.getElementById('sidebar-placeholder');
                 if (placeholder) {
                     placeholder.innerHTML = html;
-                    console.log("Sidebar HTML loaded successfully.");
-                    // IMPORTANT: Initialize interactions AFTER the HTML is loaded.
                     initializeAllInteractions();
                 } else {
-                     console.error("Sidebar placeholder not found on this page.");
                      // If there's no placeholder, just initialize the page anyway
                      initializeAllInteractions();
                 }
             })
             .catch(error => {
-                console.error("Could not load sidebar:", error);
                 // Still try to initialize the rest of the page even if sidebar fails
                 initializeAllInteractions();
             });
@@ -168,7 +157,6 @@ if (timelineItems.length > 0) {
     }, { threshold: 0.1 });
 
     timelineItems.forEach(item => observer.observe(item));
-    console.log("Timeline scroll animation initialized.");
 }
     // --- START THE ENTIRE PROCESS ---
     loadSidebar();
