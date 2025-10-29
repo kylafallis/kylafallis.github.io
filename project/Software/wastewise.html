@@ -16,7 +16,7 @@
     
     <header id="banner" class="project-header">
         <h1>WasteWise Live Analytics</h1>
-        <p class="project-dates">HackOHI/O 10/225/25-10/26/25</p>
+        <p class="project-dates">HackOHI/O [Date of Hackathon]</p>
     </header>
 
     <main class="project-page-content">
@@ -24,62 +24,92 @@
             <h2>Project Overview</h2>
             <div class="two-column-layout">
                 <div class="column-text">
-                    <h3>About this Project</h3>
+                    <h3>About this Project: The Problem & Solution</h3>
                     <p>
-                        WasteWise Live Analytics is a full-stack, AI-driven platform built to address the critical environmental problem of methane emissions resulting from improperly sorted landfill waste. We designed and deployed a reliable, low-cost system to provide facilities with real-time item-level metrics necessary for operating modern robotic sorting systems.
+                        WasteWise Live Analytics solves the problem of measurable methane emissions by creating a reliable, low-cost system for real-time waste stream quantification. We successfully deployed a full-stack AI pipeline to replace unreliable manual auditing with instant, actionable data for robotic sorting. The primary output is item count, which eliminates the complex hardware dependency of visual mass estimation.
                     </p>
                     <p>
-                        The development required pivoting from a simplistic TensorFlow Image Classification model (which was insufficient for counting multiple items) to a robust YOLOv8 Instance Segmentation pipeline. This shift allowed the system to perform multi-object counting and obtain the precise geometric data (pixel masks) needed to calculate metrics. We solved critical challenges in data integrity and networking (ngrok tunneling) to deliver a continuously updating dashboard via Firebase.
-                    </p>
-                    <p>
-                        The core benefit is two-fold: providing quantifiable environmental ROI ($\text{kg}$ $\text{CO}_2$ avoided) and enabling proactive process optimization by showing operators the live composition of the waste stream.
+                        The system provides quantifiable environmental ROI C02 avoided) alongside operational data, which is crucial for facilities aiming to justify investment in automation and maximize the diversion of high-impact organic waste.
                     </p>
                     
                     <h3>Key Features</h3>
                     <ul>
-                        <li>Live Item Counting via Instance Segmentation: The system identifies and counts every instance of Plastic, Metal, Organic, and Glass in real-time, providing the core metric for robotic systems.</li>
-                        <li>Quantifiable Impact Display: Calculates and displays Estimated CO2 Avoided and Waste Composition by Count, communicating tangible environmental value.</li>
-                        <li>Robust Live Data Bridge: Utilizes IP Webcam and ngrok tunneling to feed video from a standard phone camera to the cloud, bridging the gap between local hardware and the remote Colab processing environment.</li>
-                        <li>Bias Correction and Failover: Includes a software hack to redistribute organic bias in predictions </li>
+                        <li>Live Item Counting via Instance Segmentation: Uses a trained YOLOv8 model to obtain pixel masks for accurate counting of items (Plastic, Metal, Organic, Glass) per frame.</li>
+                        <li>Robust Cloud Bridge: Solved the complex network gap using ngrok tunneling to feed the private IP camera stream to the public Colab VM.</li>
+                        <li>Bias Mitigation & Failover: Includes a software hack to redistribute the model's organic bias and a guaranteed mock output to ensure the live dashboard never fails.</li>
                     </ul>
 
                     <h3>Technologies Used</h3>
                     <ul>
-                        <li>Machine Learning: YOLOv8n-seg (Instance Segmentation), PyTorch, MiDaS (Monocular Depth Concept)</li>
-                        <li>Backend/Cloud: Google Colab (VM), Firebase Firestore (Live Database), Python (Primary Language), `pyngrok` (Tunneling)</li>
-                        <li>Frontend/Web: HTML5, CSS3, JavaScript (ES Modules), Chart.js (Visualization), GitHub Pages (Deployment)</li>
-                        <li>Networking/IoT: OpenCV (Frame Processing), IP Webcam (Sensor Source)</li>
+                        <li>Machine Learning: YOLOv8n-seg (Instance Segmentation), PyTorch</li>
+                        <li>Data & Cloud: Firebase Firestore (Live DB), Google Colab (VM), `pyngrok` (Tunneling)</li>
+                        <li>Frontend & Viz: HTML, CSS, JavaScript (ES Modules), Chart.js, GitHub Pages (Hosting)</li>
                     </ul>
                 </div>
                 <div class="column-visual">
-                    <a href="[link-to-live-demo-or-github]" class="button">View Live Demo (Requires Colab Runner)</a>
-                    <h3>Core Logic Snippet (Data Aggregation & Push)</h3>
-                    <pre><code># Python code excerpt showing final data aggregation before Firebase commit.
-if (time.time() - last_upload_time) >= UPLOAD_INTERVAL_SEC:
-    total_items = sum(aggregated_item_counts.values())
+                    <a href="[link-to-live-demo-or-github]" class="button">View Live Dashboard</a>
+                    <h3>Code Snippet (Data Serialization Fix)</h3>
+                    <pre><code>// Python fix to guarantee Firebase data integrity
+upload_data = {
+    'timestamp': firestore.SERVER_TIMESTAMP,
+    'total_items_count': float(total_items), 
     
-    if total_items > 0:
-        # Calculate impact based on mock mass distribution
-        mock_mass_distribution = {cls: count * 0.15 for cls, count in aggregated_item_counts.items()}
-        impact = calculate_environmental_impact(mock_mass_distribution)
+    // Explicitly cast Python Counter values to float for DB
+    'item_distribution_count': { 
+        cls: float(count) for cls, count in aggregated_item_counts.items()
+    },
+    
+    'total_mass_kg_MOCK': float(total_mass), 
+}</code></pre>
+                </div>
+            </div>
         
-        # Prepare upload data with explicit float casting (solves Firebase serialization bug)
-        upload_data = {
-            'timestamp': firestore.SERVER_TIMESTAMP,
-            'total_items_count': float(total_items), 
-            'percent_composition': {
-                cls: float((count / total_items) * 100) for cls in aggregated_item_counts
-            },
-            'environmental_impact': {k: float(v) for k, v in impact.items()},
-        } 
-
-        db.collection('live_conveyor_belt_stats').add(upload_data)
-        aggregated_item_counts.clear()
-
-</code></pre>
+                <div class="design-process-section">
+            <h2>The Engineering Journey</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-code-branch"></i></div>
+                    <div class="timeline-content">
+                        <h4>1. Model Training & Pivot</h4>
+                        <p>Pivoted from basic Classification to YOLOv8 Instance Segmentation. Trained the model on an annotated dataset to achieve mAP 80 accuracy on item detection.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <div class="timeline-content">
+                        <h4>2. Live Data Capture & Processing</h4>
+                        <p>Used IP Webcam and ngrok tunneling to feed frames to the Colab VM. The ML model analyzed frames for counts and simulated mass for impact metrics.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-database"></i></div>
+                    <div class="timeline-content">
+                        <h4>3. Cloud Push (Data Aggregation)</h4>
+                        <p>Aggregated item counts and impact data were pushed every 10 seconds to the Firebase Firestore collection (`live_conveyor_belt_stats`), ensuring data integrity through explicit float casting.</p>
+                </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="timeline-content">
+                        <h4>4. Frontend Deployment & Live Visualization</h4>
+                        <p>The data from Firebase automatically updated the GitHub Pages website (`https://github.com/erikjzhang/Waste-Classification-Model`), providing the final, continuous visualization of composition and impact metrics.</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="specs-section">
+    <h2>Key Specifications</h2>
+    <ul class="specs-list">
+        <li><strong>Primary AI Model:</strong> YOLOv8n-seg (Instance Segmentation)</li>
+        <li><strong>Core Metric:</strong> Item Count / Percent Composition</li>
+        <li><strong>Estimated Performance:</strong> mAP50-95 80.2, Mask mAP50 87.9</li>
+        <li><strong>Deployment Target:</strong> GitHub Pages (Frontend)</li>
+    </ul>
+        <p class="final-note">
+            Real-World Integration: The system is engineered to be deployed on a dedicated edge device (e.g., Jetson Nano) over a conveyor belt, providing the item count and coordinates necessary to drive robotic pick-and-place systems for immediate, high-value waste diversion.
+        </p>
+    </div>
     </main>
     
     <script src="/script.js"></script>
