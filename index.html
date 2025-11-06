@@ -14,54 +14,39 @@
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
- <div id="page-content">
+    <div id="page-content">
         <div id="overlay"></div>
-        <button id="menu-icon" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
-
-        <div id="sidebar-placeholder"></div>
+        <div id="menu-icon">&#9776;</div>
         
- <div id="welcome-grid" class="welcome-container">
+        <!-- This div will be filled by JavaScript -->
+        <div id="sidebar-placeholder"></div>
+
+        <!-- New Full-Screen Animated Grid Layout -->
+        <div id="welcome-grid" class="welcome-container">
             <div class="grid-container">
+                <!-- Column 1: Main Content -->
                 <div class="grid-item item-welcome">
                     <h1>Welcome, <br>I'm Kyla Fallis.</h1>
-                </div>
-                <div class="grid-item item-headshot">
-                    <img src="images/headshot.jpg" alt="Headshot of Kyla Fallis">
                 </div>
                 <div class="grid-item item-quote">
                     <p>"I have a deeply hidden and inarticulate desire for something beyond the daily life"</p>
                     <span>- Virginia Woolf</span>
                 </div>
-                <div class="grid-item item-quicklinks">
-                    <h4>Quick Links</h4>
-                    <hr> <a href="Kyla_Fallis_Resume (2).pdf" target="_blank">
-                        <i class="fa-solid fa-file-lines"></i> Download Resume
-                    </a>
-                   <hr> <a href="#software-projects"><i class="fa-solid fa-code"></i> Software Projects</a>
-                    <a href="#design-projects"><i class="fa-solid fa-drafting-compass"></i> Physical Design</a>
-                    <a href="#research-projects"><i class="fa-solid fa-flask"></i> Research</a>
-                    <a href="#community-work"><i class="fa-solid fa-people"></i> Community Work</a>
-
-                   <hr> <a href="honors/academic.html">
-    <i class="fa-solid fa-award"></i> Academic Honors
-</a>
-                               <a href="honors/conferences.html">
-    <i class="fa-solid fa-plane"></i> Conferences
-</a>
-                               <a href="honors/leadership.html">
-    <i class="fa-solid fa-rocket"></i> Leadership
-</a>
-<hr>
-                </div>
-                <div class="grid-item item-aboutme">
-                    <a href="#profile">
+                <!-- Nested grid for the bottom-left blocks -->
+                <div class="grid-item item-nested-grid">
+                    <div class="nested-item item-aboutme">
                         <h4>About Me <span class="arrow">&rarr;</span></h4>
                         <p>An engineer and researcher driven to design sustainable solutions.</p>
-                    </a>
+                    </div>
+                    <div class="nested-item item-lookingfor">
+                        <h4>What I'm Looking For</h4>
+                        <p>Seeking opportunities to apply my skills in renewable energy and sustainable design.</p>
+                    </div>
                 </div>
-                <div class="grid-item item-lookingfor">
-                    <h4>What I'm Looking For</h4>
-                    <p>Seeking opportunities to apply my skills in renewable energy and sustainable design.</p>
+
+                <!-- Column 2: Headshot & Contact -->
+                <div class="grid-item item-headshot">
+                    <img src="/images/headshot.png" alt="Headshot of Kyla Fallis">
                 </div>
                 <div class="grid-item item-contact">
                     <a href="#contact">
@@ -69,7 +54,27 @@
                         <h2>Contact Me <span class="arrow">&rarr;</span></h2>
                     </a>
                 </div>
+
+                <!-- Column 3: Quick Links -->
+                <div class="grid-item item-quicklinks">
+                    <h4>Quick Links</h4>
+                    <a href="/Kyla_Fallis_Resume.pdf" target="_blank" class="quick-link">Download Resume</a>
+                    <a href="#software-projects" class="quick-link">Software Projects</a>
+                    <a href="#design-projects" class="quick-link">Physical Design</a>
+                    <a href="#research-projects" class="quick-link">Research</a>
+                    <a href="#community-projects" class="quick-link">Community Work</a>
+                    <a href="/honors/academic.html" class="quick-link">Academic Honors</a>
+                    <a href="/honors/conferences.html" class="quick-link">Conferences</a>
+                    <a href="/honors/leadership.html" class="quick-link">Leadership</a>
+                </div>
             </div>
+            
+            <a href="#main-content" class="scroll-down-indicator">
+                <div class="scroll-arrow-container">
+                    <div class="scroll-arrow"></div>
+                </div>
+                <span>Scroll Down</span>
+            </a>
         </div>
 
 
