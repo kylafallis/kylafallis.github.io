@@ -7,11 +7,19 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
     
-    <style>
-        /* All styles are in here so you don't need a separate CSS file */
+   <style>
+        /* === FONT AND COLOR DEFINITIONS === */
+        :root {
+            --dark-sage: #718355;
+            --light-sage: #87986a;
+            --off-white: #F5F5F5;
+            --dark-text: #373d20;
+            --light-shadow: rgba(0, 0, 0, 0.1);
+        }
+
         body {
-            background-color: #373d20; /* Dark, non-distracting color */
-            color: #F5F5F5;
+            background-color: var(--dark-text);
+            color: var(--off-white);
             font-family: 'Momo Trust Display', sans-serif;
             display: flex;
             justify-content: center;
@@ -19,29 +27,296 @@
             height: 100vh;
             margin: 0;
             text-align: center;
-            padding: 20px;
+            overflow: hidden; /* No scrollbars! */
         }
 
-        .container {
-            max-width: 600px;
+        #game-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 10px;
+            color: var(--off-white);
+            margin-bottom: 5px;
+        }
+        
+        p {
+            color: var(--light-sage);
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 15px;
         }
 
-        p {
-            font-size: 1.25rem;
-            color: #c0c0c0; /* Lighter text for the message */
+        #game-container {
+            width: 400px;
+            height: 500px;
+            background-color: var(--light-sage);
+            border: 4px solid var(--dark-sage);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--light-shadow);
         }
+
+        #player-bin {
+            width: 60px;
+            height: 40px;
+            background-color: var(--dark-text);
+            border: 3px solid #5a6a44;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            position: absolute;
+            bottom: 0;
+            left: 170px; /* Start in middle (400/2 - 60/2) */
+            transition: left 0.05s linear;
+        }
+
+        .falling-item {
+            font-size: 2rem;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: -40px; /* Start above the screen */
+            user-select: none;
+        }
+
+        #score-board {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px 20px;
+            box-sizing: border-box; /* Ensures padding doesn't break width */
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            background: var(--light-sage);
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        #game-over-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(55, 61, 32, 0.85); /* Dark transparent overlay */
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        #game-over-screen h2 {
+            font-size: 3rem;
+            color: var(--off-white);
+            margin: 0;
+        }
+        
+        #game-over-screen p {
+            font-size: 1.5rem;
+            color: var(--light-sage);
+        }
+
+        #restart-button {
+            background-color: var(--light-sage);
+            color: var(--dark-text);
+            padding: 15px 30px;
+            border: 2px solid var(--dark-sage);
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Momo Trust Display', sans-serif;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        #restart-button:hover {
+            background-color: var(--dark-sage);
+            color: var(--off-white);
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Temporarily Down</h1>
-        <p>I'm workin' on making this cooler. Please check back soon!</p>
+
+    <div id="game-wrapper">
+        <h1>Eco-Collector</h1>
+        <p>Catch compost (🍎, 📄) and avoid trash (🛍️, 🔋)!</p>
+        
+        <div id="game-container">
+            <div id="player-bin"></div>
+            
+            <div id="game-over-screen">
+                <h2>Game Over!</h2>
+                <p id="final-score">Your Score: 0</p>
+                <button id="restart-button">Play Again</button>
+            </div>
+        </div>
+        
+        <div id="score-board">
+            <span id="score-display">Score: 0</span>
+            <span id="strikes-display">Strikes: 0 / 3</span>
+        </div>
     </div>
+
+    <script>
+        // === Get DOM Elements ===
+        const gameContainer = document.getElementById('game-container');
+        const player = document.getElementById('player-bin');
+        const scoreDisplay = document.getElementById('score-display');
+        const strikesDisplay = document.getElementById('strikes-display');
+        const gameOverScreen = document.getElementById('game-over-screen');
+        const finalScoreDisplay = document.getElementById('final-score');
+        const restartButton = document.getElementById('restart-button');
+
+        // === Game State ===
+        let score = 0;
+        let strikes = 0;
+        let gameIsOver = false;
+        let playerSpeed = 15;
+        let playerX = 170; // Initial X position
+        let fallingItems = [];
+        
+        let itemSpawnInterval;
+        let gameLoopInterval;
+
+        // Emojis for items
+        const goodItems = ['🍎', '📄', '🌿', '📦']; // Compost, Paper, Green Waste, Cardboard
+        const badItems = ['🛍️', '🔋', ' Styrofoam 💨', '🥤']; // Plastic Bag, Battery, Styrofoam, Plastic Cup
+
+        // === Player Movement ===
+        let keys = {};
+        document.addEventListener('keydown', (e) => { keys[e.key] = true; });
+        document.addEventListener('keyup', (e) => { keys[e.key] = false; });
+
+        function movePlayer() {
+            if (gameIsOver) return;
+
+            if (keys['ArrowLeft'] || keys['a']) {
+                playerX -= playerSpeed;
+            }
+            if (keys['ArrowRight'] || keys['d']) {
+                playerX += playerSpeed;
+            }
+
+            // Constrain player to game bounds
+            if (playerX < 0) playerX = 0;
+            if (playerX > (gameContainer.offsetWidth - player.offsetWidth)) {
+                playerX = gameContainer.offsetWidth - player.offsetWidth;
+            }
+
+            player.style.left = playerX + 'px';
+        }
+
+        // === Game Functions ===
+        function createItem() {
+            const item = document.createElement('div');
+            item.classList.add('falling-item');
+            
+            // 50/50 chance of good or bad item
+            if (Math.random() < 0.6) { // Make good items slightly more common
+                item.classList.add('good');
+                item.textContent = goodItems[Math.floor(Math.random() * goodItems.length)];
+            } else {
+                item.classList.add('bad');
+                item.textContent = badItems[Math.floor(Math.random() * badItems.length)];
+            }
+            
+            // Set random horizontal position
+            item.style.left = Math.random() * (gameContainer.offsetWidth - 30) + 'px';
+            item.style.top = '-40px';
+            
+            gameContainer.appendChild(item);
+            fallingItems.push(item);
+        }
+
+        function updateGame() {
+            if (gameIsOver) return;
+            
+            movePlayer();
+
+            // Update item positions
+            for (let i = fallingItems.length - 1; i >= 0; i--) {
+                let item = fallingItems[i];
+                let itemTop = parseInt(item.style.top || 0);
+                itemTop += 5; // Item falling speed
+                item.style.top = itemTop + 'px';
+
+                // Check for collision with player
+                let playerRect = player.getBoundingClientRect();
+                let itemRect = item.getBoundingClientRect();
+
+                if (
+                    itemRect.bottom >= playerRect.top &&
+                    itemRect.left <= playerRect.right &&
+                    itemRect.right >= playerRect.left &&
+                    itemRect.top <= playerRect.bottom
+                ) {
+                    // Collision!
+                    if (item.classList.contains('good')) {
+                        score++;
+                    } else {
+                        strikes++;
+                    }
+                    
+                    updateScoreboard();
+                    item.remove();
+                    fallingItems.splice(i, 1);
+                    
+                    if (strikes >= 3) {
+                        endGame();
+                    }
+                    
+                } else if (itemTop > gameContainer.offsetHeight) {
+                    // Item missed, remove it
+                    item.remove();
+                    fallingItems.splice(i, 1);
+                }
+            }
+        }
+
+        function updateScoreboard() {
+            scoreDisplay.textContent = `Score: ${score}`;
+            strikesDisplay.textContent = `Strikes: ${strikes} / 3`;
+        }
+
+        function startGame() {
+            score = 0;
+            strikes = 0;
+            gameIsOver = false;
+            playerX = 170; // Reset position
+            player.style.left = playerX + 'px';
+            updateScoreboard();
+
+            // Clear any existing items
+            fallingItems.forEach(item => item.remove());
+            fallingItems = [];
+            
+            gameOverScreen.style.display = 'none';
+
+            // Start game loops
+            clearInterval(itemSpawnInterval);
+            clearInterval(gameLoopInterval);
+            itemSpawnInterval = setInterval(createItem, 1000); // New item every second
+            gameLoopInterval = setInterval(updateGame, 16); // ~60 FPS
+        }
+
+        function endGame() {
+            gameIsOver = true;
+            clearInterval(itemSpawnInterval);
+            clearInterval(gameLoopInterval);
+            
+            finalScoreDisplay.textContent = `Your Score: ${score}`;
+            gameOverScreen.style.display = 'flex';
+        }
+
+        // === Event Listeners ===
+        restartButton.addEventListener('click', startGame);
+
+        // === Start Game on Load ===
+        startGame();
+
+    </script>
 </body>
 </html>

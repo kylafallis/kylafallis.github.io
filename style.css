@@ -1,7 +1,4 @@
 /* === FONT AND COLOR DEFINITIONS === */
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
 
 :root {
     /* Main Site Theme (Light) */
@@ -12,8 +9,10 @@
     --light-shadow: rgba(0, 0, 0, 0.1);
     
     /* Font Families */
-    --heading-font: 'Playfair Display', serif;
-    --body-font: 'Montserrat', sans-serif;
+body { --body-font: 'Open Sans', sans-serif; }
+h1, h2, h3, h4 { --heading-font: 'Momo Trust Display', sans-serif; }
+    --heading-font: 'Momo Trust Display', sans-serif;   
+    font-family: 'Momo Trust Display', sans-serif;
 
     /* Bento Box Intro Theme (Dark) */
     --dark-green-bg: #373d20;
