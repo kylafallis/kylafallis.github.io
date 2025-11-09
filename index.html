@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyla Fallis | Environmental Engineering & Design</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
-</style>
 </head>
 <body>
-    <!-- The main page content, now visible by default -->
+    
+    <div id="page-transition-overlay">
+        <div class="transition-line" style="background-color: var(--card-green-1);"></div>
+        <div class="transition-line" style="background-color: var(--card-green-2);"></div>
+        <div class="transition-line" style="background-color: var(--card-green-3);"></div>
+        <div class="transition-line" style="background-color: var(--dark-green-bg);"></div>
+    </div>
+
     <div id="page-content">
         <div id="overlay"></div>
         <div id="menu-icon">&#9776;</div>
         
-        <!-- This div will be filled by JavaScript -->
         <div id="sidebar-placeholder"></div>
 
-        <!-- New Full-Screen Animated Grid Layout -->
         <div id="welcome-grid" class="welcome-container">
             <div class="grid-container">
-                <!-- Column 1: Main Content -->
                 <div class="grid-item item-welcome">
                     <h1>Welcome, <br>I'm Kyla Fallis.</h1>
                 </div>
@@ -74,23 +80,22 @@
         </div>
 
 <main id="main-content">
-    <div id="project-hover-preview"></div> 
-
-<section id="software-projects" class="project-list-section">
+    
+    <section id="software-projects" class="project-list-section">
     <h2>Software Projects</h2>
     <div class="project-list-container">
         
-        <a href="project/Software/pythagorasplains.html" class="project-list-item" 
+        <a href="project/Software/pythagorasplains.html" class="project-list-item">
            <h3>Pythagorus Plains</h3>
            <p>An RPG where you solve math problems to deal damage.</p>
         </a>
 
-        <a href="project/Software/stargame.html" class="project-list-item" 
+        <a href="project/Software/stargame.html" class="project-list-item">
            <h3>Stargame</h3>
            <p>A simple game where the user places stars to copy constellations.</p>
         </a>
 
-        <a href="project/Software/wastewise.html" class="project-list-item" 
+        <a href="project/Software/wastewise.html" class="project-list-item">
            <h3>WasteWise</h3>
            <p>An AI that analyzes incoming landfill trash to sort materials.</p>
         </a>
@@ -102,12 +107,12 @@
     <h2>Physical Design Projects</h2>
     <div class="project-list-container">
         
-        <a href="project/design/LYKA.html" class="project-list-item" 
+        <a href="project/design/LYKA.html" class="project-list-item">
            <h3>LYKA Lamp</h3>
            <p>A microbial fuel cell prototype to explore renewable energy.</p>
         </a>
 
-        <a href="project/design/Aquatracker.html" class="project-list-item" 
+        <a href="project/design/Aquatracker.html" class="project-list-item">
            <h3>Aquatracker</h3>
            <p>Applied SolidWorks for mechanical design and circuit layout.</p>
         </a>
@@ -119,17 +124,17 @@
     <h2>Research</h2>
     <div class="project-list-container">
 
-        <a href="project/Research/Electrogenic-Biotransformation-of-Organic-Substrates.html" class="project-list-item" 
+        <a href="project/Research/Electrogenic-Biotransformation-of-Organic-Substrates.html" class="project-list-item">
            <h3>Publication</h3>
            <p>Authored "Electrogenic Biotransformation of Organic Substrates."</p>
         </a>
 
-        <a href="project/Research/Current-Research.html" class="project-list-item" 
+        <a href="project/Research/Current-Research.html" class="project-list-item">
            <h3>Current Research</h3>
            <p>Working on electronesis in interactions with earth's magnetic field.</p>
         </a>
 
-        <a href="project/Research/solar-soil.html" class="project-list-item" 
+        <a href="project/Research/solar-soil.html" class="project-list-item">
            <h3>Solar Panels & Soil Quality</h3>
            <p>Conducted award-winning research on solar panels' connection to soil quality.</p>
         </a>
@@ -198,7 +203,7 @@
     <div class="recognition-grid-three-col">
         
         <a href="honors/academic.html" class="award-card">
-            <h3>Academic & Research Honors</h3>
+            <h3><i class="fa-solid fa-award"></i> Academic & Research Honors</h3>
             <div class="award-card-content">
                 <ul>
                     <li>International Science and Engineering Fair (ISEF) Qualifier</li>
@@ -212,7 +217,7 @@
         </a>
 
         <a href="honors/leadership.html" class="award-card">
-            <h3>Leadership & Community Honors</h3>
+            <h3><i class="fa-solid fa-rocket"></i> Leadership & Community Honors</h3>
             <div class="award-card-content">
                 <ul>
                     <li>National Women in STEM Outreach Coordinator</li>
@@ -226,7 +231,7 @@
         </a>
 
         <a href="honors/conferences.html" class="award-card">
-            <h3>Conferences Attended</h3>
+            <h3><i class="fa-solid fa-plane"></i> Conferences Attended</h3>
             <div class="award-card-content">
                 <ul>
                     <li>National Youth Science Camp Delegate for Ohio</li>

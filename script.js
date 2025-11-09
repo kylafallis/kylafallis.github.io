@@ -16,11 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000); // 1s = 0.6s transition + 0.4s delay
     });
 
-    
-    // --- PART 2: INTERACTION INITIALIZER FUNCTION ---
-    // This function holds all event listeners that get set up 
-    // *after* the sidebar is loaded.
     function initializeAllInteractions() {
+
+        // --- Handle Anchor Scroll on Page Load ---
+        if (window.location.hash) {
+            const targetId = window.location.hash.substring(1); // Get "contact"
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Wait for the page transition to finish (1s)
+                setTimeout(() => {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }, 1000); // This MUST match your transition-out time
+            }
+        }
 
         // --- Sidebar Toggle Logic ---
         const menuIcon = document.getElementById('menu-icon');
@@ -97,19 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // --- Scroll Arrow Animation ---
         const scrollArrow = document.querySelector('.scroll-arrow');
+        
         if (scrollArrow) {
+            const baseHeight = 30; 
+            const maxHeight = 60;  
+            const scrollRange = window.innerHeight; 
+
             window.addEventListener('scroll', () => {
-                const welcomeScreen = document.getElementById('welcome-grid');
-                if (!welcomeScreen) return;
-                
-                const scrollableHeight = welcomeScreen.offsetHeight - window.innerHeight;
-                if (window.scrollY < scrollableHeight && scrollableHeight > 0) {
-                    const scrollPercent = window.scrollY / scrollableHeight;
-                    const newHeight = 30 + (30 * scrollPercent);
-                    scrollArrow.style.height = `${newHeight}px`;
-                } else if (window.scrollY >= scrollableHeight) {
-                    scrollArrow.style.height = `60px`;
-                }
+                const scrollPercent = Math.min(1.0, window.scrollY / scrollRange);
+                const heightChange = (maxHeight - baseHeight) * scrollPercent;
+                const newHeight = baseHeight + heightChange;
+
+                scrollArrow.style.height = `${newHeight}px`;
             });
         }
 
@@ -129,11 +137,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }
+            
+            // --- THIS BLOCK IS NOW FIXED ---
             const description = item.querySelector('p');
             if(description) {
                 description.addEventListener('click', (e) => {
-                    e.stopPropagation(); 
-                    window.location.href = item.getAttribute('href');
+                    e.preventDefault(); // Stop the parent <a> from firing
+                    e.stopPropagation(); // Stop the click from bubbling to the <h3>
+                    
+                    // Manually trigger the transition
+                    body.classList.add('is-transitioning'); 
+                    
+                    // Wait for animation, then go to the link
+                    setTimeout(() => {
+                        window.location.href = item.getAttribute('href');
+                    }, 1000); 
                 });
                 description.style.cursor = 'pointer'; 
             }
@@ -185,20 +203,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // --- PAGE TRANSITION (ANIMATE-IN ON CLICK) ---
-        const allLinks = document.querySelectorAll('a');
+        const allLinks = document.querySelectorAll('a[href]');
+
         allLinks.forEach(link => {
             const href = link.getAttribute('href');
-            
-            // Check if it's a "local" navigation link
-            if (href && (href.startsWith('/') || href.startsWith('project/')) && !href.startsWith('//') && !href.includes('#')) {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault(); 
-                    body.classList.add('is-transitioning');
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 1000); 
-                });
+
+            // 1. IGNORE special links
+            if (href.startsWith('http') || 
+                href.startsWith('//') || 
+                href.startsWith('mailto:') || 
+                href.startsWith('tel:') ||
+                link.classList.contains('dropdown-toggle') || 
+                link.target === '_blank') 
+            {
+                return; // Do nothing
             }
+
+            // 2. IGNORE simple same-page anchors
+            if (href.startsWith('#')) {
+                return; // Do nothing, let smooth-scroll handle it
+            }
+
+            // 3. If it's a real page-to-page link, add the transition
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                body.classList.add('is-transitioning'); 
+                
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 1000); 
+            });
         });
 
     } // --- End of initializeAllInteractions ---

@@ -289,7 +289,45 @@ a {
 .item-aboutme a:hover .arrow {
     transform: translateX(5px);
 }
+/* === SCROLL DOWN INDICATOR === */
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 2rem; /* Position at the bottom of the welcome-container */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
 
+/* Request 1: Make the font lighter */
+.scroll-down-indicator span {
+    font-family: var(--body-font);
+    color: var(--text-light); /* This is your light green text color */
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* This container defines the *max length* of the arrow */
+.scroll-arrow-container {
+    width: 2px; /* The width of the line */
+    height: 60px; /* The MAX height the arrow can be */
+    margin-bottom: 0.5rem;
+}
+
+/* This is the arrow line that actually grows */
+.scroll-arrow {
+    width: 100%;
+    background-color: var(--text-light); /* Lighter color for the arrow */
+    height: 30px; /* The STARTING height */
+    
+    /* This makes the JS-driven change feel smooth */
+    transition: height 0.1s linear; 
+}
 /* === DYNAMIC HERO BANNER (from old version, kept for safety) === */
 #banner {
     position: relative;
@@ -331,29 +369,31 @@ a {
     animation: none;
 }
 
-/* === PROJECT LIST (SLIDE-IN BACKGROUND) === */
+/* === PROJECT LIST (LARGE TYPE) === */
+
+/* The section container (No Change) */
 .project-list-section {
     max-width: 1000px;
     margin: 4em auto;
     padding: 0 2em;
 }
-
 .project-list-container {
     border-top: 2px solid var(--light-sage);
 }
 
+/* --- MODIFIED: Increased Padding --- */
 .project-list-item {
     display: block;
     text-decoration: none;
     color: var(--dark-text);
-    padding: 2.5em 1em;
+    padding: 3.5em 2em; /* <-- MUCH MORE PADDING */
     border-bottom: 1px solid #e0e0e0;
     position: relative;
     overflow: hidden;
     z-index: 1;
 }
 
-/* The "Waterfall" Overlay */
+/* The "Waterfall" Overlay (No Change) */
 .project-list-item::before {
     content: '';
     position: absolute;
@@ -366,24 +406,58 @@ a {
     transition: height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Text and Hover State */
-.project-list-item h3,
+/* --- MODIFIED: Larger Title + Arrow Layout --- */
+.project-list-item h3 {
+    font-size: 3.5rem; /* <-- MUCH BIGGER */
+    color: var(--dark-text);
+    margin: 0 0 0.1em 0;
+    line-height: 1.1;
+    transition: color 0.4s ease;
+    
+    /* --- NEW: Add space for an arrow --- */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- NEW: The Arrow --- */
+.project-list-item h3::after {
+    content: '→';
+    font-size: 0.8em; /* Relative to the 3.5rem title */
+    color: var(--dark-sage); /* Matches title */
+    
+    /* Animation: Hidden by default */
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* --- MODIFIED: Larger Description --- */
 .project-list-item p {
+    font-size: 1.2rem; /* <-- SLIGHTLY BIGGER */
+    color: #555;
+    margin: 0;
+    max-width: 80%; /* Prevents line from getting too long */
     transition: color 0.4s ease;
 }
 
+/* --- MODIFIED: Hover State --- */
 .project-list-item:hover::before {
-    height: 100%;
+    height: 100%; /* Triggers waterfall */
 }
-
 .project-list-item:hover h3 {
-    color: white;
+    color: white; /* Changes title color */
 }
-
 .project-list-item:hover p {
-    color: var(--off-white);
+    color: var(--off-white); /* Changes description color */
 }
 
+/* --- NEW: Animate arrow on hover --- */
+.project-list-item:hover h3::after {
+    opacity: 1;
+    transform: translateX(0);
+    color: white; /* Match new title color */
+}
 /* === STYLES FOR INDIVIDUAL PROJECT PAGES === */
 .project-header {
     text-align: center;
@@ -1021,57 +1095,54 @@ pre {
     left: 0;
     width: 100vw;
     height: 100vh;
-    display: flex;
+    display: flex; /* Makes the lines sit side-by-side */
     z-index: 9999;
-    pointer-events: none;
+    pointer-events: none; 
+    overflow: hidden; /* Add this to hide the lines */
 }
 
 .transition-line {
-    width: 25vw;
+    width: 25vw; /* Each line is 1/4 of the screen width */
     height: 100vh;
-    transform: translateX(100%);
+    
+    /* DEFAULT STATE: Off-screen to the LEFT */
+    transform: translateX(-100%); 
+}
+
+/* STATE 1: Page is loading (JS adds 'is-loading') */
+/* This covers the screen instantly BEFORE the page is revealed */
+body.is-loading .transition-line {
+    transform: translateX(0);
+    /* NO transition here - this should be immediate */
+}
+
+/* STATE 2: Page is loaded (JS adds 'is-loaded') */
+/* This is the REVEAL animation: L-to-R */
+body.is-loaded .transition-line {
+    transform: translateX(100%); /* Animate off-screen to the RIGHT */
     transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
+/* STATE 3: Link is clicked (JS adds 'is-transitioning') */
+/* This is the COVER animation: L-to-R */
 body.is-transitioning .transition-line {
-    transform: translateX(0);
+    transform: translateX(0); /* Animate on-screen from the LEFT */
+    transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-body.is-loading .transition-line {
-    transform: translateX(0);
-}
+/* --- Staggered Delays (for the "waterfall" effect) --- */
 
-body.is-loaded .transition-line {
-    transform: translateX(100%);
-}
+/* Animate-IN (Covering) - Staggered L-to-R */
+body.is-transitioning .transition-line:nth-child(1) { transition-delay: 0s; }
+body.is-transitioning .transition-line:nth-child(2) { transition-delay: 0.1s; }
+body.is-transitioning .transition-line:nth-child(3) { transition-delay: 0.2s; }
+body.is-transitioning .transition-line:nth-child(4) { transition-delay: 0.3s; }
 
-/* Animate-In (Staggered from left to right) */
-body.is-transitioning .transition-line:nth-child(1) {
-    transition-delay: 0s;
-}
-body.is-transitioning .transition-line:nth-child(2) {
-    transition-delay: 0.1s;
-}
-body.is-transitioning .transition-line:nth-child(3) {
-    transition-delay: 0.2s;
-}
-body.is-transitioning .transition-line:nth-child(4) {
-    transition-delay: 0.3s;
-}
-
-/* Animate-Out (Staggered from left to right) */
-body.is-loaded .transition-line:nth-child(1) {
-    transition-delay: 0.3s;
-}
-body.is-loaded .transition-line:nth-child(2) {
-    transition-delay: 0.2s;
-}
-body.is-loaded .transition-line:nth-child(3) {
-    transition-delay: 0.1s;
-}
-body.is-loaded .transition-line:nth-child(4) {
-    transition-delay: 0s;
-}
+/* Animate-OUT (Revealing) - Staggered L-to-R */
+body.is-loaded .transition-line:nth-child(1) { transition-delay: 0s; }
+body.is-loaded .transition-line:nth-child(2) { transition-delay: 0.1s; }
+body.is-loaded .transition-line:nth-child(3) { transition-delay: 0.2s; }
+body.is-loaded .transition-line:nth-child(4) { transition-delay: 0.3s; }
 
 /* === RESPONSIVE STYLES === */
 @media (max-width: 900px) {
