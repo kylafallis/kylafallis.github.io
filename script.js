@@ -158,6 +158,21 @@ if (timelineItems.length > 0) {
 
     timelineItems.forEach(item => observer.observe(item));
 }
+// --- Fade-in on Scroll for CARDS ---
+const cardItems = document.querySelectorAll('.card');
+
+if (cardItems.length > 0) {
+    const cardObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                cardObserver.unobserve(entry.target); // Stop watching it after it's visible
+            }
+        });
+    }, { threshold: 0.1 }); // Triggers when 10% of the card is visible
+
+    cardItems.forEach(card => cardObserver.observe(card));
+}
     // --- START THE ENTIRE PROCESS ---
     loadSidebar();
 });

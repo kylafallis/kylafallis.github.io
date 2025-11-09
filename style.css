@@ -75,22 +75,57 @@ a { color: inherit; text-decoration: none; }
     grid-template-rows: repeat(3, 1fr);
     gap: 1rem;
     width: 100%;
-    max-width: 1200px;
+    max-width: 95%;
     height: 90vh;
+}
+.grid-item {
+  border-radius: 12px; /* This makes it rounded */
+  padding: 2rem; /* This gives it space inside */
+  color: var(--text-light);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
 }
 .grid-item { border-radius: 12px; padding: 2rem; color: var(--text-light); opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s forwards; }
 .grid-item h1, .grid-item h2, .grid-item h4, .grid-item p { color: var(--text-light); }
-.grid-item h1 { font-size: 3rem; line-height: 1.1; }
-.grid-item h2 { font-size: 1.5rem; margin: 0; }
-.grid-item h4 { font-size: 0.9rem; opacity: 0.7; margin-bottom: 0.5em; text-transform: uppercase; letter-spacing: 0.5px; }
-.item-welcome { grid-area: 1 / 1 / 2 / 3; animation-delay: 0.2s; background-color: var(--card-green-1); }
+.grid-item h1 { font-size: 4.5rem; line-height: 1.1; } /* CHANGED font-size */
+.grid-item h2 { font-size: 2.5rem; margin: 0; } /* CHANGED font-size */
+.grid-item h4 { font-size: 1.5rem; opacity: 0.7; margin-bottom: 0.5em; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* --- ADDED for legibility --- */
+.item-welcome h1,
+.item-quote p,
+.item-quote span,
+.item-aboutme h4,
+.item-aboutme p,
+.item-lookingfor h4,
+.item-lookingfor p {
+    color: var(--dark-green-bg); /* Use your dark green for text */
+}
+/* ----------------------------- */
+
+.item-welcome { 
+    grid-area: 1 / 1 / 2 / 3; 
+    animation-delay: 0.2s; 
+    background-color: var(--card-green-1); 
+    display: flex; /* ADDED */
+    flex-direction: column; /* ADDED */
+    justify-content: center; /* ADDED */
+}
 .item-headshot { grid-area: 1 / 3 / 3 / 4; animation-delay: 0.3s; padding: 0; }
 .item-headshot img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
 .item-quicklinks { grid-area: 1 / 4 / 4 / 5; animation-delay: 0.4s; background-color: var(--card-green-3); }
 .item-quote { grid-area: 2 / 1 / 3 / 3; animation-delay: 0.5s; display: flex; flex-direction: column; justify-content: center; background-color: var(--card-green-2); }
 .item-aboutme { grid-area: 3 / 1 / 4 / 2; animation-delay: 0.6s; background-color: var(--card-green-1); }
 .item-lookingfor { grid-area: 3 / 2 / 4 / 3; animation-delay: 0.7s; background-color: var(--card-green-2); }
-.item-contact { grid-area: 3 / 3 / 4 / 4; animation-delay: 0.8s; background-color: var(--card-green-3); }
+.item-contact { 
+    grid-area: 3 / 3 / 4 / 4; 
+    animation-delay: 0.8s; 
+    background-color: var(--card-green-3); 
+    display: flex; /* ADDED */
+    flex-direction: column; /* ADDED */
+    justify-content: center; /* ADDED */
+}
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 .item-quote p { font-family: var(--heading-font); font-size: 1.5rem; }
 .item-quote span { align-self: flex-end; opacity: 0.6; }
@@ -139,29 +174,107 @@ a { color: inherit; text-decoration: none; }
 
 /* Removed the @keyframes fadeInSlideUp */
 
-/* === MAIN CONTENT CARDS & PROJECTS === */
-.card { background-color: white; margin: 4em auto; padding: 3em; border-radius: 10px; box-shadow: 0 4px 15px var(--light-shadow); max-width: 1000px; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-.card.is-visible { opacity: 1; transform: translateY(0); }
-.experience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2em; }
-.experience-grid h3 { border-bottom: 2px solid var(--light-sage); padding-bottom: 0.5em; margin-bottom: 0.5em; }
-#software-projects, #design-projects, #research-projects, #community-projects { padding: 2em 1em; }
-.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2em; max-width: 1200px; margin: 0 auto; }
-.project-link { text-decoration: none; }
-.project-card { position: relative; overflow: hidden; border-radius: 10px; background-color: white; box-shadow: 0 4px 15px var(--light-shadow); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
-.project-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
-.project-card img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.4s ease; }
-.project-card:hover img { transform: scale(1.05); }
-.project-card h3 { padding: 1em 1em 0.5em 1em; margin: 0; text-align: left; }
-.project-card .project-description { padding: 0 1em 1em 1em; margin: 0; flex-grow: 1; color: #555; text-align: left; font-family: var(--body-font); }
-.project-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 220px; background-color: rgba(188, 184, 138, 0.8); color: white; display: flex; justify-content: center; align-items: center; font-size: 2.5em; opacity: 0; transition: opacity 0.4s ease; }
-.project-card:hover .project-overlay { opacity: 1; }
-.recognition-grid-three-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2em; }
-.button-link { text-decoration: none; display: block; background-color: var(--dark-sage); padding: 0.75em; border-radius: 8px; margin-bottom: 1em; transition: background-color 0.3s, transform 0.2s; }
-.button-link:hover { background-color: var(--dark-text); transform: translateY(-3px); }
-.button-link h3 { color: white; border-bottom: none; padding-bottom: 0; margin-bottom: 0; text-align: center; font-size: 1.1em; }
-.recognition-grid-three-col ul { list-style-type: none; padding: 0; margin: 0; }
-.recognition-grid-three-col li { background-color: var(--off-white); padding: 0.5em 1em; margin-bottom: 0.5em; border-left: 4px solid var(--light-sage); }
+/* === PROJECT HOVER-REVEAL LIST === */
 
+/* === PROJECT LIST (SLIDE-IN BACKGROUND) === */
+
+/* The section container (No Change) */
+.project-list-section {
+    max-width: 1000px;
+    margin: 4em auto;
+    padding: 0 2em;
+}
+
+.project-list-container {
+    border-top: 2px solid var(--light-sage); /* A nice top border */
+}
+
+/* Each project link */
+.project-list-item {
+    display: block;
+    text-decoration: none;
+    color: var(--dark-text);
+    padding: 2.5em 1em;
+    border-bottom: 1px solid #e0e0e0;
+    
+    /* --- NEW: Needed for the effect --- */
+    position: relative; /* Parent for the overlay */
+    overflow: hidden; /* Hides the overlay outside the bounds */
+    z-index: 1; /* Establishes a stacking context */
+}
+
+/* --- NEW: The "Waterfall" Overlay --- */
+.project-list-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0; /* Starts hidden (0% height) */
+    background-color: var(--dark-sage); /* The color of the waterfall */
+    
+    /* Sits BEHIND the text */
+    z-index: -1; 
+    
+    /* This is the animation! */
+    transition: height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* --- NEW: Text and Hover State --- */
+.project-list-item h3, 
+.project-list-item p {
+    /* Make text transition smoothly */
+    transition: color 0.4s ease;
+}
+
+.project-list-item:hover::before {
+    height: 100%; /* Animates height to 100% on hover */
+}
+
+.project-list-item:hover h3 {
+    color: white; /* Make text readable on the dark background */
+}
+.project-list-item:hover p {
+    color: var(--off-white); /* Make text readable */
+}
+}
+
+/* The section container */
+.project-list-section {
+    max-width: 1000px;
+    margin: 4em auto;
+    padding: 0 2em;
+}
+
+.project-list-container {
+    border-top: 2px solid var(--light-sage); /* A nice top border */
+}
+
+/* Each project link */
+.project-list-item {
+    display: block;
+    text-decoration: none;
+    color: var(--dark-text);
+    padding: 2.5em 1em;
+    border-bottom: 1px solid #e0e0e0; /* Separator line */
+    transition: background-color 0.3s;
+}
+
+.project-list-item:hover {
+    background-color: var(--off-white);
+}
+
+.project-list-item h3 {
+    font-size: 2rem;
+    color: var(--dark-text);
+    margin: 0;
+}
+
+.project-list-item p {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 0.25em 0 0 0;
+}
 /* === STYLES FOR INDIVIDUAL PROJECT PAGES === */
 .project-header { text-align: center; border-bottom: 1px solid var(--light-sage); padding-bottom: 1em; margin-top: 1em; }
 .project-header .subtitle { font-size: 1.2em; color: var(--text-light); max-width: 600px; margin: 0.5em auto 0 auto; }
@@ -386,6 +499,110 @@ pre { background-color: #2d2d2d; color: #f8f8f2; border-radius: 8px; padding: 1e
 #sidebar .dropdown.open > .dropdown-menu { max-height: 500px; } /* Use .open */
 #sidebar .dropdown-menu a { font-size: 1em; padding-left: 40px; }
 
+/* === AWARDS & HONORS (HOVER-REVEAL GRID) === */
+
+/* The main section wrapper */
+.recognition-section {
+    padding: 3em 1em;
+    background-color: var(--off-white); /* Match your other sections */
+}
+
+.recognition-grid-three-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* This is the new clickable card */
+.award-card {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden; /* Hides the content that's waiting to fade in */
+    
+    min-height: 350px;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: var(--card-green-1); /* Your green color */
+    
+    /* Animation for the background change */
+    transition: background-color 0.4s ease;
+}
+
+.award-card:hover {
+    background-color: var(--card-green-2); /* A slightly different green on hover */
+}
+
+/* This is the title (Icon + Text) */
+.award-card h3 {
+    color: var(--dark-text); /* Dark text on the light card */
+    text-align: center;
+    font-size: 1.5rem;
+    
+    /* This is the magic for positioning */
+    position: absolute;
+    top: 50%; /* Starts in the middle */
+    left: 2rem;
+    right: 2rem;
+    transform: translateY(-50%); /* Perfectly centers it */
+    
+    /* Animation for the "slide to top" */
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* This is the hidden content (list + click hint) */
+.award-card-content {
+    /* This pushes the list down to leave room for the title */
+    padding-top: 5rem; 
+    
+    /* Hidden by default */
+    opacity: 0;
+    transform: translateY(20px);
+    
+    /* Animation for fading in */
+    transition: all 0.3s ease 0.1s;
+}
+
+/* --- THE HOVER STATE --- */
+
+/* This moves the title to the top on hover */
+.award-card:hover h3 {
+    top: 2rem;
+    transform: translateY(0);
+}
+
+/* This fades in the content on hover */
+.award-card:hover .award-card-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Styling for the list and hint --- */
+
+.award-card-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.award-card-content li {
+    color: var(--dark-text);
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid rgba(55, 61, 32, 0.2); /* Faint line */
+    padding-bottom: 0.5em;
+}
+
+.award-card-content .click-hint {
+    display: block;
+    text-align: center;
+    margin-top: 1.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--dark-text);
+    font-size: 0.9rem;
+}
 /* === RESPONSIVE STYLES === */
 @media (max-width: 900px) {
     .grid-container {
@@ -424,6 +641,113 @@ pre { background-color: #2d2d2d; color: #f8f8f2; border-radius: 8px; padding: 1e
     #banner p { font-size: 1em; }
 }
 
-/* === START: NEW WEBSITE IMPROVEMENT STYLES === */
-/* Removed glass banner styles, skills styles, featured project styles */
+/* === COMMUNITY CAROUSEL SECTION (WITH SNAPPING) === */
 
+/* This styles the main section */
+.carousel-section {
+    background-color: var(--off-white); 
+    width: 100%;
+    padding: 3em 0; 
+    overflow: hidden;
+}
+
+/* This is the container that scrolls */
+.carousel-container {
+    display: flex;
+    flex-direction: row; /* Lays items out in a row */
+    overflow-x: auto; /* MAKES IT SCROLL HORIZONTALLY */
+    gap: 2em; /* Space between items */
+    
+    /* This is the magic: it enables snapping */
+    scroll-snap-type: x mandatory;
+    
+    /* This padding shows a peek of the next/prev items */
+    padding: 1em 5%; 
+
+    /* Hides the scrollbar for a cleaner look */
+    scrollbar-width: none; /* For Firefox */
+}
+
+/* Hides scrollbar for Chrome, Safari, and Edge */
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* This is the individual clickable item */
+.carousel-item {
+    display: block;
+    text-decoration: none;
+    
+    /* Make each item take up 90% of the container's width */
+    flex: 0 0 90%; 
+    
+    /* This tells each item to snap to the center */
+    scroll-snap-align: center;
+    
+    transition: transform 0.3s ease;
+}
+
+.carousel-item:hover {
+    transform: translateY(-5px); /* Lifts the card slightly on hover */
+}
+
+/* This container holds the image and overlay */
+.carousel-image-container {
+    position: relative; /* CRUCIAL for the overlay */
+    border-radius: 12px;
+    overflow: hidden; /* Hides image corners and overlay */
+    box-shadow: 0 4px 15px var(--light-shadow);
+}
+
+.carousel-item img {
+    display: block;
+    width: 100%;
+    height: 400px; /* Gives all images a uniform height */
+    object-fit: cover; /* Prevents images from stretching */
+    transition: transform 0.4s ease;
+}
+
+/* Adds a zoom effect to the image on hover */
+.carousel-item:hover img {
+    transform: scale(1.05);
+}
+
+/* This is the title under the image */
+.carousel-item h3 {
+    font-family: var(--heading-font);
+    font-weight: 700; /* Bold */
+    color: var(--dark-text);
+    text-align: center;
+    margin-top: 1em;
+}
+
+/* This is the overlay */
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Dark semi-transparent background */
+    background-color: rgba(42, 63, 58, 0.7); 
+    
+    /* Content styling */
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    
+    /* Centering the text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Hidden by default */
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* This shows the overlay when you hover the item */
+.carousel-item:hover .carousel-overlay {
+    opacity: 1;
+}

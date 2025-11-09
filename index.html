@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+</style>
 </head>
 <body>
     <!-- The main page content, now visible by default -->
@@ -28,23 +31,20 @@
                     <p>"I have a deeply hidden and inarticulate desire for something beyond the daily life"</p>
                     <span>- Virginia Woolf</span>
                 </div>
-                <!-- Nested grid for the bottom-left blocks -->
-                <div class="grid-item item-nested-grid">
-                    <div class="nested-item item-aboutme">
-                        <h4>About Me <span class="arrow">&rarr;</span></h4>
-                        <p>An engineer and researcher driven to design sustainable solutions.</p>
-                    </div>
-                    <div class="nested-item item-lookingfor">
-                        <h4>What I'm Looking For</h4>
-                        <p>Seeking opportunities to apply my skills in renewable energy and sustainable design.</p>
-                    </div>
+                <div class="grid-item item-aboutme">
+                    <h4>About Me <span class="arrow">&rarr;</span></h4>
+                    <p>An engineer and researcher driven to design sustainable solutions.</p>
                 </div>
 
-                <!-- Column 2: Headshot & Contact -->
+                <div class="grid-item item-lookingfor">
+                    <h4>What I'm Looking For</h4>
+                    <p>Seeking opportunities to apply my skills in renewable energy and sustainable design.</p>
+                </div>
+
                 <div class="grid-item item-headshot">
-                    <!-- The path here MUST match your uploaded file -->
                     <img src="/images/headshot.jpg" alt="Headshot of Kyla Fallis">
                 </div>
+
                 <div class="grid-item item-contact">
                     <a href="#contact">
                         <h4>Have a question?</h4>
@@ -52,7 +52,6 @@
                     </a>
                 </div>
 
-                <!-- Column 3: Quick Links -->
                 <div class="grid-item item-quicklinks">
                     <h4>Quick Links</h4>
                     <a href="/Kyla_Fallis_Resume.pdf" target="_blank" class="quick-link">Download Resume</a>
@@ -74,187 +73,167 @@
             </a>
         </div>
 
- <main id="main-content">
-    <section id="software-projects">
-        <h2>Software Projects</h2>
-        <div class="project-grid">
-            <a href="project/Software/pythagorasplains.html" class="project-link">
-                <div class="project-card">
-                    <img src="images/pythagorus_plains_picture.png" alt="Pythagorus Plains game">
-                    <div class="project-overlay"><i class="fa-solid fa-arrow"></i></div>
-                    <h3>Pythagorus Plains</h3>
-                    <p class="project-description">An RPG where you solve math problems to deal damage to monsters.</p>
-                </div>
-            </a>
-            <a href="project/Software/stargame.html" class="project-link">
-                <div class="project-card">
-                    <img src="images/StarGame.jpg.png" alt="Stargame constellation game">
-                    <div class="project-overlay"><i class="fa-solid fa-arrow"></i></div>
-                    <h3>Stargame</h3>
-                    <p class="project-description">A simple game where the user places stars to copy constellations.</p>
-                </div>
-            </a>
-                        <a href="project/Software/wastewise.html" class="project-link">
-                <div class="project-card">
-                    <img src="images/wastewise.jpeg" alt="landfill image">
-                    <div class="project-overlay"><i class="fa-solid fa-arrow"></i></div>
-                    <h3>WasteWise</h3>
-                    <p class="project-description">An AI that takes mp4 input and analyzes incoming landfill trash to sort organic materials, plastic, metal, and other.</p>
-                </div>
-            </a>
-        </div>
-    </section>
+<main id="main-content">
+    <div id="project-hover-preview"></div> 
 
-    <section id="design-projects">
-        <h2>Physical Design Projects</h2>
-        <div class="project-grid">
-            <a href="project/design/LYKA.html" class="project-link">
-                <div class="project-card">
-                    <img src="images/Screenshot 2025-09-27 142209.png" alt="LYKA Lamp 3D model">
-                    <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                    <h3>LYKA Lamp</h3>
-                    <p class="project-description">A microbial fuel cell prototype to explore renewable energy.</p>
-                </div>
-            </a>
-            <a href="project/design/Aquatracker.html" class="project-link">
-                <div class="project-card">
-                    <img src="images/Aquatacker.png" alt="Aquatracker computer model">
-                    <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                    <h3>Aquatracker</h3>
-                    <p class="project-description">Applied SolidWorks for mechanical design and circuit layout.</p>
-                </div>
-            </a>
-        </div>
-    </section>
+<section id="software-projects" class="project-list-section">
+    <h2>Software Projects</h2>
+    <div class="project-list-container">
+        
+        <a href="project/Software/pythagorasplains.html" class="project-list-item" 
+           <h3>Pythagorus Plains</h3>
+           <p>An RPG where you solve math problems to deal damage.</p>
+        </a>
+
+        <a href="project/Software/stargame.html" class="project-list-item" 
+           <h3>Stargame</h3>
+           <p>A simple game where the user places stars to copy constellations.</p>
+        </a>
+
+        <a href="project/Software/wastewise.html" class="project-list-item" 
+           <h3>WasteWise</h3>
+           <p>An AI that analyzes incoming landfill trash to sort materials.</p>
+        </a>
+
+    </div>
+</section>
+
+<section id="design-projects" class="project-list-section">
+    <h2>Physical Design Projects</h2>
+    <div class="project-list-container">
+        
+        <a href="project/design/LYKA.html" class="project-list-item" 
+           <h3>LYKA Lamp</h3>
+           <p>A microbial fuel cell prototype to explore renewable energy.</p>
+        </a>
+
+        <a href="project/design/Aquatracker.html" class="project-list-item" 
+           <h3>Aquatracker</h3>
+           <p>Applied SolidWorks for mechanical design and circuit layout.</p>
+        </a>
+
+    </div>
+</section>
+
+<section id="research-projects" class="project-list-section">
+    <h2>Research</h2>
+    <div class="project-list-container">
+
+        <a href="project/Research/Electrogenic-Biotransformation-of-Organic-Substrates.html" class="project-list-item" 
+           <h3>Publication</h3>
+           <p>Authored "Electrogenic Biotransformation of Organic Substrates."</p>
+        </a>
+
+        <a href="project/Research/Current-Research.html" class="project-list-item" 
+           <h3>Current Research</h3>
+           <p>Working on electronesis in interactions with earth's magnetic field.</p>
+        </a>
+
+        <a href="project/Research/solar-soil.html" class="project-list-item" 
+           <h3>Solar Panels & Soil Quality</h3>
+           <p>Conducted award-winning research on solar panels' connection to soil quality.</p>
+        </a>
+
+    </div>
+</section>
+
+<section id="community-projects" class="carousel-section">
+    <h2>Community & Advocacy</h2>
     
-    <section id="research-projects">
-        <h2>Research</h2>
-        <div class="project-grid">
-            <a href="project/Research/Electrogenic-Biotransformation-of-Organic-Substrates.html" class="project-link">
-                <div class="project-card">
-                    <img src="images/project-mfc.jpg" alt="Image of MFC research slide">
-                    <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                    <h3>Publication</h3>
-                    <p class="project-description">Authored "Electrogenic Biotransformation of Organic Substrates."</p>
+    <div class="carousel-container">
+        
+        <a href="community/stem.html" class="carousel-item">
+            <div class="carousel-image-container">
+                <img src="path/to/your/stem-image.jpg" alt="STEM Outreach">
+                <div class="carousel-overlay">
+                    <span>Click Here</span>
                 </div>
-            </a>
-            <a href="project/Research/Current-Research.html" class="project-link">
-                <div class="project-card">
-                    <img src="images/current-research.png" alt="Image of Kyla in a lab">
-                    <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                    <h3>Current Research</h3>
-                    <p class="project-description">Working on electronesis in interactions with earth's magnetic field.</p>
+            </div>
+            <h3>STEM Outreach</h3>
+        </a>
+
+        <a href="community/women.html" class="carousel-item">
+            <div class="carousel-image-container">
+                <img src="path/to/your/women-image.jpg" alt="Women Empowerment">
+                <div class="carousel-overlay">
+                    <span>Click Here</span>
                 </div>
-            </a>
-            <a href="project/Research/solar-soil.html" class="project-link">
-                <div class="project-card">
-                    <img src="images/solar-project.jpeg" alt="Image of solar panels">
-                    <div class="project-overlay"><i class="fa-solid fa-link"></i></div>
-                    <h3>Solar Panels & Soil Quality</h3>
-                    <p class="project-description">Conducted award-winning research on solar panels connection to soil quality.</p>
+            </div>
+            <h3>Women Empowerment</h3>
+        </a>
+
+        <a href="community/environment.html" class="carousel-item">
+            <div class="carousel-image-container">
+                <img src="path/to/your/env-image.jpg" alt="Environment">
+                <div class="carousel-overlay">
+                    <span>Click Here</span>
                 </div>
-            </a>
+            </div>
+            <h3>Environment</h3>
+        </a>
+
+        <a href="community/political.html" class="carousel-item">
+            <div class="carousel-image-container">
+                <img src="path/to/your/political-image.jpg" alt="Political Advocacy">
+                <div class="carousel-overlay">
+                    <span>Click Here</span>
+                </div>
+            </div>
+            <h3>Political Advocacy</h3>
+        </a>
+
         </div>
-    </section>
+</section>
 
-<!-- === Community Projects Section with Tabs === -->
-        <section id="community-projects" class="card">
-            <h2>Community & Advocacy</h2>
-            <div class="tab-container">
-                <!-- Tab Buttons -->
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="panel-stem">STEM Outreach</button>
-                    <button class="tab-btn" data-tab="panel-women">Women Empowerment</button>
-                    <button class="tab-btn" data-tab="panel-environment">Environment</button>
-                    <button class="tab-btn" data-tab="panel-political">Political Advocacy</button>
-                </div>
-
-                <!-- Tab Content Panels -->
-                <div class="tab-content">
-                    <div class="tab-panel active" id="panel-stem">
-                        <h3>STEM Outreach</h3>
-                        <ul>
-                            <li>National Women in STEM Outreach Coordinator</li>
-                            <li>COSI Big Science Day Panelist</li>
-                            <li>STEAM on the Quad Event Organizer</li>
-                            <li>Science Olympiad Club Leader</li>
-                        </ul>
-                        <a href="community/stem.html" class="button">Read More</a>
-                    </div>
-                    <div class="tab-panel" id="panel-women">
-                        <h3>Women Empowerment</h3>
-                        <ul>
-                            <li>Founder & President of Girl Up Club</li>
-                            <li>Distinguished Young Woman of Allen County</li>
-                            <li>Organized Feminine Hygiene Supply Drives</li>
-                        </ul>
-                        <a href="community/women.html" class="button">Read More</a>
-                    </div>
-                    <div class="tab-panel" id="panel-environment">
-                        <h3>Environment</h3>
-                        <ul>
-                            <li>OSU Undergraduate Student Government Sustainability Team</li>
-                            <li>Community Volunteering (Lima Mural Association, etc.)</li>
-                        </ul>
-                        <a href="community/environment.html" class="button">Read More</a>
-                    </div>
-                    <div class="tab-panel" id="panel-political">
-                        <h3>Political Advocacy</h3>
-                        <ul>
-                            <li>Ohio Academy of Science Senate Delegate</li>
-                            <li>High School Student Council Secretary</li>
-                        </ul>
-                        <a href="community/political.html" class="button">Read More</a>
-                    </div>
-                </div>
+           <section id="recognition" class="recognition-section">
+    <h2>Awards & Honors</h2>
+    
+    <div class="recognition-grid-three-col">
+        
+        <a href="honors/academic.html" class="award-card">
+            <h3>Academic & Research Honors</h3>
+            <div class="award-card-content">
+                <ul>
+                    <li>International Science and Engineering Fair (ISEF) Qualifier</li>
+                    <li>Governor's Thomas Edison Award for Excellence in STEM</li>
+                    <li>American Junior Academy of Science Inductee</li>
+                    <li>Melvin Scholar, Ohio Academy of Science</li>
+                    <li>5x Superior '1' Ratings at State Science Fair</li>
+                </ul>
+                <span class="click-hint">Click to see details</span>
             </div>
-        </section>
- </main>
-            <!-- ===  Awards & Honors Section === -->
-        <section id="recognition" class="card">
-            <h2>Awards & Honors</h2>
-            <div class="recognition-grid-three-col">
-                <div>
-                    <a href="honors/academic.html" class="button-link">
-                        <h3><i class="fa-solid fa-award"></i> Academic & Research Honors</h3>
-                    </a>
-                    <ul>
-                        <li>International Science and Engineering Fair (ISEF) Qualifier</li>
-                        <li>Governor's Thomas Edison Award for Excellence in STEM</li>
-                        <li>American Junior Academy of Science Inductee</li>
-                        <li>Melvin Scholar, Ohio Academy of Science</li>
-                        <li>5x Superior '1' Ratings at State Science Fair</li>
-                        <li>EPA Award (BSEF)</li>
-                    </ul>
-                </div>
-                <div>
-                    <a href="honors/leadership.html" class="button-link">
-                        <h3><i class="fa-solid fa-rocket"></i> Leadership & Community Honors</h3>
-                    </a>
-                    <ul>
-                        <li>National Women in STEM Outreach Coordinator</li>
-                        <li>Distinguished Young Woman of Allen County</li>
-                        <li>COSI Big Science Day Panelist</li>
-                        <li>Undergraduate Student Government Member, OSU</li>
-                        <li>Over 350 documented community service hours</li>
-                        <li>Drama Club President & Marching Band Field Commander</li>
-                    </ul>
-                </div>
-                <div>
-                    <a href="honors/conferences.html" class="button-link">
-                        <h3><i class="fa-solid fa-plane"></i> Conferences Attended</h3>
-                    </a>
-                    <ul>
-                        <li>National Youth Science Camp Delegate for Ohio</li>
-                        <li>Future Environmental Leaders Summit</li>
-                        <li>Women in STEM Conference</li>
-                        <li>COSI Big Science Day</li>
-                        <li>State Science Fair (5x Attendee)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        </a>
 
+        <a href="honors/leadership.html" class="award-card">
+            <h3>Leadership & Community Honors</h3>
+            <div class="award-card-content">
+                <ul>
+                    <li>National Women in STEM Outreach Coordinator</li>
+                    <li>Distinguished Young Woman of Allen County</li>
+                    <li>COSI Big Science Day Panelist</li>
+                    <li>Undergraduate Student Government Member, OSU</li>
+                    <li>Over 350 documented community service hours</li>
+                </ul>
+                <span class="click-hint">Click to see details</span>
+            </div>
+        </a>
+
+        <a href="honors/conferences.html" class="award-card">
+            <h3>Conferences Attended</h3>
+            <div class="award-card-content">
+                <ul>
+                    <li>National Youth Science Camp Delegate for Ohio</li>
+                    <li>Future Environmental Leaders Summit</li>
+                    <li>Women in STEM Conference</li>
+                    <li>COSI Big Science Day</li>
+                    <li>State Science Fair (5x Attendee)</li>
+                </ul>
+                <span class="click-hint">Click to see details</span>
+            </div>
+        </a>
+
+    </div>
+</section>
     <footer id="contact">
         <h2>Contact Me</h2>
         <p>Feel free to reach out via email or connect with me on social media!</p>
