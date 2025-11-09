@@ -7,26 +7,21 @@
     --off-white: #F5F5F5;
     --dark-text: #373d20;
     --light-shadow: rgba(0, 0, 0, 0.1);
-    
-    /* Font Families */
-body { --body-font: .momo-trust-display-regular {
-  font-family: "Momo Trust Display", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
- }
-h1, h2, h3, h4 { --heading-font: 'Momo Trust Display', sans-serif; }
-    --heading-font: 'Momo Trust Display', sans-serif;   
-    font-family: 'Momo Trust Display', sans-serif;
-
-    /* Bento Box Intro Theme (Dark) */
     --dark-green-bg: #373d20;
     --text-light: #A9BA9D;
     --card-green-1: #718355;
     --card-green-2: #87986a;
     --card-green-3: #5b6e3a;
+    
+    /* Font Families */
+body { --body-font: "Momo Trust Display", sans-serif;  }
+    --body-font: 'Momo Trust Display', sans-serif;   
+    font-family: 'Momo Trust Display', sans-serif;
+ 
+h1, h2, h3, h4 { --heading-font: 'Momo Trust Display', sans-serif; }
+    --heading-font: 'Momo Trust Display', sans-serif;   
+    font-family: 'Momo Trust Display', sans-serif;
 }
-
 /* === GENERAL STYLING === */
 html { scroll-behavior: smooth; }
 body { font-family: var(--body-font); background-color: var(--off-white); color: var(--dark-text); line-height: 1.6; margin: 0; padding: 0; }
