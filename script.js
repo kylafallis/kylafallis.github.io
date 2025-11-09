@@ -201,8 +201,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { threshold: 0.1 });
             timelineItems.forEach(item => observer.observe(item));
         }
+    // --- Research Tab Logic ---
+            const researchTabs = document.querySelectorAll(".research-tab-btn");
+            const researchPanels = document.querySelectorAll(".research-tab-panel");
 
-        // --- PAGE TRANSITION (ANIMATE-IN ON CLICK) ---
+            if (researchTabs.length > 0 && researchPanels.length > 0) {
+                researchTabs.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Remove 'active' from all buttons and panels
+                        researchTabs.forEach(b => b.classList.remove('active'));
+                        researchPanels.forEach(p => p.classList.remove('active'));
+
+                        // Add 'active' to the clicked button and its target panel
+                        btn.classList.add('active');
+                        const targetPanel = document.getElementById(btn.dataset.tab);
+                        if (targetPanel) {
+                            targetPanel.classList.add('active');
+                        }
+                    });
+                });
+            }        // --- PAGE TRANSITION (ANIMATE-IN ON CLICK) ---
         const allLinks = document.querySelectorAll('a[href]');
 
         allLinks.forEach(link => {
