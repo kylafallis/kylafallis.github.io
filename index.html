@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kyla Fallis - Environmental Engineering student and researcher specializing in renewable energy, sustainable design, and microbial fuel cells. Explore my projects, research, and community work.">
-    <meta name="keywords" content="Kyla Fallis, Environmental Engineering, Renewable Energy, Sustainable Design, Research, Microbial Fuel Cells">
-    <meta name="author" content="Kyla Fallis">
     <title>Kyla Fallis | Environmental Engineering & Design</title>
-    <link rel="icon" type="image/png" href="images/headshot.jpg">
-    <link rel="stylesheet" href="style.css">
-   <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
+    <!-- The main page content, now visible by default -->
     <div id="page-content">
         <div id="overlay"></div>
         <div id="menu-icon">&#9776;</div>
         
+        <!-- This div will be filled by JavaScript -->
         <div id="sidebar-placeholder"></div>
 
+        <!-- New Full-Screen Animated Grid Layout -->
         <div id="welcome-grid" class="welcome-container">
             <div class="grid-container">
+                <!-- Column 1: Main Content -->
                 <div class="grid-item item-welcome">
                     <h1>Welcome, <br>I'm Kyla Fallis.</h1>
                 </div>
@@ -29,10 +28,11 @@
                     <p>"I have a deeply hidden and inarticulate desire for something beyond the daily life"</p>
                     <span>- Virginia Woolf</span>
                 </div>
+                <!-- Nested grid for the bottom-left blocks -->
                 <div class="grid-item item-nested-grid">
                     <div class="nested-item item-aboutme">
                         <h4>About Me <span class="arrow">&rarr;</span></h4>
-                        <p>An engineer and researcher driven to design sustainable solutions through technological innovations.</p>
+                        <p>An engineer and researcher driven to design sustainable solutions.</p>
                     </div>
                     <div class="nested-item item-lookingfor">
                         <h4>What I'm Looking For</h4>
@@ -40,8 +40,10 @@
                     </div>
                 </div>
 
+                <!-- Column 2: Headshot & Contact -->
                 <div class="grid-item item-headshot">
-                    <img src="images/headshot.png" alt="Headshot of Kyla Fallis">
+                    <!-- The path here MUST match your uploaded file -->
+                    <img src="/images/headshot.png" alt="Headshot of Kyla Fallis">
                 </div>
                 <div class="grid-item item-contact">
                     <a href="#contact">
@@ -50,6 +52,7 @@
                     </a>
                 </div>
 
+                <!-- Column 3: Quick Links -->
                 <div class="grid-item item-quicklinks">
                     <h4>Quick Links</h4>
                     <a href="/Kyla_Fallis_Resume.pdf" target="_blank" class="quick-link">Download Resume</a>
@@ -70,7 +73,6 @@
                 <span>Scroll Down</span>
             </a>
         </div>
-
 
  <main id="main-content">
     <section id="software-projects">
