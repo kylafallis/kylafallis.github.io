@@ -4,63 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community: Women Empowerment</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <div id="sidebar-placeholder"></div>
-    <div id="overlay"></div>
-    <div id="menu-icon">&#9776;</div>
-    
-    <header id="banner" class="project-header advocacy-header">
-        <h1>Women Empowerment Initiatives</h1>
-        <p class="subtitle">Projects and leadership roles dedicated to advocating for and supporting young women in my community.</p>
-    </header>
 
-    <main class="project-page-content">
-        <div class="two-column-advocacy-layout">
-            <!-- Left Column: Philosophy -->
-            <div class="advocacy-philosophy">
+    <div id="page-transition-overlay"></div>
+
+    <div id="page-content">
+        <div id="menu-icon">&#9776;</div>
+        <div id="overlay"></div>
+        <div id="sidebar-placeholder"></div>
+        
+        <header id="banner" class="project-header">
+            <h1>Women Empowerment Initiatives</h1>
+            <p class="subtitle">Projects and leadership roles dedicated to advocating for and supporting young women in my community.</p>
+        </header>
+
+        <main class="project-page-content">
+
+            <div class="column-text" style="max-width: 800px; margin: 0 auto;">
                 <h3>My Mission</h3>
                 <p>My work in women's empowerment is centered on creating spaces where young women can lead, learn, and thrive. By providing resources, mentorship, and a platform for their voices, I aim to help build a more equitable future.</p>
-                <div class="pull-quote">
-                    "Fostering leadership and providing resources for young women."
-                </div>
+                <blockquote>"Fostering leadership and providing resources for young women."</blockquote>
             </div>
 
-            <!-- Right Column: Experiences -->
-            <div class="advocacy-experiences">
-                <article class="advocacy-card">
-                    <div class="advocacy-card-icon"><i class="fa-solid fa-globe"></i></div>
-                    <div class="advocacy-card-content">
-                        <h4>Girl Up Club Founder & President</h4>
-                        <p class="honor-meta"><strong>Role:</strong> Founder & President | <strong>Date:</strong> 2023 - 2025</p>
+            <section class="accordion-section">
+
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <h4><i class="fa-solid fa-globe"></i> Girl Up Club Founder & President</h4>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Role:</strong> Founder & President | <strong>Date:</strong> 2023 - 2025</p>
                         <p>I founded and led Northwest Ohio's only chapter of the UN's Girl Up initiative, curating exhibits, organizing STEM outreach, and running supply drives for local shelters.</p>
                     </div>
-                </article>
-                <article class="advocacy-card">
-                    <div class="advocacy-card-icon"><i class="fa-solid fa-trophy"></i></div>
-                    <div class="advocacy-card-content">
-                        <h4>Distinguished Young Woman of Allen County</h4>
-                        <p class="honor-meta"><strong>Role:</strong> Winner & State Runner-Up | <strong>Date:</strong> February 2025</p>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <h4><i class="fa-solid fa-trophy"></i> Distinguished Young Woman of Allen County</h4>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Role:</strong> Winner & State Runner-Up | <strong>Date:</strong> February 2025</p>
                         <p>I was recognized for excellence in scholastics, leadership, and talent, serving as a role model for young women in my community.</p>
                     </div>
-                </article>
-                <article class="advocacy-card">
-                    <div class="advocacy-card-icon"><i class="fa-solid fa-box-open"></i></div>
-                    <div class="advocacy-card-content">
-                        <h4>Feminine Hygiene Supply Drives</h4>
-                        <p class="honor-meta"><strong>Role:</strong> Organizer</p>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <h4><i class="fa-solid fa-box-open"></i> Feminine Hygiene Supply Drives</h4>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Role:</strong> Organizer</p>
                         <p>I independently organized multiple supply drives in local schools to address student needs and combat period poverty in my community.</p>
                     </div>
-                </article>
-            </div>
-        </div>
-        <a href="/index.html#community-projects" class="back-link">&larr; Back to Main Projects</a>
-    </main>
+                </div>
+
+            </section>
+
+            <a href="/index.html#community-projects" class="back-link">&larr; Back to Main Projects</a>
+        </main>
+    </div>
     
     <script src="/script.js"></script>
 </body>
 </html>
-

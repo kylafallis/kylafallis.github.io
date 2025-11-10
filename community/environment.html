@@ -3,56 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community: Environment</title>
+    <title>Community: Environmental & Sustainability</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <div id="sidebar-placeholder"></div>
-    <div id="overlay"></div>
-    <div id="menu-icon">&#9776;</div>
     
-    <header id="banner" class="project-header advocacy-header">
-        <h1>Environmental & Sustainability Projects</h1>
-        <p class="subtitle">My hands-on work and advocacy for a more sustainable future.</p>
-    </header>
+    <div id="page-transition-overlay"></div>
 
-    <main class="project-page-content">
-        <div class="two-column-advocacy-layout">
-            <!-- Left Column: Philosophy -->
-            <div class="advocacy-philosophy">
+    <div id="page-content">
+        <div id="menu-icon">&#9776;</div>
+        <div id="overlay"></div>
+        <div id="sidebar-placeholder"></div>
+    
+        <header id="banner" class="project-header">
+            <h1>Environmental & Sustainability Projects</h1>
+            <p class="subtitle">My hands-on work and advocacy for a more sustainable future.</p>
+        </header>
+
+        <main class="project-page-content">
+            
+            <div class="column-text" style="max-width: 800px; margin: 0 auto;">
                 <h3>My Vision</h3>
                 <p>I believe in translating a passion for the environment into tangible action. My work focuses on practical, community-based solutions and policy advocacy that can contribute to a healthier planet for future generations.</p>
-                <div class="pull-quote">
-                    "Advocating for more eco-friendly and sustainable practices on campus and beyond."
-                </div>
+                <blockquote>"Advocating for more eco-friendly and sustainable practices on campus and beyond."</blockquote>
             </div>
 
-            <!-- Right Column: Experiences -->
-            <div class="advocacy-experiences">
-                <article class="advocacy-card">
-                    <div class="advocacy-card-icon"><i class="fa-solid fa-leaf"></i></div>
-                    <div class="advocacy-card-content">
-                        <h4>OSU Student Government Sustainability Team</h4>
-                        <p class="honor-meta"><strong>Role:</strong> Team Member | <strong>Date:</strong> 2025 - Present</p>
-                        <p>I serve on the sustainability issues team for the Undergraduate Student Government, researching policies and advocating for eco-friendly practices at The Ohio State University.</p>
+            <section class="accordion-section">
+                
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <h4><i class="fa-solid fa-leaf"></i> OSU Student Government Sustainability Team</h4>
+                        <span class="accordion-icon">+</span>
                     </div>
-                </article>
-                <article class="advocacy-card">
-                    <div class="advocacy-card-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                    <div class="advocacy-card-content">
-                        <h4>Community & Environmental Volunteering</h4>
-                        <p class="honor-meta"><strong>Organizations:</strong> Interact Club, Lima Mural Association, etc.</p>
-                        <p>With over 350 volunteer hours, much of my service has been dedicated to improving the local environment, from beautification projects to supporting sustainable food practices.</p>
+                    <div class="accordion-content">
+                        <p><strong>Role:</strong> Team Member | <strong>Date:</strong> 2025 - Present</p>
+                        <p>I serve on the sustainability issues team for the Undergraduate Student Government, researching policies and advocating for eco-friendly practices at The Ohio State University. This includes drafting legislation for reusable container programs and working with university administration to expand composting.</p>
                     </div>
-                </article>
-            </div>
-        </div>
-        <a href="/index.html#community-projects" class="back-link">&larr; Back to Main Projects</a>
-    </main>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <h4><i class="fa-solid fa-hand-holding-heart"></i> Community & Environmental Volunteering</h4>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Organizations:</strong> Interact Club, Lima Mural Association, etc.</p>
+                        <p>With over 350 volunteer hours, much of my service has been dedicated to improving the local environment, from beautification projects to supporting sustainable food practices. I've organized river clean-up days and led workshops on composting for local residents.</p>
+                        <ul>
+                            <li>Organized Olentangy River clean-up (2025)</li>
+                            <li>Led community composting workshop (2024)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <h4><i class="fa-solid fa-palette"></i> Lima Mural Association</h4>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Role:</strong> Volunteer Artist & Coordinator</p>
+                        <p>Volunteered to paint public murals focused on environmental themes, helping to beautify the city while raising awareness about local ecology.</p>
+                    </div>
+                </div>
+                
+                </section>
+            
+            <a href="/index.html#community-projects" class="back-link">&larr; Back to Main Projects</a>
+        </main>
+    </div>
     
     <script src="/script.js"></script>
 </body>
 </html>
-

@@ -186,7 +186,31 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             updateCardStack(0); // Initialize the first card
         }
+// --- Community Page Accordion Logic ---
+        const accordions = document.querySelectorAll('.accordion-item');
 
+        accordions.forEach(item => {
+            const title = item.querySelector('.accordion-title');
+            
+            if (title) {
+                title.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    const isOpen = item.classList.contains('active');
+
+                    // --- BEHAVIOR CHOICE ---
+                    // 1. To let MULTIPLE items be open at once (toggle):
+                    item.classList.toggle('active');
+
+                    // 2. To open ONLY ONE item at a time (accordion):
+                    // accordions.forEach(otherItem => {
+                    //     otherItem.classList.remove('active');
+                    // });
+                    // if (!isOpen) {
+                    //     item.classList.add('active');
+                    // }
+                });
+            }
+        });
         // --- Fade-in on Scroll for Timeline Items ---
         const timelineItems = document.querySelectorAll('.timeline-item');
         if (timelineItems.length > 0) {

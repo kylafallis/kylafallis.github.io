@@ -4,57 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community: Political Advocacy</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <div id="sidebar-placeholder"></div>
-    <div id="overlay"></div>
-    <div id="menu-icon">&#9776;</div>
     
-    <header id="banner" class="project-header advocacy-header">
-        <h1>Political Advocacy & Civic Engagement</h1>
-        <p class="subtitle">Using my voice and skills to advocate for policy change and participate in student governance.</p>
-    </header>
+    <div id="page-transition-overlay"></div>
 
-    <main class="project-page-content">
-        <div class="two-column-advocacy-layout">
-            <!-- Left Column: Philosophy -->
-            <div class="advocacy-philosophy">
+    <div id="page-content">
+        <div id="menu-icon">&#9776;</div>
+        <div id="overlay"></div>
+        <div id="sidebar-placeholder"></div>
+        
+        <header id="banner" class="project-header">
+            <h1>Political Advocacy & Civic Engagement</h1>
+            <p class="subtitle">Using my voice and skills to advocate for policy change and participate in student governance.</p>
+        </header>
+
+        <main class="project-page-content">
+            
+            <div class="column-text" style="max-width: 800px; margin: 0 auto;">
                 <h3>My Approach to Advocacy</h3>
                 <p>I believe that meaningful change begins with active participation. My goal in any advocacy or governance role is to use evidence-based arguments and collaborative dialogue to represent my community's interests and work towards a more equitable and sustainable future.</p>
-                <div class="pull-quote">
-                    "Engaging directly with policymakers to effect change."
-                </div>
+                <blockquote>"Engaging directly with policymakers to effect change."</blockquote>
             </div>
 
-            <!-- Right Column: Experiences -->
-            <div class="advocacy-experiences">
-                <article class="advocacy-card">
-                    <div class="advocacy-card-icon">
-                        <i class="fa-solid fa-landmark"></i>
+            <section class="accordion-section">
+                
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <h4><i class="fa-solid fa-landmark"></i> Ohio Academy of Science Senate Delegate</h4>
+                        <span class="accordion-icon">+</span>
                     </div>
-                    <div class="advocacy-card-content">
-                        <h4>Ohio Academy of Science Senate Delegate</h4>
-                        <p class="honor-meta"><strong>Role:</strong> Delegate | <strong>Date:</strong> 2025</p>
+                    <div class="accordion-content">
+                        <p><strong>Role:</strong> Delegate | <strong>Date:</strong> 2025</p>
                         <p>I was selected to represent the Ohio Academy of Science and testify before the Ohio Senate. I presented arguments and advocated for increased state funding for scientific initiatives and student research programs.</p>
                     </div>
-                </article>
-                <article class="advocacy-card">
-                    <div class="advocacy-card-icon">
-                        <i class="fa-solid fa-person-chalkboard"></i>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <h4><i class="fa-solid fa-person-chalkboard"></i> Student Council Secretary</h4>
+                        <span class="accordion-icon">+</span>
                     </div>
-                    <div class="advocacy-card-content">
-                        <h4>Student Council Secretary</h4>
-                        <p class="honor-meta"><strong>Role:</strong> Secretary | <strong>Date:</strong> 2023 - 2025</p>
+                    <div class="accordion-content">
+                        <p><strong>Role:</strong> Secretary | <strong>Date:</strong> 2023 - 2025</p>
                         <p>As Secretary, I was responsible for documenting meetings, managing official communications, and helping to organize school-wide events. This role provided valuable experience in governance, organization, and representing my peers.</p>
                     </div>
-                </article>
-            </div>
-        </div>
-<a href="/index.html#community-projects" class="back-link">&larr; Back to Main Projects</a>
-    </main>
+                </div>
+
+            </section>
+            
+            <a href="/index.html#community-projects" class="back-link">&larr; Back to Main Projects</a>
+        </main>
+    </div>
     
     <script src="/script.js"></script>
 </body>
