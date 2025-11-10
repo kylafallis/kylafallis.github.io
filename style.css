@@ -74,7 +74,34 @@ a {
     margin: 0.8em 0;
 }
 
-/* === LOADER AND BENTO BOX INTRO === */
+/* === PAGE TRANSITION OVERLAY (CIRCLE WIPE) === */
+#page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    background-color: var(--dark-green-bg);
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+body.is-loading #page-transition-overlay {
+    clip-path: circle(100% at 50% 50%);
+    transition: none;
+}
+
+body.is-loaded #page-transition-overlay {
+    clip-path: circle(0% at 50% 50%);
+}
+
+body.is-transitioning #page-transition-overlay {
+    clip-path: circle(100% at 50% 50%);
+}
+
+/* === LOADER (FOR FIRST-TIME VISIT) === */
 #loader {
     position: fixed;
     top: 0;
@@ -118,6 +145,7 @@ a {
     display: none;
 }
 
+/* === BENTO BOX INTRO === */
 .welcome-container {
     display: flex;
     flex-direction: column;
@@ -327,21 +355,22 @@ a {
 
 /* === SOFTWARE & DESIGN TWO-COLUMN SECTION === */
 .projects-two-col-section {
-    max-width: 1200px; /* Make this section a bit wider */
+    max-width: 1200px;
     margin: 4em auto;
     padding: 0 2em;
 }
 
 .projects-two-col-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: 3em; /* Space between the columns */
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
 }
 
-/* This overrides the default "text-align: center" on your H2s */
 .project-column h2 {
     text-align: left;
 }
+
+/* === PROJECT LIST (LARGE TYPE WATERFALL) === */
 .project-list-container {
     border-top: 2px solid var(--light-sage);
 }
@@ -418,7 +447,315 @@ a {
     color: white;
 }
 
-/* === STYLES FOR INDIVIDUAL PROJECT PAGES === */
+/* === AREAS OF FOCUS (HOVER-REVEAL GRID) === */
+.research-grid-section {
+    max-width: 1200px;
+    margin: 4em auto;
+    padding: 0 2em;
+    text-align: center;
+}
+
+.research-grid-section .section-description {
+    font-size: 1.15rem;
+    color: #555;
+    margin-top: -0.5em;
+    margin-bottom: 3em;
+}
+
+.research-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+}
+
+.research-card {
+    display: block;
+    position: relative;
+    height: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 4px 15px var(--light-shadow);
+}
+
+.research-card-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--dark-green-bg);
+    opacity: 0.5;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.research-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 1.5em;
+    background-color: var(--card-green-1);
+    transition: background-color 0.4s ease;
+}
+
+.research-card-content h3 {
+    font-size: 1.75rem;
+    color: var(--dark-text);
+    margin: 0 0 0.5em 0;
+    transition: color 0.4s ease;
+}
+
+.research-card-content .research-card-tag {
+    font-weight: 600;
+    color: var(--dark-text);
+    opacity: 0.7;
+    transition: all 0.4s ease;
+}
+
+.research-card-content .research-card-button {
+    font-weight: 700;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    margin-top: 1em;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.research-card:hover .research-card-content {
+    background-color: transparent;
+}
+
+.research-card:hover .research-card-bg-image {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.research-card:hover .research-card-content h3,
+.research-card:hover .research-card-content .research-card-tag {
+    color: white;
+    opacity: 1;
+}
+
+.research-card:hover .research-card-content .research-card-button {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === COMMUNITY SPLIT SECTION === */
+.community-split-section {
+    background-color: var(--off-white);
+    padding: 4em 2em;
+    overflow: hidden;
+}
+
+.split-layout-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 3em;
+}
+
+.split-layout-left {
+    flex-basis: 40%;
+}
+
+.community-nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 2em;
+}
+
+.community-nav-item {
+    font-family: var(--heading-font);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--dark-text);
+    text-decoration: none;
+    display: block;
+    padding: 0.75em 0;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.community-nav-item:hover {
+    opacity: 0.75;
+}
+
+.community-nav-item.active {
+    opacity: 1.0;
+}
+
+.split-layout-right {
+    flex-basis: 60%;
+    min-height: 450px;
+}
+
+.card-shuffle-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.shuffle-card {
+    position: absolute;
+    width: 100%;
+    height: 450px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background-color: var(--dark-green-bg);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    transform: rotate(5deg) translateY(30px) scale(0.9);
+}
+
+.shuffle-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+.shuffle-card.active {
+    opacity: 1;
+    z-index: 10;
+    transform: rotate(0deg) translateY(0) scale(1);
+}
+
+.shuffle-card.next-1 {
+    opacity: 0.7;
+    z-index: 9;
+    transform: rotate(2deg) translateY(10px) scale(0.98);
+}
+
+.shuffle-card.next-2 {
+    opacity: 0.4;
+    z-index: 8;
+    transform: rotate(4deg) translateY(20px) scale(0.96);
+}
+
+.shuffle-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 2em;
+    color: white;
+}
+
+.shuffle-card-content h3 {
+    font-size: 2rem;
+    color: white;
+    margin: 0 0 1em 0;
+}
+
+.shuffle-card-content .button {
+    display: inline-block;
+    background-color: var(--dark-sage);
+    color: white;
+    padding: 0.7em 1.5em;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.shuffle-card-content .button:hover {
+    background-color: var(--light-sage);
+}
+
+/* === AWARDS & HONORS (HOVER-REVEAL GRID) === */
+.recognition-section {
+    padding: 3em 1em;
+    background-color: var(--off-white);
+}
+
+.recognition-grid-three-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.award-card {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    min-height: 350px;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: var(--card-green-1);
+    transition: background-color 0.4s ease;
+}
+
+.award-card:hover {
+    background-color: var(--card-green-2);
+}
+
+.award-card h3 {
+    color: var(--dark-text);
+    text-align: center;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    right: 2rem;
+    transform: translateY(-50%);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.award-card-content {
+    padding-top: 5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease 0.1s;
+}
+
+.award-card:hover h3 {
+    top: 2rem;
+    transform: translateY(0);
+}
+
+.award-card:hover .award-card-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.award-card-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.award-card-content li {
+    color: var(--dark-text);
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid rgba(55, 61, 32, 0.2);
+    padding-bottom: 0.5em;
+}
+
+.award-card-content .click-hint {
+    display: block;
+    text-align: center;
+    margin-top: 1.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--dark-text);
+    font-size: 0.9rem;
+}
+
+/* === STYLES FOR SUB-PAGES (PROJECTS, DESIGN, ETC.) === */
 .project-header {
     text-align: center;
     border-bottom: 1px solid var(--light-sage);
@@ -428,7 +765,7 @@ a {
 
 .project-header .subtitle {
     font-size: 1.2em;
-    color: var(--text-light);
+    color: var(--text-light); /* This color won't work on --off-white */
     max-width: 600px;
     margin: 0.5em auto 0 auto;
 }
@@ -496,13 +833,6 @@ a {
     color: var(--dark-sage);
 }
 
-.button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    margin-bottom: 1.5em;
-}
-
 .button {
     display: block;
     text-align: center;
@@ -525,16 +855,6 @@ a {
     border: 2px solid var(--dark-sage);
 }
 
-pre {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
-    border-radius: 8px;
-    padding: 1em;
-    overflow-x: auto;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9em;
-}
-
 .back-link {
     display: block;
     text-align: center;
@@ -543,7 +863,7 @@ pre {
     color: var(--dark-sage);
 }
 
-/* === STYLES FOR PHYSICAL DESIGN PAGES === */
+/* === SUB-PAGE: PHYSICAL DESIGN (TIMELINE, ETC.) === */
 .design-header {
     position: relative;
     background-size: cover;
@@ -602,17 +922,6 @@ pre {
 
 .feature-item h4 {
     margin: 0.5em 0;
-}
-
-.design-process-section {
-    max-width: 800px;
-    margin: 4em auto;
-    padding: 0 1em;
-}
-
-.design-process-section h2 {
-    text-align: center;
-    margin-bottom: 2em;
 }
 
 .timeline {
@@ -684,6 +993,135 @@ pre {
 }
 
 .specs-list li strong {
+    color: var(--dark-sage);
+}
+
+/* === SUB-PAGE: ACCORDION LISTS (COMMUNITY) === */
+.accordion-section {
+    max-width: 800px;
+    margin: 2em auto 0 auto;
+    border-top: 2px solid var(--light-sage);
+}
+
+.accordion-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.accordion-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em 1em;
+    cursor: pointer;
+}
+
+.accordion-title h4 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--dark-text);
+}
+
+.accordion-title h4 i {
+    margin-right: 0.75em;
+    color: var(--dark-sage);
+    width: 20px;
+}
+
+.accordion-icon {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--dark-sage);
+    transition: transform 0.3s ease;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 1em;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-in, padding 0.3s ease-out;
+}
+
+.accordion-content p {
+    margin-bottom: 1em;
+}
+
+.accordion-content ul {
+    list-style-type: disc;
+    padding-left: 2em;
+    margin-bottom: 1em;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 500px;
+    opacity: 1;
+    padding: 0 1em 1.5em 1em;
+}
+
+blockquote {
+    font-family: var(--heading-font);
+    font-size: 1.25rem;
+    color: var(--dark-sage);
+    border-left: 4px solid var(--light-sage);
+    padding-left: 1em;
+    margin: 1.5em 0;
+}
+
+/* === SUB-PAGE: MASTER LIST GRIDS (RESEARCH) === */
+.project-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2em;
+    max-width: 1200px;
+    margin: 2em auto 0 auto;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--light-shadow);
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.project-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    color: var(--dark-text);
+    padding: 1em 1.25em 0.5em 1.25em;
+    margin: 0;
+}
+
+.project-card .project-description {
+    font-size: 1rem;
+    color: #555;
+    padding: 0 1.25em 1.5em 1.25em;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.project-card .card-button {
+    display: block;
+    text-align: right;
+    padding: 0 1.5em 1.5em 1.5em;
+    font-weight: 700;
     color: var(--dark-sage);
 }
 
@@ -844,577 +1282,17 @@ pre {
     padding-left: 40px;
 }
 
-/* === AWARDS & HONORS (HOVER-REVEAL GRID) === */
-.recognition-section {
-    padding: 3em 1em;
-    background-color: var(--off-white);
-}
-
-.recognition-grid-three-col {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2em;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.award-card {
-    display: block;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    min-height: 350px;
-    padding: 2rem;
-    border-radius: 12px;
-    background-color: var(--card-green-1);
-    transition: background-color 0.4s ease;
-}
-
-.award-card:hover {
-    background-color: var(--card-green-2);
-}
-
-.award-card h3 {
-    color: var(--dark-text);
-    text-align: center;
-    font-size: 1.5rem;
-    position: absolute;
-    top: 50%;
-    left: 2rem;
-    right: 2rem;
-    transform: translateY(-50%);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.award-card-content {
-    padding-top: 5rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease 0.1s;
-}
-
-.award-card:hover h3 {
-    top: 2rem;
-    transform: translateY(0);
-}
-
-.award-card:hover .award-card-content {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.award-card-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.award-card-content li {
-    color: var(--dark-text);
-    margin-bottom: 0.5em;
-    border-bottom: 1px solid rgba(55, 61, 32, 0.2);
-    padding-bottom: 0.5em;
-}
-
-.award-card-content .click-hint {
-    display: block;
-    text-align: center;
-    margin-top: 1.5em;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--dark-text);
-    font-size: 0.9rem;
-}
-
-/* === COMMUNITY SPLIT SECTION === */
-.community-split-section {
-    background-color: var(--off-white);
-    padding: 4em 2em;
-    overflow: hidden;
-}
-
-.split-layout-container {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 3em;
-}
-
-.split-layout-left {
-    flex-basis: 40%;
-}
-
-.community-nav ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 2em;
-}
-
-.community-nav-item {
-    font-family: var(--heading-font);
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: var(--dark-text);
-    text-decoration: none;
-    display: block;
-    padding: 0.75em 0;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-}
-
-.community-nav-item:hover {
-    opacity: 0.75;
-}
-
-.community-nav-item.active {
-    opacity: 1.0;
-}
-
-.split-layout-right {
-    flex-basis: 60%;
-    min-height: 450px;
-}
-
-.card-shuffle-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.shuffle-card {
-    position: absolute;
-    width: 100%;
-    height: 450px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    background-color: var(--dark-green-bg);
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    opacity: 0;
-    transform: rotate(5deg) translateY(30px) scale(0.9);
-}
-
-.shuffle-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.5;
-}
-
-.shuffle-card.active {
-    opacity: 1;
-    z-index: 10;
-    transform: rotate(0deg) translateY(0) scale(1);
-}
-
-.shuffle-card.next-1 {
-    opacity: 0.7;
-    z-index: 9;
-    transform: rotate(2deg) translateY(10px) scale(0.98);
-}
-
-.shuffle-card.next-2 {
-    opacity: 0.4;
-    z-index: 8;
-    transform: rotate(4deg) translateY(20px) scale(0.96);
-}
-
-.shuffle-card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 2em;
-    color: white;
-}
-
-.shuffle-card-content h3 {
-    font-size: 2rem;
-    color: white;
-    margin: 0 0 1em 0;
-}
-
-.shuffle-card-content .button {
-    display: inline-block;
-    background-color: var(--dark-sage);
-    color: white;
-    padding: 0.7em 1.5em;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-    font-weight: bold;
-}
-
-.shuffle-card-content .button:hover {
-    background-color: var(--light-sage);
-}
-
-/* === RESEARCH FLIP GRID SECTION === */
-.research-flip-grid-section {
-    max-width: 1200px;
-    margin: 4em auto;
-    padding: 0 2em;
-    text-align: center;
-}
-
-.research-flip-grid-section .section-description {
-    font-size: 1.15rem;
-    color: #555;
-    margin-top: -0.5em;
-    margin-bottom: 3em;
-}
-
-.flip-grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2em;
-    perspective: 1000px;
-}
-
-.flip-card {
-    background-color: transparent;
-    width: 100%;
-    height: 250px;
-    border-radius: 12px;
-    /* We add box-shadow to the inner card to avoid flicker on flip */
-    transition: transform 0.6s;
-    position: relative;
-    cursor: pointer;
-}
-
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    border-radius: inherit;
-    /* Add the shadow here */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* Hide the back of the card when flipped */
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1.5em;
-    border-radius: inherit;
-    
-    /* --- THIS IS THE FIX --- */
-    box-sizing: border-box; 
-}
-
-.flip-card-front {
-    background-color: var(--off-white);
-    color: var(--dark-text);
-}
-
-.flip-card-front h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5em;
-    line-height: 1.3;
-}
-
-.flip-card-front .card-type {
-    font-size: 0.95rem;
-    color: #888;
-    margin-bottom: 1em;
-}
-
-.flip-card-front i {
-    font-size: 2.5rem;
-    color: var(--dark-sage);
-}
-
-.flip-card-back {
-    background-color: var(--dark-sage);
-    color: white;
-    transform: rotateY(180deg);
-}
-
-.flip-card-back h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5em;
-    color: var(--light-sage);
-}
-
-.flip-card-back p {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1.5em;
-    max-height: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Renamed this to match your .button class */
-.flip-card-back .button {
-    padding: 0.6em 1.2em;
-    font-size: 0.9rem;
-    background-color: var(--light-sage);
-    border: none;
-    text-decoration: none;
-}
-
-.flip-card-back .button:hover {
-    background-color: var(--dark-text);
-}
-/* === PAGE TRANSITION OVERLAY (NEW: CIRCLE WIPE) === */
-#page-transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    pointer-events: none;
-    background-color: var(--dark-green-bg);
-    clip-path: circle(0% at 50% 50%);
-    transition: clip-path 0.8s cubic-bezier(0.86, 0, 0.07, 1);
-}
-
-body.is-loading #page-transition-overlay {
-    clip-path: circle(100% at 50% 50%);
-    transition: none;
-}
-
-body.is-loaded #page-transition-overlay {
-    clip-path: circle(0% at 50% 50%);
-}
-
-body.is-transitioning #page-transition-overlay {
-    clip-path: circle(100% at 50% 50%);
-}
-/* === EDITORIAL LIST STYLES (for Research Pages) === */
-.editorial-list-container {
-    max-width: 800px;
-    margin: 0 auto;
-    border-top: 2px solid var(--light-sage);
-}
-
-.editorial-list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2em;
-    padding: 2.5em 1em;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.editorial-list-text h3 {
-    font-size: 2rem;
-    color: var(--dark-text);
-    margin: 0 0 0.25em 0;
-}
-
-.editorial-list-text p {
-    font-size: 1.1rem;
-    color: #555;
-    margin: 0;
-}
-
-.editorial-list-item .button {
-    flex-shrink: 0; /* Stops the button from shrinking */
-}
-
-.editorial-list-item .button i {
-    margin-left: 0.5em;
-}
-/* === PROJECT CARD GRID (for Master List Pages) === */
-
-.project-card-grid {
-    display: grid;
-    /* This creates 1, 2, or 3 columns based on screen width */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2em;
-    max-width: 1200px;
-    margin: 2em auto 0 auto;
-}
-
-.project-card {
-    display: flex;
-    flex-direction: column; /* Stacks image, text, and button */
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px var(--light-shadow);
-    text-decoration: none;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-.project-card img {
-    width: 100%;
-    height: 220px; /* Gives all images a consistent height */
-    object-fit: cover;
-}
-
-.project-card h3 {
-    font-size: 1.5rem;
-    color: var(--dark-text);
-    padding: 1em 1.25em 0.5em 1.25em;
-    margin: 0;
-}
-
-.project-card .project-description {
-    font-size: 1rem;
-    color: #555;
-    padding: 0 1.25em 1.5em 1.25em;
-    margin: 0;
-    flex-grow: 1; /* This makes all cards in a row the same height */
-}
-
-.project-card .card-button {
-    display: block;
-    text-align: right;
-    padding: 0 1.5em 1.5em 1.5em;
-    font-weight: 700;
-    color: var(--dark-sage);
-}
-/* === AREAS OF FOCUS (HOVER-REVEAL GRID) === */
-.research-grid-section {
-    max-width: 1200px;
-    margin: 4em auto;
-    padding: 0 2em;
-    text-align: center;
-}
-
-.research-grid-section .section-description {
-    font-size: 1.15rem;
-    color: #555;
-    margin-top: -0.5em;
-    margin-bottom: 3em;
-}
-
-.research-grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2em;
-}
-
-.research-card {
-    display: block;
-    position: relative;
-    height: 350px; /* Gives all cards a consistent height */
-    border-radius: 12px;
-    overflow: hidden; /* This is crucial */
-    text-decoration: none;
-    box-shadow: 0 4px 15px var(--light-shadow);
-}
-
-/* This is the background image */
-.research-card-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    
-    /* Dark overlay to make text readable */
-    background-color: var(--dark-green-bg); 
-    opacity: 0.5; 
-    
-    /* --- HOVER EFFECT --- */
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-/* This is the text content */
-.research-card-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-    padding: 1.5em;
-    
-    /* Default state: Solid color background */
-    background-color: var(--card-green-1);
-    
-    /* --- HOVER EFFECT --- */
-    transition: background-color 0.4s ease;
-}
-
-.research-card-content h3 {
-    font-size: 1.75rem;
-    color: var(--dark-text); /* Dark text on light card */
-    margin: 0 0 0.5em 0;
-    transition: color 0.4s ease;
-}
-
-.research-card-content .research-card-tag {
-    font-weight: 600;
-    color: var(--dark-text);
-    opacity: 0.7;
-    transition: all 0.4s ease;
-}
-
-/* This is the "View Projects" button, hidden by default */
-.research-card-content .research-card-button {
-    font-weight: 700;
-    color: white;
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    margin-top: 1em;
-    
-    /* --- HOVER EFFECT --- */
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s ease;
-}
-
-
-/* --- THE HOVER STATE --- */
-
-/* 1. Fade out the solid background color */
-.research-card:hover .research-card-content {
-    background-color: transparent;
-}
-
-/* 2. Fade in the background image */
-.research-card:hover .research-card-bg-image {
-    opacity: 0.8; /* Make it more visible */
-    transform: scale(1.05); /* Add a slight zoom */
-}
-
-/* 3. Change text to white */
-.research-card:hover .research-card-content h3,
-.research-card:hover .research-card-content .research-card-tag {
-    color: white;
-    opacity: 1;
-}
-
-/* 4. Fade in the button */
-.research-card:hover .research-card-content .research-card-button {
-    opacity: 1;
-    transform: translateY(0);
-}
 /* === RESPONSIVE STYLES === */
 @media (max-width: 900px) {
+    /* Stacks 2-column layouts */
     .two-column-layout,
-    .projects-two-col-grid { 
+    .projects-two-col-grid,
+    .split-layout-container { 
         grid-template-columns: 1fr;
+        flex-direction: column;
     }
+
+    /* Stacks bento grid */
     .grid-container {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -1434,12 +1312,6 @@ body.is-transitioning #page-transition-overlay {
     .grid-item h1 {
         font-size: 2rem;
     }
-    .two-column-layout {
-        grid-template-columns: 1fr;
-    }
-    .split-layout-container {
-        flex-direction: column;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1456,12 +1328,6 @@ body.is-transitioning #page-transition-overlay {
     .recognition-grid-three-col {
         grid-template-columns: 1fr;
     }
-    .featured-layout {
-        grid-template-columns: 1fr;
-    }
-    .flip-grid-container {
- 		grid-template-columns: 1fr;
- 	}
 }
 
 @media (max-width: 480px) {
@@ -1474,81 +1340,4 @@ body.is-transitioning #page-transition-overlay {
     .item-quote p {
         font-size: 1.2rem;
     }
-}
-/* === ACCORDION LIST STYLES === */
-.accordion-section {
-    max-width: 800px;
-    margin: 2em auto 0 auto; /* Adds space above */
-    border-top: 2px solid var(--light-sage);
-}
-
-.accordion-item {
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.accordion-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5em 1em;
-    cursor: pointer;
-}
-
-.accordion-title h4 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: var(--dark-text);
-}
-
-.accordion-title h4 i {
-    margin-right: 0.75em;
-    color: var(--dark-sage);
-    width: 20px; /* Gives icon space */
-}
-
-.accordion-icon {
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--dark-sage);
-    transition: transform 0.3s ease;
-}
-
-/* This is the content that's hidden/shown */
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    padding: 0 1em;
-    transition: max-height 0.4s ease-out, opacity 0.3s ease-in, padding 0.3s ease-out;
-}
-
-.accordion-content p {
-    margin-bottom: 1em;
-}
-
-.accordion-content ul {
-    list-style-type: disc;
-    padding-left: 2em;
-    margin-bottom: 1em;
-}
-
-/* --- Active (Open) State --- */
-.accordion-item.active .accordion-icon {
-    transform: rotate(45deg);
-}
-
-.accordion-item.active .accordion-content {
-    max-height: 500px; /* Set to a large enough value for your content */
-    opacity: 1;
-    padding: 0 1em 1.5em 1em;
-}
-
-/* A style for your "My Vision" blockquote */
-blockquote {
-    font-family: var(--heading-font);
-    font-size: 1.25rem;
-    color: var(--dark-sage);
-    border-left: 4px solid var(--light-sage);
-    padding-left: 1em;
-    margin: 1.5em 0;
 }

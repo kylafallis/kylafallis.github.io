@@ -8,19 +8,25 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         body.classList.add('is-loaded'); // Trigger the "animate-out"
         
+        // After animation, hide overlay so it doesn't block content
         setTimeout(() => {
             const overlay = document.getElementById('page-transition-overlay');
             if (overlay) {
                 overlay.style.display = 'none';
             }
-        }, 1000); // 1s = 0.6s transition + 0.4s delay
+        }, 1000); // This time should match your CSS transition time
     });
 
+    
+    // --- PART 2: INTERACTION INITIALIZER FUNCTION ---
+    // This function holds all event listeners that get set up 
+    // *after* the sidebar is loaded.
     function initializeAllInteractions() {
 
         // --- Handle Anchor Scroll on Page Load ---
+        // This checks if the URL has a # (e.g., /index.html#contact)
         if (window.location.hash) {
-            const targetId = window.location.hash.substring(1); // Get "contact"
+            const targetId = window.location.hash.substring(1);
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
@@ -86,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // --- Smooth Scrolling for Anchor Links ---
+        // This handles same-page anchors (e.g., in the Quick Links)
         document.querySelectorAll('a[href*="#"]').forEach(anchor => {
              anchor.addEventListener('click', function (e) {
                  const href = this.getAttribute('href');
@@ -121,42 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // --- Project List Accordion Logic ---
-        const projectItems = document.querySelectorAll('.project-list-item');
-        projectItems.forEach(item => {
-            const title = item.querySelector('h3');
-            if (title) {
-                title.addEventListener('click', (e) => {
-                    e.preventDefault(); 
-                    const isOpen = item.classList.contains('active');
-                    projectItems.forEach(otherItem => {
-                        otherItem.classList.remove('active');
-                    });
-                    if (!isOpen) {
-                        item.classList.add('active');
-                    }
-                });
-            }
-            
-            // --- THIS BLOCK IS NOW FIXED ---
-            const description = item.querySelector('p');
-            if(description) {
-                description.addEventListener('click', (e) => {
-                    e.preventDefault(); // Stop the parent <a> from firing
-                    e.stopPropagation(); // Stop the click from bubbling to the <h3>
-                    
-                    // Manually trigger the transition
-                    body.classList.add('is-transitioning'); 
-                    
-                    // Wait for animation, then go to the link
-                    setTimeout(() => {
-                        window.location.href = item.getAttribute('href');
-                    }, 1000); 
-                });
-                description.style.cursor = 'pointer'; 
-            }
-        });
-
         // --- Community Card Shuffle Logic ---
         const navItems = document.querySelectorAll('.community-nav-item');
         const cards = document.querySelectorAll('.shuffle-card');
@@ -186,32 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             updateCardStack(0); // Initialize the first card
         }
-// --- Community Page Accordion Logic ---
-        const accordions = document.querySelectorAll('.accordion-item');
 
-        accordions.forEach(item => {
-            const title = item.querySelector('.accordion-title');
-            
-            if (title) {
-                title.addEventListener('click', (e) => {
-                    e.preventDefault(); 
-                    const isOpen = item.classList.contains('active');
-
-                    // --- BEHAVIOR CHOICE ---
-                    // 1. To let MULTIPLE items be open at once (toggle):
-                    item.classList.toggle('active');
-
-                    // 2. To open ONLY ONE item at a time (accordion):
-                    // accordions.forEach(otherItem => {
-                    //     otherItem.classList.remove('active');
-                    // });
-                    // if (!isOpen) {
-                    //     item.classList.add('active');
-                    // }
-                });
-            }
-        });
-        // --- Fade-in on Scroll for Timeline Items ---
+        // --- Fade-in on Scroll for Timeline Items (on sub-pages) ---
         const timelineItems = document.querySelectorAll('.timeline-item');
         if (timelineItems.length > 0) {
             const observer = new IntersectionObserver(entries => {
@@ -225,33 +172,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { threshold: 0.1 });
             timelineItems.forEach(item => observer.observe(item));
         }
-    // --- Research Tab Logic ---
-            const researchTabs = document.querySelectorAll(".research-tab-btn");
-            const researchPanels = document.querySelectorAll(".research-tab-panel");
 
-            if (researchTabs.length > 0 && researchPanels.length > 0) {
-                researchTabs.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        // Remove 'active' from all buttons and panels
-                        researchTabs.forEach(b => b.classList.remove('active'));
-                        researchPanels.forEach(p => p.classList.remove('active'));
-
-                        // Add 'active' to the clicked button and its target panel
-                        btn.classList.add('active');
-                        const targetPanel = document.getElementById(btn.dataset.tab);
-                        if (targetPanel) {
-                            targetPanel.classList.add('active');
-                        }
-                    });
-                });
-            }        // --- PAGE TRANSITION (ANIMATE-IN ON CLICK) ---
+        // --- PAGE TRANSITION (ANIMATE-IN ON CLICK) ---
+        // This is the smart link handler
         const allLinks = document.querySelectorAll('a[href]');
 
         allLinks.forEach(link => {
             const href = link.getAttribute('href');
 
             // 1. IGNORE special links
-            if (href.startsWith('http') || 
+            if (!href || // Ignore links without an href
+                href.startsWith('http') || 
                 href.startsWith('//') || 
                 href.startsWith('mailto:') || 
                 href.startsWith('tel:') ||
