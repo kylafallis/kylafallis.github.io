@@ -1286,6 +1286,129 @@ body.is-transitioning #page-transition-overlay {
     font-weight: 700;
     color: var(--dark-sage);
 }
+/* === AREAS OF FOCUS (HOVER-REVEAL GRID) === */
+.research-grid-section {
+    max-width: 1200px;
+    margin: 4em auto;
+    padding: 0 2em;
+    text-align: center;
+}
+
+.research-grid-section .section-description {
+    font-size: 1.15rem;
+    color: #555;
+    margin-top: -0.5em;
+    margin-bottom: 3em;
+}
+
+.research-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+}
+
+.research-card {
+    display: block;
+    position: relative;
+    height: 350px; /* Gives all cards a consistent height */
+    border-radius: 12px;
+    overflow: hidden; /* This is crucial */
+    text-decoration: none;
+    box-shadow: 0 4px 15px var(--light-shadow);
+}
+
+/* This is the background image */
+.research-card-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    
+    /* Dark overlay to make text readable */
+    background-color: var(--dark-green-bg); 
+    opacity: 0.5; 
+    
+    /* --- HOVER EFFECT --- */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* This is the text content */
+.research-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 1.5em;
+    
+    /* Default state: Solid color background */
+    background-color: var(--card-green-1);
+    
+    /* --- HOVER EFFECT --- */
+    transition: background-color 0.4s ease;
+}
+
+.research-card-content h3 {
+    font-size: 1.75rem;
+    color: var(--dark-text); /* Dark text on light card */
+    margin: 0 0 0.5em 0;
+    transition: color 0.4s ease;
+}
+
+.research-card-content .research-card-tag {
+    font-weight: 600;
+    color: var(--dark-text);
+    opacity: 0.7;
+    transition: all 0.4s ease;
+}
+
+/* This is the "View Projects" button, hidden by default */
+.research-card-content .research-card-button {
+    font-weight: 700;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    margin-top: 1em;
+    
+    /* --- HOVER EFFECT --- */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+
+/* --- THE HOVER STATE --- */
+
+/* 1. Fade out the solid background color */
+.research-card:hover .research-card-content {
+    background-color: transparent;
+}
+
+/* 2. Fade in the background image */
+.research-card:hover .research-card-bg-image {
+    opacity: 0.8; /* Make it more visible */
+    transform: scale(1.05); /* Add a slight zoom */
+}
+
+/* 3. Change text to white */
+.research-card:hover .research-card-content h3,
+.research-card:hover .research-card-content .research-card-tag {
+    color: white;
+    opacity: 1;
+}
+
+/* 4. Fade in the button */
+.research-card:hover .research-card-content .research-card-button {
+    opacity: 1;
+    transform: translateY(0);
+}
 /* === RESPONSIVE STYLES === */
 @media (max-width: 900px) {
     .two-column-layout,
