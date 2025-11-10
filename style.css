@@ -325,13 +325,23 @@ a {
     transition: height 0.1s linear;
 }
 
-/* === PROJECT LIST (LARGE TYPE) === */
-.project-list-section {
-    max-width: 1000px;
+/* === SOFTWARE & DESIGN TWO-COLUMN SECTION === */
+.projects-two-col-section {
+    max-width: 1200px; /* Make this section a bit wider */
     margin: 4em auto;
     padding: 0 2em;
 }
 
+.projects-two-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 3em; /* Space between the columns */
+}
+
+/* This overrides the default "text-align: center" on your H2s */
+.project-column h2 {
+    text-align: left;
+}
 .project-list-container {
     border-top: 2px solid var(--light-sage);
 }
@@ -1065,7 +1075,7 @@ pre {
     width: 100%;
     height: 250px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* We add box-shadow to the inner card to avoid flicker on flip */
     transition: transform 0.6s;
     position: relative;
     cursor: pointer;
@@ -1079,6 +1089,8 @@ pre {
     transition: transform 0.6s;
     transform-style: preserve-3d;
     border-radius: inherit;
+    /* Add the shadow here */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .flip-card:hover .flip-card-inner {
@@ -1090,7 +1102,7 @@ pre {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Hide the back of the card when flipped */
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
@@ -1098,10 +1110,13 @@ pre {
     align-items: center;
     padding: 1.5em;
     border-radius: inherit;
+    
+    /* --- THIS IS THE FIX --- */
+    box-sizing: border-box; 
 }
 
 .flip-card-front {
-    background-color: var(--off-white); /* FIXED: Was --card-light-bg */
+    background-color: var(--off-white);
     color: var(--dark-text);
 }
 
@@ -1119,7 +1134,7 @@ pre {
 
 .flip-card-front i {
     font-size: 2.5rem;
-    color: var(--dark-sage); /* FIXED: Was --main-accent */
+    color: var(--dark-sage);
 }
 
 .flip-card-back {
@@ -1143,21 +1158,18 @@ pre {
     text-overflow: ellipsis;
 }
 
-.flip-card-back .button.button-small {
+/* Renamed this to match your .button class */
+.flip-card-back .button {
     padding: 0.6em 1.2em;
     font-size: 0.9rem;
-    background-color: var(--light-sage); /* FIXED: Was --main-accent */
-    color: white;
+    background-color: var(--light-sage);
     border: none;
-    border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
 }
 
-.flip-card-back .button.button-small:hover {
-    background-color: var(--dark-text); /* FIXED: Was --main-accent-dark */
+.flip-card-back .button:hover {
+    background-color: var(--dark-text);
 }
-
 /* === PAGE TRANSITION OVERLAY (NEW: CIRCLE WIPE) === */
 #page-transition-overlay {
     position: fixed;
@@ -1188,6 +1200,10 @@ body.is-transitioning #page-transition-overlay {
 
 /* === RESPONSIVE STYLES === */
 @media (max-width: 900px) {
+    .two-column-layout,
+    .projects-two-col-grid { 
+        grid-template-columns: 1fr;
+    }
     .grid-container {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
