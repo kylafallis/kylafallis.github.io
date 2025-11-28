@@ -151,8 +151,11 @@ body.is-transitioning #page-transition-overlay {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
+    padding-bottom: 3rem;
     padding-top: 1vh;
+    margin-bottom: 3rem;
     box-sizing: border-box;
     background-color: var(--dark-green-bg);
     opacity: 0;
@@ -378,7 +381,7 @@ body.is-transitioning #page-transition-overlay {
 .project-list-item {
     display: block;
     text-decoration: none;
-    color: var(--dark-text);
+    color: var(--light-text);
     padding: 3.5em 2em;
     border-bottom: 1px solid #e0e0e0;
     position: relative;
@@ -405,7 +408,7 @@ body.is-transitioning #page-transition-overlay {
 
 .project-list-item h3 {
     font-size: 3.5rem;
-    color: var(--dark-text);
+    color: var(--light-text);
     margin: 0 0 0.1em 0;
     line-height: 1.1;
     display: flex;
@@ -1339,5 +1342,20 @@ blockquote {
     }
     .item-quote p {
         font-size: 1.2rem;
+    }
+}
+/* This applies only to screens smaller than 768px (Tablets & Phones) */
+@media screen and (max-width: 768px) {
+    
+    .bento-grid-container {
+        grid-template-columns: 1fr;
+        
+        grid-template-rows: auto;
+        
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .bento-card {
+        min-height: 200px; /* Make them shorter if needed */
     }
 }
