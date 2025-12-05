@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The LYKA Lamp: Decentralized Bio-Energy</title>
-    <!-- NOTE: The 'Momo Trust Display' font is assumed to be imported by the provided style.css -->
-    <link rel="stylesheet" href="style.css"> 
+    <!-- FIX: Updated path to go up two directories (../../) to reach the style.css file in the repository root. -->
+    <link rel="stylesheet" href="../../style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -26,18 +26,18 @@
                 <div class="column-text">
                     <h3>About this Project: The Problem & Solution</h3>
                     <p>
-                        The LYKA Lamp is the world's first fully integrated consumer product powered by Microbial Fuel Cells (MFCs) that utilize **household compost**. It addresses the dual problems of energy scarcity (770 million people globally lack electricity) and the environmental burden of organic waste by creating a reliable, low-cost lighting source.
+                        The LYKA Lamp is the world's first fully integrated consumer product powered by Microbial Fuel Cells (MFCs) that utilize household compost. It addresses the dual problems of energy scarcity (770 million people globally lack electricity) and the environmental burden of organic waste by creating a reliable, low-cost lighting source.
                     </p>
                     <p>
-                        Through systematic optimization, we achieved a sustained power output sufficient to run a 9V LED bulb for **2.43 hours of continuous light** after charging. The system requires only compost (organic waste) and a low-cost initial investment to provide renewable, off-grid power.
+                        Through systematic optimization, we achieved a sustained power output sufficient to run a 9V LED bulb for 2.43 hours of continuous light after charging. The system requires only compost (organic waste) and a low-cost initial investment to provide renewable, off-grid power.
                     </p>
                      
                     <h3>Key Performance Metrics</h3>
                     <ul>
                         <li><strong>Optimal Output:</strong> 1.73 Watts (Achieved under optimal 12–18 month compost, Carbon Cloth, 1cm spacing).</li>
                         <li><strong>Energy Independence:</strong> 11.95 hours required to fully charge the battery for max runtime.</li>
-                        <li><strong>Economic Benefit:</strong> Average U.S. family saves **$128.76 annually** on energy costs.</li>
-                        <li><strong>Environmental ROI:</strong> Prevents **45,000 lbs** of $\text{CO}_2$-equivalent emissions per family annually.</li>
+                        <li><strong>Economic Benefit:</strong> Average U.S. family saves $128.76 annually on energy costs.</li>
+                        <li><strong>Environmental ROI:</strong> Prevents 45,000 lbs of $\text{CO}_2$-equivalent emissions per family annually.</li>
                     </ul>
 
                     <h3>Core Materials & Components</h3>
@@ -65,16 +65,16 @@
             <p class="section-description">The diagram below illustrates the path from microbial decomposition to usable light, facilitated by a custom electronic management system.</p>
             
             <div class="flow-diagram-container">
-                [Image of Flow chart of LYKA 1 software components]
+                <img src="" alt="MFC System Architecture Diagram" class="full-width-img flowchart-img">
                 <p class="caption">Figure 3: Flow chart of the LYKA 1 software components circuit architecture.</p>
             </div>
             
             <ul class="specs-list flowchart-list">
-                <li><strong>Energy Source:</strong> **Anode Chamber** where microbes decompose organic waste, releasing electrons ($\text{e}^-$).</li>
-                <li><strong>Harvesting Layer:</strong> Electrons are collected by **Carbon Cloth electrodes** and directed to the custom circuit.</li>
-                <li><strong>Conversion Layer:</strong> **LM2596 Buck Convertor** regulates and steps up the low, variable voltage/current.</li>
-                <li><strong>Persistence Layer:</strong> **TP4056 Charger Module** safely stores energy in the rechargeable battery.</li>
-                <li><strong>Presentation Layer:</strong> Stable power is delivered to the **9V LED Lightbulb**.</li>
+                <li><strong>Energy Source:</strong> Anode Chamber where microbes decompose organic waste, releasing electrons ($\text{e}^-$).</li>
+                <li><strong>Harvesting Layer:</strong> Electrons are collected by Carbon Cloth electrodes and directed to the custom circuit.</li>
+                <li><strong>Conversion Layer:</strong> LM2596 Buck Convertor regulates and steps up the low, variable voltage/current.</li>
+                <li><strong>Persistence Layer:</strong> TP4056 Charger Module safely stores energy in the rechargeable battery.</li>
+                <li><strong>Presentation Layer:</strong> Stable power is delivered to the 9V LED Lightbulb.</li>
             </ul>
         </div>
             
@@ -85,7 +85,7 @@
                     <div class="timeline-icon"><i class="fa-solid fa-flask"></i></div>
                     <div class="timeline-content">
                         <h4>1. Optimization Testing (Test 1)</h4>
-                        <p>Systematically tested variables: **Compost Age**, **Electrode Material**, and **Container Volume**. Identified the optimal combination (12–18 month compost, Carbon Cloth) necessary to achieve maximum power density (1.73 Watts). [Image of MFC Compost Age Optimization Chart]</p>
+                        <p>Systematically tested variables: Compost Age, Electrode Material, and Container Volume. Identified the optimal combination (12–18 month compost, Carbon Cloth) necessary to achieve maximum power density (1.73 Watts). </p>
                         <img src="PXL_20251019_170046139.MP.jpg" alt="Close-up of Carbon Cloth Electrode Material" class="timeline-img">
                         <p class="caption">Figure 4: Optimal Carbon Cloth electrode material used for its superior electron transfer capacity.</p>
                     </div>
@@ -94,7 +94,7 @@
                     <div class="timeline-icon"><i class="fa-solid fa-sliders"></i></div>
                     <div class="timeline-content">
                         <h4>2. Spacing Refinement (Test 2)</h4>
-                        <p>Refined the **Electrode Spacing** to 1 cm (the ideal distance for efficient proton transfer and resistance minimization). The final 3D-printed modular design was built to guarantee this exact spacing. [Image of 3D-printed modular structure]</p>
+                        <p>Refined the Electrode Spacing to 1 cm (the ideal distance for efficient proton transfer and resistance minimization). The final 3D-printed modular design was built to guarantee this exact spacing. </p>
                         <img src="PXL_20251019_170041054.MP.jpg" alt="3D-printed modular structure for precise electrode spacing" class="timeline-img">
                         <p class="caption">Figure 5: 3D-printed modular structures ensuring precise 1 cm electrode spacing.</p>
                     </div>
@@ -103,7 +103,7 @@
                     <div class="timeline-icon"><i class="fa-solid fa-lightbulb"></i></div>
                     <div class="timeline-content">
                         <h4>3. Final System Construction (Test 3)</h4>
-                        <p>Integrated the optimized MFC into the custom 3D-printed housing and constructed the **DC Step-up Converter** circuit to successfully power the 9V LED lightbulb, proving the system's practical feasibility.</p>
+                        <p>Integrated the optimized MFC into the custom 3D-printed housing and constructed the DC Step-up Converter circuit to successfully power the 9V LED lightbulb, proving the system's practical feasibility.</p>
                     </div>
                 </div>
             </div>
@@ -113,15 +113,16 @@
             <h2>Societal Impact (Part IV: Usefulness)</h2>
             <p class="section-description">The LYKA Lamp benefits society by addressing energy scarcity, mitigating climate change, and providing economic utility.</p>
             <ul class="specs-list">
-                <li><strong>Economic Utility:</strong> An average U.S. family can save \$128.76 annually. Widespread adoption could yield **\$12 billion** in national energy savings yearly.</li>
-                <li><strong>Global Accessibility:</strong> Provides a sustainable, low-cost lighting solution for the **770 Million+** individuals globally who lack access to conventional electricity.</li>
-                <li><strong>Environmental Impact:</strong> Offsets organic waste, which would otherwise release greenhouse gases. Scaling to 50% U.S. adoption could offset over **409 Million Metric Tons of $\text{CO}_2$ emissions** annually.</li>
+                <li><strong>Economic Utility:</strong> An average U.S. family can save $128.76 annually. Widespread adoption could yield <strong>$12 billion</strong> in national energy savings yearly.</li>
+                <li><strong>Global Accessibility:</strong> Provides a sustainable, low-cost lighting solution for the <strong>770 Million+</strong> individuals globally who lack access to conventional electricity.</li>
+                <li><strong>Environmental Impact:</strong> Offsets organic waste, which would otherwise release greenhouse gases. Scaling to 50% U.S. adoption could offset over <strong>409 Million Metric Tons of $\text{CO}_2$ emissions</strong> annually.</li>
             </ul>
         </div>
         
         <a href="#banner" class="back-link">&uarr; Back to Top</a>
     </main>
     
-    <script src="script.js"></script>
+    <!-- FIX: Updated script path to go up two directories (../../) -->
+    <script src="../../script.js"></script>
 </body>
 </html>
