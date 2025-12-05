@@ -1,133 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Project: WasteWise</title>
-    <link rel="stylesheet" href="/reset.css">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The LYKA Lamp: Decentralized Bio-Energy</title>
+    <!-- NOTE: The 'Momo Trust Display' font is assumed to be imported by the provided style.css -->
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-        <div id="sidebar-placeholder"></div>
-        <div id="overlay"></div>
-        <div id="menu-icon">&#9776;</div>
-    
-    <header id="banner" class="project-header">
-        <h1>WasteWise Live Analytics</h1>
-        <p class="project-dates">HackOHI/O [Date of Hackathon]</p>
-    </header>
+    <!-- Sidebar and Menu icons from template -->
+    <div id="sidebar-placeholder"></div>
+    <div id="overlay"></div>
+    <div id="menu-icon">&#9776;</div>
+    
+    <header id="banner" class="project-header">
+        <h1>The LYKA Lamp: Bio-Anodic Energy Solution</h1>
+        <p class="project-dates">National Young Inventors Entry 2025</p>
+    </header>
 
-    <main class="project-page-content">
-        <div class="card">
-            <h2>Project Overview</h2>
-            <div class="two-column-layout">
-                <div class="column-text">
-                    <h3>About this Project: The Problem & Solution</h3>
-                    <p>
-                        WasteWise Live Analytics is a full-stack, AI-driven platform built to address the critical environmental problem of **methane emissions** resulting from improperly sorted landfill waste. We deployed a reliable, low-cost system to provide facilities with **real-time item-level metrics** necessary for operating modern robotic sorting systems.
+    <main class="project-page-content">
+        <div class="card">
+            <h2>Project Overview (Part III: Description of Invention)</h2>
+            <div class="two-column-layout">
+                <div class="column-text">
+                    <h3>About this Project: The Problem & Solution</h3>
+                    <p>
+                        The LYKA Lamp is the world's first fully integrated consumer product powered by Microbial Fuel Cells (MFCs) that utilize **household compost**. It addresses the dual problems of energy scarcity (770 million people globally lack electricity) and the environmental burden of organic waste by creating a reliable, low-cost lighting source.
                     </p>
                     <p>
-                        We successfully pivoted from a simple classification model to a robust **YOLOv8 Instance Segmentation** model, which was necessary to quantify and count multiple overlapping items in a video stream. The final deployment provides direct **environmental ROI** ($\text{kg}$ $\text{CO}_2$ avoided) alongside operational data.
+                        Through systematic optimization, we achieved a sustained power output sufficient to run a 9V LED bulb for **2.43 hours of continuous light** after charging. The system requires only compost (organic waste) and a low-cost initial investment to provide renewable, off-grid power.
                     </p>
-                    
-                    <h3>Key Features</h3>
-                    <ul>
-                        <li>**Live Item Counting & Segmentation:** Uses YOLOv8 to obtain **pixel masks** for accurate counting of items (Plastic, Metal, Organic, Glass).</li>
-                        <li>**Robust Cloud Bridge:** Deploys **ngrok tunneling** to feed the private IP camera stream to the public Colab VM.</li>
-                        <li>**Bias Mitigation & Failover:** Includes software-level bias correction and a **guaranteed mock output** to ensure the live dashboard never fails.</li>
-                    </ul>
-
-                    <h3>Technologies Used</h3>
-                    <ul>
-                        <li>**Machine Learning:** YOLOv8n-seg (Instance Segmentation), PyTorch</li>
-                        <li>**Data & Cloud:** Firebase Firestore (Live DB), Google Colab (VM), `pyngrok` (Tunneling)</li>
+                     
+                    <h3>Key Performance Metrics</h3>
+                    <ul>
+                        <li><strong>Optimal Output:</strong> 1.73 Watts (Achieved under optimal 12–18 month compost, Carbon Cloth, 1cm spacing).</li>
+                        <li><strong>Energy Independence:</strong> 11.95 hours required to fully charge the battery for max runtime.</li>
+                        <li><strong>Economic Benefit:</strong> Average U.S. family saves **$128.76 annually** on energy costs.</li>
+                        <li><strong>Environmental ROI:</strong> Prevents **45,000 lbs** of $\text{CO}_2$-equivalent emissions per family annually.</li>
                     </ul>
-                </div>
-                <div class="column-visual">
-                    <a href="[link-to-live-demo-or-github]" class="button">View Live Dashboard</a>
-                    <h3>Code Snippet (Data Serialization Fix)</h3>
-                    <pre><code>// Python fix to guarantee Firebase data integrity
-upload_data = {
-    'timestamp': firestore.SERVER_TIMESTAMP,
-    'total_items_count': float(total_items), 
-    
-    // Explicitly cast Counter values to float for DB
-    'item_distribution_count': { 
-        cls: float(count) for cls, count in aggregated_item_counts.items()
-    },
-    
-    'total_mass_kg_MOCK': float(total_mass), 
-}</code></pre>
-                </div>
-            </div>
-                     </div> 
+
+                    <h3>Core Materials & Components</h3>
+                    <ul>
+                        <li><strong>Containment:</strong> 3D-printed ABS filament housing (ensures 1L volume, structural integrity).</li>
+                        <li><strong>Electrodes:</strong> Optimized Carbon Cloth and Copper Wire.</li>
+                        <li><strong>Electronics:</strong> LM2596 Buck Power Convertor (step-up DC), TP4056 Charger Module (battery management).</li>
+                    </ul>
+                </div>
+                <div class="column-visual">
+                    <a href="LYKA 2.mp4" class="button">View 3D Exploded Render</a>
+                    <h3>Product Prototype</h3>
+                    <img src="PXL_20251019_170021290.jpg" alt="Final assembled LYKA Lamp prototype" class="full-width-img">
+                    <p class="caption">Figure 1: The final product prototype (Test 3 construction).</p>
+                    
+                    <h3>Circuit Detail</h3>
+                    <img src="PXL_20251019_170111099.MP.jpg" alt="Custom circuit board with LM2596 and TP4056 modules" class="full-width-img">
+                    <p class="caption">Figure 2: Custom DC Step-up Converter and PCB that harvest and store power.</p>
+                </div>
+            </div>
+        </div> 
 
         <div class="specs-section">
-            <h2>System Architecture: The Data Flow</h2>
-            <p class="section-description">This diagram illustrates the journey of a single frame from the conveyor belt to the live web dashboard.</p>
+            <h2>System Architecture: The MFC Energy Flow</h2>
+            <p class="section-description">The diagram below illustrates the path from microbial decomposition to usable light, facilitated by a custom electronic management system.</p>
             
             <div class="flow-diagram-container">
-                
+                [Image of Flow chart of LYKA 1 software components]
+                <p class="caption">Figure 3: Flow chart of the LYKA 1 software components circuit architecture.</p>
             </div>
             
             <ul class="specs-list flowchart-list">
-                <li><strong>Source Layer:</strong> **Mobile Phone / IP Webcam** captures image frames.</li>
-                <li><strong>Network Layer:</strong> **Ngrok Tunnel** exposes the frame via a public HTTPS URL.</li>
-                <li><strong>Processing Layer (Colab):</strong> Python retrieves the frame, runs **YOLOv8 Segmentation** for object counting.</li>
-                <li><strong>Persistence Layer:</strong> Aggregated data is pushed to **Firebase Firestore**.</li>
-                <li><strong>Presentation Layer:</strong> The **GitHub Pages website** consumes the data via the Firebase SDK and updates the charts instantly.</li>
+                <li><strong>Energy Source:</strong> **Anode Chamber** where microbes decompose organic waste, releasing electrons ($\text{e}^-$).</li>
+                <li><strong>Harvesting Layer:</strong> Electrons are collected by **Carbon Cloth electrodes** and directed to the custom circuit.</li>
+                <li><strong>Conversion Layer:</strong> **LM2596 Buck Convertor** regulates and steps up the low, variable voltage/current.</li>
+                <li><strong>Persistence Layer:</strong> **TP4056 Charger Module** safely stores energy in the rechargeable battery.</li>
+                <li><strong>Presentation Layer:</strong> Stable power is delivered to the **9V LED Lightbulb**.</li>
+            </ul>
+        </div>
+            
+        <div class="design-process-section">
+            <h2>The Engineering Journey: Optimization & Construction</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div class="timeline-content">
+                        <h4>1. Optimization Testing (Test 1)</h4>
+                        <p>Systematically tested variables: **Compost Age**, **Electrode Material**, and **Container Volume**. Identified the optimal combination (12–18 month compost, Carbon Cloth) necessary to achieve maximum power density (1.73 Watts). [Image of MFC Compost Age Optimization Chart]</p>
+                        <img src="PXL_20251019_170046139.MP.jpg" alt="Close-up of Carbon Cloth Electrode Material" class="timeline-img">
+                        <p class="caption">Figure 4: Optimal Carbon Cloth electrode material used for its superior electron transfer capacity.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <div class="timeline-content">
+                        <h4>2. Spacing Refinement (Test 2)</h4>
+                        <p>Refined the **Electrode Spacing** to 1 cm (the ideal distance for efficient proton transfer and resistance minimization). The final 3D-printed modular design was built to guarantee this exact spacing. [Image of 3D-printed modular structure]</p>
+                        <img src="PXL_20251019_170041054.MP.jpg" alt="3D-printed modular structure for precise electrode spacing" class="timeline-img">
+                        <p class="caption">Figure 5: 3D-printed modular structures ensuring precise 1 cm electrode spacing.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <div class="timeline-content">
+                        <h4>3. Final System Construction (Test 3)</h4>
+                        <p>Integrated the optimized MFC into the custom 3D-printed housing and constructed the **DC Step-up Converter** circuit to successfully power the 9V LED lightbulb, proving the system's practical feasibility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="specs-section">
+            <h2>Societal Impact (Part IV: Usefulness)</h2>
+            <p class="section-description">The LYKA Lamp benefits society by addressing energy scarcity, mitigating climate change, and providing economic utility.</p>
+            <ul class="specs-list">
+                <li><strong>Economic Utility:</strong> An average U.S. family can save \$128.76 annually. Widespread adoption could yield **\$12 billion** in national energy savings yearly.</li>
+                <li><strong>Global Accessibility:</strong> Provides a sustainable, low-cost lighting solution for the **770 Million+** individuals globally who lack access to conventional electricity.</li>
+                <li><strong>Environmental Impact:</strong> Offsets organic waste, which would otherwise release greenhouse gases. Scaling to 50% U.S. adoption could offset over **409 Million Metric Tons of $\text{CO}_2$ emissions** annually.</li>
             </ul>
         </div>
         
-                <div class="design-process-section">
-            <h2>The Engineering Journey</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fa-solid fa-code-branch"></i></div>
-                    <div class="timeline-content">
-                        <h4>1. Model Training & Pivot</h4>
-                        <p>Pivoted from basic Classification to **YOLOv8 Instance Segmentation**. Trained the model on an annotated dataset to achieve **$\text{mAP} \approx 80\%$** accuracy on item detection.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                    <div class="timeline-content">
-                        <h4>2. Live Data Capture & Processing</h4>
-                        <p>Used **IP Webcam** and **ngrok tunneling** to feed frames to the Colab VM. The ML model analyzed frames for counts and simulated mass for impact metrics.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fa-solid fa-database"></i></div>
-                    <div class="timeline-content">
-                        <h4>3. Cloud Push (Data Aggregation)</h4>
-                        <p>Aggregated item counts and impact data were pushed every 10 seconds to the **Firebase Firestore** collection, ensuring data integrity through **explicit float casting**.</p>
-                </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fa-solid fa-chart-bar"></i></div>
-                    <div class="timeline-content">
-                        <h4>4. Frontend Deployment & Live Visualization</h4>
-                        <p>The data from Firebase **automatically updated the GitHub Pages website**, providing the final, continuous visualization of composition and impact metrics.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="specs-section">
-    <h2>Key Specifications</h2>
-    <ul class="specs-list">
-        <li><strong>Primary AI Model:</strong> YOLOv8n-seg (Instance Segmentation)</li>
-        <li><strong>Core Metric:</strong> Item Count / Percent Composition</li>
-        <li><strong>Estimated Performance:</strong> $\text{mAP50-95} \approx 80.2\%$, $\text{Mask mAP50} \approx 87.9\%$</li>
-        <li><strong>Deployment Target:</strong> GitHub Pages (Frontend)</li>
-    </ul>
-        <p class="final-note">
-            **Real-World Integration:** The system is engineered to be deployed on an edge device (e.g., Jetson Nano) over a conveyor belt, providing the item count and coordinates necessary to drive **robotic pick-and-place systems** for immediate, high-value waste diversion.
-        </p>
-    </div>
-        <a href="/index.html#design-projects" class="back-link">&larr; Back to Main Projects</a>
-    </main>
-    
-    <script src="/script.js"></script>
+        <a href="#banner" class="back-link">&uarr; Back to Top</a>
+    </main>
+    
+    <script src="script.js"></script>
 </body>
 </html>

@@ -155,7 +155,6 @@ body.is-transitioning #page-transition-overlay {
     height: auto;
     padding-bottom: 3rem;
     padding-top: 1vh;
-    margin-bottom: 3rem;
     box-sizing: border-box;
     background-color: var(--dark-green-bg);
     opacity: 0;
@@ -359,7 +358,7 @@ body.is-transitioning #page-transition-overlay {
 /* === SOFTWARE & DESIGN TWO-COLUMN SECTION === */
 .projects-two-col-section {
     max-width: 1200px;
-    margin: 4em auto;
+    margin: 8 em auto 4em auto;
     padding: 0 2em;
 }
 
@@ -381,7 +380,7 @@ body.is-transitioning #page-transition-overlay {
 .project-list-item {
     display: block;
     text-decoration: none;
-    color: var(--light-text);
+    color: var(--dark-text);
     padding: 3.5em 2em;
     border-bottom: 1px solid #e0e0e0;
     position: relative;
@@ -408,7 +407,7 @@ body.is-transitioning #page-transition-overlay {
 
 .project-list-item h3 {
     font-size: 3.5rem;
-    color: var(--light-text);
+    color: var(--dark-text);
     margin: 0 0 0.1em 0;
     line-height: 1.1;
     display: flex;
@@ -1284,10 +1283,9 @@ blockquote {
     font-size: 1em;
     padding-left: 40px;
 }
-
 /* === RESPONSIVE STYLES === */
 @media (max-width: 900px) {
-    /* Stacks 2-column layouts */
+    /* 1. Stack the Two-Column Project Layouts */
     .two-column-layout,
     .projects-two-col-grid,
     .split-layout-container { 
@@ -1295,25 +1293,44 @@ blockquote {
         flex-direction: column;
     }
 
-    /* Stacks bento grid */
+    /* 2. Stack the Bento Grid (Intro) */
     .grid-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
+        display: flex; /* Switch to Flexbox for easier mobile stacking */
+        flex-direction: column;
+        height: auto; /* Remove fixed height */
+        max-width: 90%; /* Add side padding */
+        gap: 1rem;
+    }
+
+    /* Reset individual grid items so they stack nicely */
+    .grid-item {
+        width: 100%;
+        min-height: 200px;
+        opacity: 1; /* Ensure they are visible */
+        transform: none; /* Remove complex transforms if they glitch */
+        animation: none; /* Optional: remove animation on mobile for performance */
+    }
+
+    /* Fix the Headshot Image on Mobile */
+    .item-headshot {
+        order: -1; /* Move image to the top of the stack */
+        min-height: 300px;
+    }
+    
+    .item-headshot img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Adjust container padding */
+    .welcome-container {
+        padding: 1rem 0;
         height: auto;
     }
-    .grid-item {
-        grid-column: auto;
-        grid-row: auto;
-        min-height: 200px;
-    }
-    .item-headshot {
-        max-height: 400px;
-    }
-    .welcome-container {
-        padding: 1rem;
-    }
+
+    /* Adjust Font Sizes */
     .grid-item h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 }
 
@@ -1321,13 +1338,16 @@ blockquote {
     h2 {
         font-size: 2em;
     }
+    
     #menu-icon {
         font-size: 24px;
     }
+    
     .features-grid {
         grid-template-columns: 1fr;
         margin-top: 2em;
     }
+    
     .recognition-grid-three-col {
         grid-template-columns: 1fr;
     }
@@ -1335,27 +1355,12 @@ blockquote {
 
 @media (max-width: 480px) {
     .grid-item h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     .grid-item h2 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
     }
     .item-quote p {
         font-size: 1.2rem;
-    }
-}
-/* This applies only to screens smaller than 768px (Tablets & Phones) */
-@media screen and (max-width: 768px) {
-    
-    .bento-grid-container {
-        grid-template-columns: 1fr;
-        
-        grid-template-rows: auto;
-        
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    .bento-card {
-        min-height: 200px; /* Make them shorter if needed */
     }
 }
