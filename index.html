@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Vanilla Tilt for 3D effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 </head>
 <body>
 <div id="page-transition-overlay"></div>
@@ -69,6 +75,7 @@
                 
                 <a href="#contact" class="quick-link">Contact Me</a>
             </div>
+            </div>
             
             <a href="#main-content" class="scroll-down-indicator">
                 <div class="scroll-arrow-container">
@@ -80,24 +87,27 @@
 
 <main id="main-content">
     
+  <!-- Parallax background element -->
+  <div class="parallax-bg" data-speed="0.5"></div>
+  
   <section id="projects-wrapper" class="projects-two-col-section">
     <div class="projects-two-col-grid">
 
         <div id="software-projects" class="project-column">
-            <h2>Software Projects</h2>
+            <h2 class="parallax-element" data-speed="0.3">Software Projects</h2>
             <div class="project-list-container">
                 
-                <a href="project/Software/pythagorasplains.html" class="project-list-item">
+                <a href="project/Software/pythagorasplains.html" class="project-list-item tilt-card magnetic-button">
                    <h3>Pythagorus Plains</h3>
                    <p>An RPG where you solve math problems to deal damage.</p>
                 </a>
                 
-                <a href="project/Software/wastewise.html" class="project-list-item">
+                <a href="project/Software/wastewise.html" class="project-list-item tilt-card magnetic-button">
                    <h3>WasteWise</h3>
                    <p>An AI that analyzes incoming landfill trash to sort materials.</p>
                 </a>
 
-                <a href="project/Software/stargame.html" class="project-list-item">
+                <a href="project/Software/stargame.html" class="project-list-item tilt-card magnetic-button">
                    <h3>Stargame</h3>
                    <p>A simple game where the user places stars to copy constellations.</p>
                 </a>
@@ -105,15 +115,15 @@
         </div>
 
         <div id="design-projects" class="project-column">
-            <h2>Physical Design Projects</h2>
+            <h2 class="parallax-element" data-speed="0.3">Physical Design Projects</h2>
             <div class="project-list-container">
                 
-                <a href="project/design/LYKA.html" class="project-list-item">
+                <a href="project/design/LYKA.html" class="project-list-item tilt-card magnetic-button">
                    <h3>LYKA Lamp</h3>
                    <p>A microbial fuel cell prototype to explore renewable energy.</p>
                 </a>
         
-                <a href="project/design/Aquatracker.html" class="project-list-item">
+                <a href="project/design/Aquatracker.html" class="project-list-item tilt-card magnetic-button">
                    <h3>Aquatracker</h3>
                    <p>Applied SolidWorks for mechanical design and circuit layout.</p>
                 </a>
@@ -123,8 +133,9 @@
 
     </div>
 </section>
+
 <section id="areas-of-focus" class="research-grid-section">
-    <h2>Areas of Focus</h2>
+    <h2 class="parallax-element" data-speed="0.2">Areas of Focus</h2>
     <p class="section-description">
         My work is focused on creating tangible solutions for complex environmental problems.
         Hover over a card to learn more.
@@ -132,8 +143,8 @@
     
     <div class="research-grid-container">
         
-        <a href="project\Research\energy.html" class="research-card">
-            <div class="research-card-bg-image" style="background-image: url('images\renewable_energy.jpg');"></div>
+        <a href="project\Research\energy.html" class="research-card tilt-card magnetic-button">
+            <div class="research-card-bg-image parallax-element" data-speed="0.1" style="background-image: url('images\renewable_energy.jpg');"></div>
             
             <div class="research-card-content">
                 <h3>Energy Solutions</h3>
@@ -142,8 +153,8 @@
             </div>
         </a>
 
-        <a href="project/Research/waste.html" class="research-card">
-            <div class="research-card-bg-image" style="background-image: url('images\waste_management.jpg');"></div>
+        <a href="project/Research/waste.html" class="research-card tilt-card magnetic-button">
+            <div class="research-card-bg-image parallax-element" data-speed="0.1" style="background-image: url('images\waste_management.jpg');"></div>
             
             <div class="research-card-content">
                 <h3>Waste Management</h3>
@@ -152,8 +163,8 @@
             </div>
         </a>
 
-        <a href="project/Research/other.html" class="research-card">
-            <div class="research-card-bg-image" style="background-image: url('images\other_research.jpg');"></div>
+        <a href="project/Research/other.html" class="research-card tilt-card magnetic-button">
+            <div class="research-card-bg-image parallax-element" data-speed="0.1" style="background-image: url('images\other_research.jpg');"></div>
             
             <div class="research-card-content">
                 <h3>Other research</h3>
@@ -169,7 +180,7 @@
     <div class="split-layout-container">
         
         <div class="split-layout-left">
-            <h2>Community & Advocacy</h2>
+            <h2 class="parallax-element" data-speed="0.25">Community & Advocacy</h2>
             <nav class="community-nav">
                 <ul>
                     <li><a href="#card-1" class="community-nav-item active" data-target="card-1">STEM Outreach</a></li>
@@ -183,35 +194,35 @@
         <div class="split-layout-right">
             <div class="card-shuffle-container">
                 
-                <div class="shuffle-card" id="card-1">
+                <div class="shuffle-card tilt-card" id="card-1">
                     <img src="images\fancy_picture.JPG" alt="STEM Outreach">
                     <div class="shuffle-card-content">
                         <h3>STEM Outreach</h3>
-                        <a href="community/stem.html" class="button">Learn More</a>
+                        <a href="community/stem.html" class="button magnetic-button">Learn More</a>
                     </div>
                 </div>
 
-                <div class="shuffle-card" id="card-2">
+                <div class="shuffle-card tilt-card" id="card-2">
                     <img src="images\girl_power.jpg" alt="Women Empowerment">
                     <div class="shuffle-card-content">
                         <h3>Women Empowerment</h3>
-                        <a href="community/women.html" class="button">Learn More</a>
+                        <a href="community/women.html" class="button magnetic-button">Learn More</a>
                     </div>
                 </div>
 
-                <div class="shuffle-card" id="card-3">
+                <div class="shuffle-card tilt-card" id="card-3">
                     <img src="images\environmental_image.jpg" alt="Environment">
                     <div class="shuffle-card-content">
                         <h3>Environment</h3>
-                        <a href="community/environment.html" class="button">Learn More</a>
+                        <a href="community/environment.html" class="button magnetic-button">Learn More</a>
                     </div>
                 </div>
 
-                <div class="shuffle-card" id="card-4">
+                <div class="shuffle-card tilt-card" id="card-4">
                     <img src="\images\stem_advocacy.png" alt="Political Advocacy">
                     <div class="shuffle-card-content">
                         <h3>Political Advocacy</h3>
-                        <a href="community/political.html" class="button">Learn More</a>
+                        <a href="community/political.html" class="button magnetic-button">Learn More</a>
                     </div>
                 </div>
 
@@ -221,11 +232,11 @@
 </section>
 
            <section id="recognition" class="recognition-section">
-    <h2>Awards & Honors</h2>
+    <h2 class="parallax-element" data-speed="0.2">Awards & Honors</h2>
     
     <div class="recognition-grid-three-col">
         
-        <a href="honors/academic.html" class="award-card">
+        <a href="honors/academic.html" class="award-card tilt-card magnetic-button">
             <h3>Academic & Research Honors</h3>
             <div class="award-card-content">
                 <ul>
@@ -240,7 +251,7 @@
             </div>
         </a>
 
-        <a href="honors/leadership.html" class="award-card">
+        <a href="honors/leadership.html" class="award-card tilt-card magnetic-button">
             <h3>Leadership & Community Honors</h3>
             <div class="award-card-content">
                 <ul>
@@ -254,7 +265,7 @@
             </div>
         </a>
 
-        <a href="honors/conferences.html" class="award-card">
+        <a href="honors/conferences.html" class="award-card tilt-card magnetic-button">
             <h3>Conferences Attended</h3>
             <div class="award-card-content">
                 <ul>
@@ -271,16 +282,19 @@
 
     </div>
 </section>
+</main>
+
     <footer id="contact">
         <h2>Contact Me</h2>
         <p>Feel free to reach out via email or connect with me on social media!</p>
-        <a href="mailto:kylakayf@gmail.com" class="email-link">kylakayf@gmail.com</a>
+        <a href="mailto:kylakayf@gmail.com" class="email-link magnetic-button">kylakayf@gmail.com</a>
         <div class="socials">
-            <a href="https://github.com/kylafallis" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/kylafallis07" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/kyla.fallis/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/kylafallis" target="_blank" aria-label="GitHub" class="magnetic-button"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/kylafallis07" target="_blank" aria-label="LinkedIn" class="magnetic-button"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/kyla.fallis/" target="_blank" aria-label="Instagram" class="magnetic-button"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
+    </div>
     
     <script src="script.js"></script>
 </body>

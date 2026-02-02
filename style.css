@@ -11,6 +11,11 @@
     --card-green-1: #718355;
     --card-green-2: #87986a;
     --card-green-3: #5b6e3a;
+    
+    /* NEW: Project section colors for better contrast */
+    --project-bg: #ffffff;
+    --project-text: #2a2a2a;
+    --project-accent: #718355;
 
     /* Font Families */
     --body-font: 'Momo Trust Display', sans-serif;
@@ -152,13 +157,14 @@ body.is-transitioning #page-transition-overlay {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    height: auto;
+    height: 100vh; /* Changed from auto to 100vh to prevent overlap */
     padding-bottom: 3rem;
     padding-top: 1vh;
     box-sizing: border-box;
     background-color: var(--dark-green-bg);
     opacity: 0;
     animation: fadeIn 1s forwards;
+    position: relative; /* Added for proper stacking */
 }
 
 @keyframes fadeIn {
@@ -355,11 +361,19 @@ body.is-transitioning #page-transition-overlay {
     transition: height 0.1s linear;
 }
 
+/* === MAIN CONTENT WRAPPER - FIXES OVERLAP ISSUE === */
+#main-content {
+    position: relative;
+    background-color: var(--project-bg);
+    z-index: 10; /* Ensures it sits above the welcome container */
+}
+
 /* === SOFTWARE & DESIGN TWO-COLUMN SECTION === */
 .projects-two-col-section {
     max-width: 1200px;
-    margin: 8 em auto 4em auto;
-    padding: 0 2em;
+    margin: 0 auto; /* CHANGED: Removed top margin to prevent overlap */
+    padding: 5em 2em 4em 2em; /* CHANGED: Added top padding instead */
+    background-color: var(--project-bg);
 }
 
 .projects-two-col-grid {
@@ -370,22 +384,25 @@ body.is-transitioning #page-transition-overlay {
 
 .project-column h2 {
     text-align: left;
+    color: var(--project-text); /* CHANGED: Now readable */
 }
 
-/* === PROJECT LIST (LARGE TYPE WATERFALL) === */
+/* === PROJECT LIST (LARGE TYPE WATERFALL) - ENHANCED === */
 .project-list-container {
-    border-top: 2px solid var(--light-sage);
+    border-top: 2px solid var(--project-accent);
 }
 
 .project-list-item {
     display: block;
     text-decoration: none;
-    color: var(--dark-text);
-    padding: 3.5em 2em;
+    color: var(--project-text); /* CHANGED: Dark text on white background */
+    padding: 2em 1.5em; /* CHANGED: Reduced padding from 3.5em to 2em */
     border-bottom: 1px solid #e0e0e0;
     position: relative;
     overflow: hidden;
     z-index: 1;
+    background-color: var(--project-bg);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .project-list-item::before {
@@ -395,40 +412,64 @@ body.is-transitioning #page-transition-overlay {
     left: 0;
     width: 100%;
     height: 0;
-    background-color: var(--dark-sage);
+    background: linear-gradient(135deg, var(--dark-sage) 0%, var(--light-sage) 100%); /* ENHANCED: gradient instead of solid */
     z-index: -1;
     transition: height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+/* AWARD-WINNING TOUCH: Parallax-style pseudo-element */
+.project-list-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    width: 40%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(113, 131, 85, 0.1) 0%, transparent 70%);
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.project-list-item:hover::after {
+    transform: translateY(-50%) scale(1);
+}
+
 .project-list-item h3,
 .project-list-item p {
-    transition: color 0.4s ease;
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .project-list-item h3 {
-    font-size: 3.5rem;
-    color: var(--dark-text);
-    margin: 0 0 0.1em 0;
+    font-size: 2.5rem; /* CHANGED: Reduced from 3.5rem to 2.5rem for less space */
+    color: var(--project-text); /* CHANGED: Readable color */
+    margin: 0 0 0.3em 0; /* CHANGED: Reduced margin */
     line-height: 1.1;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: 700; /* ENHANCED: Bolder for impact */
 }
 
 .project-list-item h3::after {
     content: '→';
     font-size: 0.8em;
-    color: var(--dark-sage);
+    color: var(--project-accent);
     opacity: 0;
     transform: translateX(-20px);
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .project-list-item p {
-    font-size: 1.2rem;
-    color: #555;
+    font-size: 1.1rem; /* CHANGED: Slightly reduced */
+    color: #555; /* CHANGED: Readable gray */
     margin: 0;
     max-width: 80%;
+}
+
+.project-list-item:hover {
+    transform: translateX(8px); /* AWARD-WINNING: Slight horizontal shift */
 }
 
 .project-list-item:hover::before {
@@ -437,10 +478,12 @@ body.is-transitioning #page-transition-overlay {
 
 .project-list-item:hover h3 {
     color: white;
+    transform: translateX(5px); /* ENHANCED: Additional movement */
 }
 
 .project-list-item:hover p {
-    color: var(--off-white);
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateX(3px);
 }
 
 .project-list-item:hover h3::after {
@@ -455,6 +498,7 @@ body.is-transitioning #page-transition-overlay {
     margin: 4em auto;
     padding: 0 2em;
     text-align: center;
+    background-color: var(--off-white);
 }
 
 .research-grid-section .section-description {
@@ -478,6 +522,12 @@ body.is-transitioning #page-transition-overlay {
     overflow: hidden;
     text-decoration: none;
     box-shadow: 0 4px 15px var(--light-shadow);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
+}
+
+.research-card:hover {
+    transform: translateY(-8px) scale(1.02); /* ENHANCED: Added scale */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }
 
 .research-card-bg-image {
@@ -490,7 +540,7 @@ body.is-transitioning #page-transition-overlay {
     background-position: center;
     background-color: var(--dark-green-bg);
     opacity: 0.5;
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .research-card-content {
@@ -511,7 +561,7 @@ body.is-transitioning #page-transition-overlay {
     font-size: 1.75rem;
     color: var(--dark-text);
     margin: 0 0 0.5em 0;
-    transition: color 0.4s ease;
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .research-card-content .research-card-tag {
@@ -539,10 +589,15 @@ body.is-transitioning #page-transition-overlay {
 
 .research-card:hover .research-card-bg-image {
     opacity: 0.8;
-    transform: scale(1.05);
+    transform: scale(1.1); /* ENHANCED: More dramatic zoom */
 }
 
-.research-card:hover .research-card-content h3,
+.research-card:hover .research-card-content h3 {
+    color: white;
+    opacity: 1;
+    transform: translateY(-5px); /* ENHANCED: Lift effect */
+}
+
 .research-card:hover .research-card-content .research-card-tag {
     color: white;
     opacity: 1;
@@ -586,15 +641,37 @@ body.is-transitioning #page-transition-overlay {
     display: block;
     padding: 0.75em 0;
     opacity: 0.5;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+}
+
+/* AWARD-WINNING TOUCH: Sliding underline */
+.community-nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5em;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--dark-sage);
+    transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .community-nav-item:hover {
     opacity: 0.75;
+    transform: translateX(8px);
+}
+
+.community-nav-item:hover::after {
+    width: 40%;
 }
 
 .community-nav-item.active {
     opacity: 1.0;
+}
+
+.community-nav-item.active::after {
+    width: 60%;
 }
 
 .split-layout-right {
@@ -626,12 +703,18 @@ body.is-transitioning #page-transition-overlay {
     height: 100%;
     object-fit: cover;
     opacity: 0.5;
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .shuffle-card.active {
     opacity: 1;
     z-index: 10;
     transform: rotate(0deg) translateY(0) scale(1);
+}
+
+.shuffle-card.active img {
+    opacity: 0.6; /* ENHANCED: Better image visibility on active card */
+    transform: scale(1.05);
 }
 
 .shuffle-card.next-1 {
@@ -652,6 +735,7 @@ body.is-transitioning #page-transition-overlay {
     left: 0;
     padding: 2em;
     color: white;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%); /* ENHANCED: Better text readability */
 }
 
 .shuffle-card-content h3 {
@@ -667,12 +751,13 @@ body.is-transitioning #page-transition-overlay {
     padding: 0.7em 1.5em;
     border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     font-weight: bold;
 }
 
 .shuffle-card-content .button:hover {
     background-color: var(--light-sage);
+    transform: translateY(-3px) scale(1.05);
 }
 
 /* === AWARDS & HONORS (HOVER-REVEAL GRID) === */
@@ -698,11 +783,13 @@ body.is-transitioning #page-transition-overlay {
     padding: 2rem;
     border-radius: 12px;
     background-color: var(--card-green-1);
-    transition: background-color 0.4s ease;
+    transition: background-color 0.4s ease, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .award-card:hover {
     background-color: var(--card-green-2);
+    transform: translateY(-5px) scale(1.02); /* ENHANCED: Added lift and scale */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 
 .award-card h3 {
@@ -745,6 +832,11 @@ body.is-transitioning #page-transition-overlay {
     margin-bottom: 0.5em;
     border-bottom: 1px solid rgba(55, 61, 32, 0.2);
     padding-bottom: 0.5em;
+    transition: transform 0.2s ease;
+}
+
+.award-card:hover .award-card-content li {
+    transform: translateX(5px); /* ENHANCED: Stagger effect on list items */
 }
 
 .award-card-content .click-hint {
@@ -767,7 +859,7 @@ body.is-transitioning #page-transition-overlay {
 
 .project-header .subtitle {
     font-size: 1.2em;
-    color: var(--text-light); /* This color won't work on --off-white */
+    color: #666; /* CHANGED: More readable on white background */
     max-width: 600px;
     margin: 0.5em auto 0 auto;
 }
@@ -1283,6 +1375,7 @@ blockquote {
     font-size: 1em;
     padding-left: 40px;
 }
+
 /* === RESPONSIVE STYLES === */
 @media (max-width: 900px) {
     /* 1. Stack the Two-Column Project Layouts */
@@ -1295,10 +1388,10 @@ blockquote {
 
     /* 2. Stack the Bento Grid (Intro) */
     .grid-container {
-        display: flex; /* Switch to Flexbox for easier mobile stacking */
+        display: flex;
         flex-direction: column;
-        height: auto; /* Remove fixed height */
-        max-width: 90%; /* Add side padding */
+        height: auto;
+        max-width: 90%;
         gap: 1rem;
     }
 
@@ -1306,14 +1399,14 @@ blockquote {
     .grid-item {
         width: 100%;
         min-height: 200px;
-        opacity: 1; /* Ensure they are visible */
-        transform: none; /* Remove complex transforms if they glitch */
-        animation: none; /* Optional: remove animation on mobile for performance */
+        opacity: 1;
+        transform: none;
+        animation: none;
     }
 
     /* Fix the Headshot Image on Mobile */
     .item-headshot {
-        order: -1; /* Move image to the top of the stack */
+        order: -1;
         min-height: 300px;
     }
     
@@ -1331,6 +1424,11 @@ blockquote {
     /* Adjust Font Sizes */
     .grid-item h1 {
         font-size: 2.5rem;
+    }
+    
+    /* CHANGED: Reduce project title size on mobile */
+    .project-list-item h3 {
+        font-size: 1.8rem;
     }
 }
 
@@ -1351,6 +1449,15 @@ blockquote {
     .recognition-grid-three-col {
         grid-template-columns: 1fr;
     }
+    
+    /* CHANGED: Further reduce project title size */
+    .project-list-item h3 {
+        font-size: 1.5rem;
+    }
+    
+    .project-list-item {
+        padding: 1.5em 1em;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1363,4 +1470,222 @@ blockquote {
     .item-quote p {
         font-size: 1.2rem;
     }
+    
+    .project-list-item h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* === SMOOTH SCROLL (Lenis) === */
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+/* === PARALLAX BACKGROUND === */
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background: linear-gradient(180deg, 
+        rgba(113, 131, 85, 0.03) 0%, 
+        rgba(135, 152, 106, 0.05) 50%,
+        rgba(91, 110, 58, 0.03) 100%
+    );
+    z-index: -1;
+    will-change: transform;
+}
+
+/* === PARALLAX ELEMENTS === */
+.parallax-element {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+/* === 3D TILT EFFECT CARDS === */
+.tilt-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.tilt-card::before,
+.tilt-card::after {
+    transform: translateZ(20px);
+}
+
+.tilt-card h3,
+.tilt-card p,
+.tilt-card .shuffle-card-content,
+.tilt-card .research-card-content,
+.tilt-card .award-card-content {
+    transform: translateZ(30px);
+}
+
+/* Enhanced tilt for project cards */
+.project-list-item.tilt-card:hover {
+    transform: translateX(8px) scale(1.02);
+}
+
+/* === MAGNETIC BUTTONS === */
+.magnetic-button {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+}
+
+.magnetic-button::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* Magnetic effect indicator - subtle glow on approach */
+.magnetic-button:hover {
+    filter: brightness(1.1);
+}
+
+/* Special magnetic styling for email link */
+.email-link.magnetic-button {
+    display: inline-block;
+    transform-origin: center;
+}
+
+/* Social media icon magnetic effect */
+.socials .magnetic-button {
+    display: inline-block;
+    transform-origin: center;
+}
+
+/* Button magnetic effect */
+.button.magnetic-button,
+.quick-link.magnetic-button {
+    display: inline-block;
+    transform-origin: center;
+}
+
+/* === ENHANCED PROJECT CARDS WITH GLOWING EFFECT ON HOVER === */
+.project-list-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(135deg, var(--dark-sage) 0%, var(--light-sage) 100%);
+    z-index: -1;
+    transition: height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-list-item:hover::before {
+    height: 100%;
+}
+
+/* Enhanced glow effect */
+.project-list-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    width: 40%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(113, 131, 85, 0.15) 0%, transparent 70%);
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(40px);
+}
+
+.project-list-item:hover::after {
+    transform: translateY(-50%) scale(1);
+}
+
+/* === SCROLL-TRIGGERED FADE-IN ANIMATIONS === */
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.fade-in-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays for multiple elements */
+.fade-in-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.fade-in-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.fade-in-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.fade-in-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+.fade-in-on-scroll:nth-child(5) { transition-delay: 0.5s; }
+
+/* === ENHANCED RESEARCH CARDS WITH BETTER PARALLAX === */
+.research-card {
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.research-card-bg-image {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* === PERFORMANCE OPTIMIZATIONS === */
+@media (prefers-reduced-motion: reduce) {
+    .parallax-element,
+    .parallax-bg,
+    .tilt-card,
+    .magnetic-button {
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    .fade-in-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* === GPU ACCELERATION === */
+.project-list-item,
+.research-card,
+.award-card,
+.shuffle-card,
+.parallax-element,
+.magnetic-button {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* === LOADING OPTIMIZATION === */
+.will-animate {
+    will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes */
+.animation-complete {
+    will-change: auto;
 }

@@ -1,39 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- PART 1: PAGE TRANSITION (ANIMATE-OUT ON LOAD) ---
-    // This runs immediately to set up the page load animation.
     const body = document.body;
-    body.classList.add('is-loading'); // Start with lines on-screen
+    body.classList.add('is-loading');
     
     window.addEventListener('load', () => {
-        body.classList.add('is-loaded'); // Trigger the "animate-out"
+        body.classList.add('is-loaded');
         
-        // After animation, hide overlay so it doesn't block content
         setTimeout(() => {
             const overlay = document.getElementById('page-transition-overlay');
             if (overlay) {
                 overlay.style.display = 'none';
             }
-        }, 1000); // This time should match your CSS transition time
+        }, 1000);
     });
 
     
     // --- PART 2: INTERACTION INITIALIZER FUNCTION ---
-    // This function holds all event listeners that get set up 
-    // *after* the sidebar is loaded.
     function initializeAllInteractions() {
 
         // --- Handle Anchor Scroll on Page Load ---
-        // This checks if the URL has a # (e.g., /index.html#contact)
         if (window.location.hash) {
             const targetId = window.location.hash.substring(1);
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                // Wait for the page transition to finish (1s)
                 setTimeout(() => {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
-                }, 1000); // This MUST match your transition-out time
+                }, 1000);
             }
         }
 
@@ -92,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // --- Smooth Scrolling for Anchor Links ---
-        // This handles same-page anchors (e.g., in the Quick Links)
         document.querySelectorAll('a[href*="#"]').forEach(anchor => {
              anchor.addEventListener('click', function (e) {
                  const href = this.getAttribute('href');
@@ -100,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                  if (isSamePageAnchor) {
                      const targetId = href.substring(href.indexOf('#') + 1);
-                     if (targetId) { // Check if targetId is not empty
+                     if (targetId) {
                         e.preventDefault();
                         const targetElement = document.getElementById(targetId);
                         if (targetElement) {
@@ -155,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     updateCardStack(index);
                 });
             });
-            updateCardStack(0); // Initialize the first card
+            updateCardStack(0);
         }
 
         // --- Fade-in on Scroll for Timeline Items (on sub-pages) ---
@@ -174,14 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // --- PAGE TRANSITION (ANIMATE-IN ON CLICK) ---
-        // This is the smart link handler
         const allLinks = document.querySelectorAll('a[href]');
 
         allLinks.forEach(link => {
             const href = link.getAttribute('href');
 
-            // 1. IGNORE special links
-            if (!href || // Ignore links without an href
+            if (!href || 
                 href.startsWith('http') || 
                 href.startsWith('//') || 
                 href.startsWith('mailto:') || 
@@ -189,15 +180,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.contains('dropdown-toggle') || 
                 link.target === '_blank') 
             {
-                return; // Do nothing
+                return;
             }
 
-            // 2. IGNORE simple same-page anchors
             if (href.startsWith('#')) {
-                return; // Do nothing, let smooth-scroll handle it
+                return;
             }
 
-            // 3. If it's a real page-to-page link, add the transition
             link.addEventListener('click', (e) => {
                 e.preventDefault(); 
                 body.classList.add('is-transitioning'); 
@@ -207,12 +196,163 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1000); 
             });
         });
+        
+        // ============================================
+        // === NEW AWARD-WINNING FEATURES START HERE ===
+        // ============================================
+        
+        // --- 1. LENIS SMOOTH SCROLL IMPLEMENTATION ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true,
+            smoothTouch: false,
+            touchMultiplier: 2
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+        
+        // --- 2. SCROLL-TRIGGERED PARALLAX ---
+        const parallaxElements = document.querySelectorAll('.parallax-element');
+        const parallaxBg = document.querySelector('.parallax-bg');
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            
+            // Background parallax
+            if (parallaxBg) {
+                parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            // Element parallax
+            parallaxElements.forEach(el => {
+                const speed = el.dataset.speed || 0.3;
+                const rect = el.getBoundingClientRect();
+                const elementTop = rect.top + window.pageYOffset;
+                const elementVisible = elementTop < (window.pageYOffset + window.innerHeight);
+                
+                if (elementVisible) {
+                    const yPos = -(scrolled - elementTop) * parseFloat(speed);
+                    el.style.transform = `translateY(${yPos}px)`;
+                }
+            });
+        }
+        
+        // Use RAF for smooth parallax
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        // --- 3. VANILLA TILT FOR 3D EFFECTS ---
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        
+        if (typeof VanillaTilt !== 'undefined') {
+            VanillaTilt.init(tiltCards, {
+                max: 8,                    // Maximum tilt rotation (degrees)
+                speed: 400,                // Speed of the enter/exit transition
+                glare: true,               // Enable glare effect
+                'max-glare': 0.3,          // Maximum glare opacity
+                gyroscope: true,           // Enable gyroscope on mobile
+                perspective: 1000,         // Transform perspective
+                scale: 1.02,               // Scale on hover
+                transition: true,          // Set a transition on enter/exit
+                reset: true,               // Reset on mouse leave
+                easing: "cubic-bezier(.03,.98,.52,.99)"
+            });
+        }
+        
+        
+        // --- 5. SCROLL-TRIGGERED FADE-IN ANIMATIONS ---
+        const fadeElements = document.querySelectorAll('.fade-in-on-scroll');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Clean up will-change after animation
+                    setTimeout(() => {
+                        entry.target.classList.add('animation-complete');
+                    }, 1000);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        fadeElements.forEach(el => {
+            el.classList.add('will-animate');
+            fadeObserver.observe(el);
+        });
+        
+        // --- 6. PERFORMANCE: Reduce motion for users who prefer it ---
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        
+        if (prefersReducedMotion.matches) {
+            // Disable tilt
+            tiltCards.forEach(card => {
+                if (card.vanillaTilt) {
+                    card.vanillaTilt.destroy();
+                }
+            });
+            
+            // Disable magnetic buttons
+            magneticButtons.forEach(button => {
+                button.style.transform = 'none';
+            });
+        }
+        
+        // --- 7. SMOOTH CURSOR MOVEMENT (Optional Enhancement) ---
+        let cursor = { x: 0, y: 0 };
+        let mouse = { x: 0, y: 0 };
+        
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        
+        // Smooth cursor following (used internally for calculations)
+        function updateCursor() {
+            cursor.x += (mouse.x - cursor.x) * 0.15;
+            cursor.y += (mouse.y - cursor.y) * 0.15;
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+        
+        // --- 8. LAZY LOAD OPTIMIZATION ---
+        // Add intersection observer for images
+        const images = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
 
     } // --- End of initializeAllInteractions ---
 
 
     // --- PART 3: SIDEBAR LOADER FUNCTION ---
-    // This function fetches the sidebar and then calls initializeAllInteractions
     function loadSidebar() {
         fetch('/sidebar.html')
             .then(response => {
@@ -228,7 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error(error);
-                // Still initialize the rest of the page
                 initializeAllInteractions();
             });
     }
